@@ -4,10 +4,6 @@ import { Router, browserHistory } from 'react-router'
 
 window.React = React; // export for http://fb.me/react-devtools
 
-
-console.log('222')
-
-
 const rootRoute = {
     component: 'div',
     childRoutes: [{

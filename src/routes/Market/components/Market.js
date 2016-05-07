@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 class Market extends Component {
     render() {
@@ -15,6 +16,9 @@ class Market extends Component {
                         <li key={event.id}>{event.title}</li>
                     ))}
                 </ul>
+                <Link to="/market/nested" >Market</Link>{' '}
+
+                {this.props.children}
             </div>
         )
     }

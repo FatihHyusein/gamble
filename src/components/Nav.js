@@ -12,6 +12,7 @@ class Nav extends Component {
         alert('log out')
     }
 
+
     render() {
         const { user } = this.props;
 
@@ -19,12 +20,12 @@ class Nav extends Component {
             <div >
                 <div>
                     <Link to="/">Home</Link>{' '}
-                    <Link to="/freeMuffins" >Free Muffins</Link>{' '}
-                    <Link to="/jackpot" >Jackpot</Link>{' '}
-                    <Link to="/market" >Market</Link>{' '}
+                    <Link to="/freeMuffins" activeClassName="active" >Free Muffins</Link>{' '}
+                    <Link to="/jackpot" activeClassName="active">Jackpot</Link>{' '}
+                    <Link to="/market" activeClassName="active">Market</Link>{' '}
                 </div>
                 <div>
-                    <Link  to="/profile">{user.name}</Link>
+                    <Link to="/profile">{user.name}</Link>
                     <button onClick={this.logOut}>log out</button>
                 </div>
             </div>

@@ -5,15 +5,32 @@ use Framework\Config\AppConfig;
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="/casino/public/"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <title><?= (AppConfig::get('title', 'KREATE')) ?></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/bundle.css"/>
 </head>
 <body>
-<div>asd</div>
 <div id="app"></div>
 <?php echo STATIC_URL?>
-<script src="scripts/bundle.js"></script>
+
 </body>
+<script src="scripts/bundle.js" async></script>
+<noscript id="deferred-styles">
+    <link rel="stylesheet" href="css/bundle.css" type="text/css"/>
+</noscript>
+<script>
+    var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement);
+        addStylesNode.parentElement.removeChild(addStylesNode);
+    };
+    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+        webkitRequestAnimationFrame || msRequestAnimationFrame;
+    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+    else window.addEventListener('load', loadDeferredStyles);
+</script>
 </html>
 

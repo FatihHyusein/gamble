@@ -1,5 +1,12 @@
 module.exports = {
-    path: '/casino/public/market',
+    path: 'market',
+
+    getChildRoutes(location, cb) {
+        cb(null, [
+            require('./routes/nestedMarked')
+        ])
+    },
+
     getComponent(nextState, cb) {
         cb(null, require('./components/Market'))
     }
