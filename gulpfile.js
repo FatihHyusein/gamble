@@ -10,6 +10,7 @@ const concat = require('gulp-concat'); //Concatenates files
 const lint = require('gulp-eslint'); //Lint JS files, including JSX
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
+const sftp = require('gulp-sftp');
 
 
 const config = {
@@ -104,11 +105,18 @@ gulp.task('lint', function () {
         .pipe(lint.format());
 });
 
+gulp.task('upload', function () {
+
+    return gulp.src(config.paths.dist + '/**/*')
+        .pipe(sftp(devConfig));
+});
+
 //watch for changes and update the page
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.mainJs, ['js', 'lint']);
+    gulp.watch(config.paths.js, ['js', 'lint']);
     gulp.watch(config.paths.scss, ['css']);
+    gulp.watch(config.paths.dist+'/**/*', ['upload']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'lint', 'upload', 'watch']);

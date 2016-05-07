@@ -1,12 +1,19 @@
+<?php
+use Framework\Config\AppConfig;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title><?= (AppConfig::get('title', 'KREATE')) ?></title>
     <meta charset="UTF-8">
-    <title></title>
     <link rel="stylesheet" href="css/bundle.css"/>
 </head>
 <body>
+<div>asd</div>
 <div id="app"></div>
+<?php echo STATIC_URL?>
 <script src="scripts/bundle.js"></script>
 </body>
 </html>
+
