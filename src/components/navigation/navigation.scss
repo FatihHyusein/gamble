@@ -1,0 +1,33 @@
+nav {
+    @include flexbox();
+    align-items: center;
+    background-color: $dark-green;
+    color: $white;
+    opacity: 0.9;
+
+    .index-link {
+        img {
+            width: 250px;
+            height: 70px;
+        }
+    }
+    .login-link {
+        width: 75px;
+        height: 40px;
+        cursor: pointer;
+    }
+
+    ul {
+        @include flexbox();
+        margin-left: auto;
+        li {
+            @include flexbox();
+            margin-right: 20px;
+        }
+    }
+
+    .active{
+        color: $cod-gray;
+    }
+}
+

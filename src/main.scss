@@ -1,12 +1,10 @@
-.red {
-    color: #8585ff;
+a:visited,
+a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
 }
 
-.red {
-    display: none;
-}
-
-
-.active{
-    color: #ff0000;
-}
+@import "common/scss/index";
+@import "components/navigation/navigation";
+@import "components/home/home";

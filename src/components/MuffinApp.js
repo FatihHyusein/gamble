@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Home from './Home';
-import Nav from './Nav';
+import Home from './home/Home';
+import Nav from './navigation/Nav';
 import Footer from './Footer';
 
 class MuffinApp extends Component {
@@ -10,9 +10,8 @@ class MuffinApp extends Component {
                 <Nav />
 
                 <div>
-                    {this.props.children || <Home header="dafuq"/>}
+                    {this.props.children || <Home />}
                 </div>
-
                 <Footer />
             </div>
         )

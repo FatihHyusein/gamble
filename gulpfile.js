@@ -17,6 +17,7 @@ const config = {
     port: 3000,
     devBaseUrl: 'http://localhost',
     paths: {
+        staticFiles: './staticFiles/**/*.*',
         html: './src/*.html',
         js: './src/**/*.js',
         scss: './src/**/*.scss',
@@ -52,6 +53,13 @@ gulp.task('open', ['connect'], function () {
 gulp.task('html', function () {
     gulp.src(config.paths.html)
         .pipe(gulp.dest(config.paths.dist))
+        .pipe(connect.reload());
+});
+
+//copy static files
+gulp.task('staticFiles', function () {
+    gulp.src(config.paths.staticFiles)
+        .pipe(gulp.dest(config.paths.dist + '/staticFiles'))
         .pipe(connect.reload());
 });
 
@@ -108,7 +116,7 @@ gulp.task('lint', function () {
 gulp.task('upload', function () {
 
     return gulp.src(config.paths.dist + '/**/*')
-        .pipe(sftp(devConfig));
+        .pipe(sftp());
 });
 
 //watch for changes and update the page
@@ -116,7 +124,8 @@ gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
     gulp.watch(config.paths.js, ['js', 'lint']);
     gulp.watch(config.paths.scss, ['css']);
-    gulp.watch(config.paths.dist+'/**/*', ['upload']);
+    gulp.watch(config.paths.staticFiles, ['staticFiles']);
+    gulp.watch(config.paths.dist + '/**/*', ['upload']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'lint', 'upload', 'watch']);
+gulp.task('default', ['staticFiles', 'html', 'js', 'css', 'lint', 'upload', 'watch']);
