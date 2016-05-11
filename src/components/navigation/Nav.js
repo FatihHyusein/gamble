@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import NavLink from './NavLink';
+const SvgIcon = CommonComponents.SvgIcon;
 
 class Nav extends Component {
 
@@ -18,13 +19,13 @@ class Nav extends Component {
             Profile
         </NavLink></li>;
 
-        var steamLoginLink = <img className='login-link' src='staticFiles/icons/steamLoginIcon.png'/>;
+        var steamLoginLink = <SvgIcon iconName='test' className='login-link'/>;
 
         var userLink = token ? profileLink : steamLoginLink;
 
         return (
             <nav>
-                <NavLink to="/" onlyActiveOnIndex={true} className='index-link'><img src='staticFiles/icons/33772.svg'/></NavLink>
+                <NavLink to="/" onlyActiveOnIndex={true} className='index-link'><SvgIcon iconName="33772"/></NavLink>
                 <ul>
                     {linkEls}
                 </ul>
