@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Home from './home/Home';
 import Nav from './navigation/Nav';
-import Footer from './Footer';
+import Footer from './footer/Footer';
 
 class MuffinApp extends Component {
     render() {

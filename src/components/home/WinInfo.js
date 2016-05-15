@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
 
 class WinInfo extends Component {
     constructor(props) {
@@ -10,10 +10,10 @@ class WinInfo extends Component {
         const win = this.props.win;
 
         return (
-            <div>
+            <div className="win-info-container">
                 <span><img src={win.profileImg}/></span>
                 JUST WON
-                <span className="win-sum">{win.sum}M</span>
+                <span className="win-sum"> {win.sum}M </span>
                 IN
                 <span className="win-game">{win.game}</span>
             </div>

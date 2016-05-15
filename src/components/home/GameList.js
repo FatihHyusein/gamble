@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
 import Game from './Game';
 
 class GameList extends Component {
@@ -10,11 +10,13 @@ class GameList extends Component {
     render() {
         var gameEls = this.props.games.map((game, idx)=> <Game key={idx} game={game}/>);
         return (
-            <div>
+            <div className="game-list-container">
                 <div className="header">
                     GAMES
                 </div>
-                {gameEls}
+                <div className="games-container">
+                    {gameEls}
+                </div>
             </div>
         )
     }
@@ -24,27 +26,27 @@ GameList.defaultProps = {
     games: [
         {
             url: '/jackpot',
-            icon: 'staticFiles/icons/steamLoginIcon.png',
-            header: 'Jackpot',
-            description: 'Bet muffins'
+            icon: 'jackpot',
+            header: 'JACKPOT',
+            description: 'Bet your muffins against other players. The more you bet the more you get.'
         },
         {
-            url: '/jackpot',
-            icon: 'staticFiles/icons/steamLoginIcon.png',
-            header: 'Jackpot',
-            description: 'Bet muffins'
+            url: '',
+            icon: 'coinflip',
+            header: 'COIN FLIP',
+            description: 'Play agains other players with a fixed amount of muffins. Chances of winning are 50/50'
         },
         {
-            url: '/jackpot',
-            icon: 'staticFiles/icons/steamLoginIcon.png',
-            header: 'Jackpot',
-            description: 'Bet muffins'
+            url: '',
+            icon: 'roulette',
+            header: 'COMING SOON',
+            description: ''
         },
         {
-            url: '/jackpot',
-            icon: 'staticFiles/icons/steamLoginIcon.png',
-            header: 'Jackpot',
-            description: 'Bet muffins'
+            url: '',
+            icon: 'box',
+            header: 'COMING SOON',
+            description: ''
         }
     ]
 };

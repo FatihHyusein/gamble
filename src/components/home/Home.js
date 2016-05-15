@@ -9,20 +9,20 @@ function getStateFromStores() {
         innerHeader: HeaderStore.getNewHeader(),
         winners: [
             {
-                profileImg: 'staticFiles/icons/test.svg',
+                profileImg: 'staticFiles/images/testProfile.png',
                 sum: '12',
                 game: 'Jackpot'
 
             },
             {
-                profileImg: 'staticFiles/icons/steamLoginIcon.png',
+                profileImg: 'staticFiles/images/testProfile.png',
                 sum: '12',
                 game: 'Jackpot'
             },
             {
-                profileImg: 'staticFiles/icons/steamLoginIcon.png',
-                sum: '12',
-                game: 'Jackpot'
+                profileImg: 'staticFiles/images/testProfile.png',
+                sum: '1233',
+                game: 'Jackpot 2'
             }
         ]
     };
@@ -62,10 +62,12 @@ class Home extends Component {
     render() {
         var winEls = this.state.winners.map((winner, idx)=><WinnerInfo key={idx} win={winner}/>);
         return (
-            <div>
+            <div id="home">
                 <div className="top-container">
-                    <div><h1>the only place where you bet muffins and win cd:go skins</h1></div>
-                    <div>{winEls}</div>
+                    <div className="header-container">
+                        <h1>the only place where you bet muffins and win cd:go skins</h1>
+                    </div>
+                    <div className="wins-container">{winEls}</div>
                 </div>
                 <div>
                     <GameList />

@@ -1,5 +1,5 @@
 <?php
-use Framework\Config\AppConfig;
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -7,12 +7,11 @@ use Framework\Config\AppConfig;
 <head>
     <base href="/casino/public/"/>
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <title><?= (AppConfig::get('title', 'KREATE')) ?></title>
     <meta charset="UTF-8">
+    <title>CSGO Muffin</title>
 </head>
 <body>
 <div id="app"></div>
-<?php echo STATIC_URL?>
 
 </body>
 <script src="scripts/bundle.js" async></script>
@@ -20,6 +19,7 @@ use Framework\Config\AppConfig;
     <link rel="stylesheet" href="css/bundle.css" type="text/css"/>
 </noscript>
 <script>
+    var token = '<?php echo $_SESSION['token'] ? $_SESSION['token'] : ''?>';
     var loadDeferredStyles = function() {
         var addStylesNode = document.getElementById("deferred-styles");
         var replacement = document.createElement("div");

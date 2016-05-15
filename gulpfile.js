@@ -18,18 +18,19 @@ const config = {
     devBaseUrl: 'http://localhost',
     paths: {
         staticFiles: './staticFiles/**/*.*',
-        html: './src/*.html',
+        html: './src/*.php',
         js: './src/**/*.js',
         scss: './src/**/*.scss',
         css: [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
-            'dist/scss/style.css'
+            'dist/scss/main.css'
         ],
         dist: './dist',
-        mainScss: './dist/scss/style.scss',
+        // mainScss: './dist/scss/style.scss',
         mainCss: './dist/scss/style.css',
-        mainJs: './src/main.js'
+        mainJs: './src/main.js',
+        mainScss: './src/main.scss'
     }
 };
 
@@ -45,11 +46,11 @@ gulp.task('connect', function () {
 
 //Open when is connected
 gulp.task('open', ['connect'], function () {
-    gulp.src('dist/index.html')
+    gulp.src('dist/index.php')
         .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
 });
 
-//copy the main index.html file to build folder
+//copy the main index.php file to build folder
 gulp.task('html', function () {
     gulp.src(config.paths.html)
         .pipe(gulp.dest(config.paths.dist))
@@ -76,14 +77,14 @@ gulp.task('js', function () {
 
 //concat sass files into one sass file
 gulp.task('concatSass', function () {
-    return gulp.src(config.paths.scss)
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'Safari >= 8'],
-            cascade: false
-        }))
-        .pipe(concat('/'))
-        .pipe(gulp.dest(config.paths.mainScss));
+    // return gulp.src(config.paths.scss)
+    //     .pipe(sass().on('error', sass.logError))
+    //     .pipe(autoprefixer({
+    //         browsers: ['last 2 versions', 'Safari >= 8'],
+    //         cascade: false
+    //     }))
+    //     .pipe(concat('/'))
+    //     .pipe(gulp.dest(config.paths.mainScss));
 });
 
 //compile main sass file

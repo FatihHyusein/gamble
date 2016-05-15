@@ -1,0 +1,91 @@
+#home {
+    .top-container {
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        min-height: 500px;
+        text-align: center;
+        background: url('../staticFiles/images/bg.jpg') no-repeat;
+        background-size: cover;
+        border-bottom: 5px solid $gray;
+
+        .header-container {
+            width: 50%;
+            h1 {
+                font-size: 300%;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+        }
+        .wins-container {
+            @include flexbox();
+            @include flex-direction(column);
+            width: 30%;
+        }
+    }
+
+    .game-list-container {
+        padding: 20px 0 50px 0;
+        background-color: rgba($gray-blue, 1);
+        .header {
+            position: relative;
+            max-width: 1100px;
+            margin: auto;
+            padding-left: 15px;
+            font-weight: 700;
+            font-size: 200%;
+
+            &::after {
+                content: '';
+                top: 0;
+                left: 0;
+                height: 3px;
+                background: $white;
+                width: 50%;
+            }
+        }
+        .games-container {
+            @include flexbox();
+            @include justify-content(center);
+
+            .game {
+                max-width: 200px;
+                margin: 20px;
+                .svg-icon {
+                    width: 100px;
+                    height: 100px;
+                }
+
+                .game-header {
+                    font-weight: 700;
+                    font-size: 140%;
+                }
+            }
+        }
+    }
+}
+
+.win-info-container {
+    @include inline-flex();
+    @include align-items(center);
+    padding: 5px 20px;
+    margin: 5px;
+    background-color: rgba($gray-blue, 0.7);
+    border: 8px solid $gray-blue-border;
+    @include border-radius(8px);
+    font-weight: 600;
+    img {
+        width: 25px;
+        height: 25px;
+        @include border-radius(50%);
+        background: $black;
+        margin-right: 5px;
+    }
+
+    .win-sum {
+        margin: 0 5px;
+    }
+    .win-game {
+        margin-left: 5px;
+    }
+}

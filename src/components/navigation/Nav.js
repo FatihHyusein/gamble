@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, {Component} from 'react';
+import {Link} from 'react-router';
 import NavLink from './NavLink';
 const SvgIcon = CommonComponents.SvgIcon;
 
@@ -25,11 +25,15 @@ class Nav extends Component {
 
         return (
             <nav>
-                <NavLink to="/" onlyActiveOnIndex={true} className='index-link'><SvgIcon iconName="33772"/></NavLink>
-                <ul>
-                    {linkEls}
-                </ul>
-                {userLink}
+                <NavLink to="/" onlyActiveOnIndex={true} className='index-link'>
+                    <span>CSG</span><img src="staticFiles/icons/muffin.png"/><span>MUFFIN</span>
+                </NavLink>
+                <div className="router-link-container">
+                    <ul>
+                        {linkEls}
+                    </ul>
+                    {userLink}
+                </div>
             </nav>
         )
     }

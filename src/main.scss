@@ -7,4 +7,9 @@ a:link {
 
 @import "common/scss/index";
 @import "components/navigation/navigation";
+@import "components/footer/footer";
 @import "components/home/home";
+
+body{
+    color: $white;
+}

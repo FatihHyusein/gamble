@@ -1,14 +1,21 @@
 nav {
     @include flexbox();
     align-items: center;
-    background-color: $dark-green;
-    color: $white;
-    opacity: 0.9;
+    background-color: rgba($gray-blue, 1);
+    border-bottom: 5px solid $gray;
 
     .index-link {
+        margin: auto;
+        font-size: 300%;
+        font-weight: 700;
+        & > span, & > img {
+            display: inline-block;
+            vertical-align: bottom;
+        }
         img {
-            width: 250px;
-            height: 70px;
+            width: 40px;
+            margin-bottom: 15px;
+            margin-left: -15px;;
         }
     }
     .login-link {
@@ -17,17 +24,25 @@ nav {
         cursor: pointer;
     }
 
-    ul {
+    .router-link-container {
         @include flexbox();
-        margin-left: auto;
-        li {
+        margin: auto;
+
+        ul {
             @include flexbox();
-            margin-right: 20px;
+            margin-left: auto;
+            li {
+                @include flexbox();
+                margin-right: 20px;
+                font-weight: 700;
+                font-size: 140%;
+                text-transform: uppercase;
+            }
         }
     }
 
-    .active{
-        color: $cod-gray;
+    .active {
+        color: $white;
     }
 }
 

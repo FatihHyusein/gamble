@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
 
 class Game extends Component {
     constructor(props) {
@@ -17,8 +17,10 @@ class Game extends Component {
         const game = this.props.game;
 
         return (
-            <div onClick={this.openGame}>
-                <div><img src={game.icon}/></div>
+            <div onClick={this.openGame} className="game">
+                <div>
+                    <CommonComponents.SvgIcon iconName={game.icon}/>
+                </div>
                 <div className="game-header">{game.header}</div>
                 <div className="game-description">{game.description}</div>
             </div>

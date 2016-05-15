@@ -6,6 +6,14 @@
     display: flex;
 }
 
+@mixin inline-flex {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
 @mixin flex-direction($value: row) {
     @if $value == row-reverse {
         -webkit-box-direction: reverse;
@@ -109,4 +117,98 @@
         -ms-flex-line-pack: $value;
     }
     align-content: $value;
+}
+
+
+@mixin bg-gradient($start,$startPercent, $middle,$middlePercent, $end, $endPercent) {
+    background: $start;
+    background: -moz-linear-gradient(top, $start, $middle, $end);
+    background: -webkit-gradient(left top, left bottom, color-stop($startPercent, $start), color-stop($middlePercent, $middle), color-stop($endPercent, $end));
+    background: -webkit-linear-gradient(top, $start $startPercent, $middle $middlePercent, $end $endPercent);
+    background: -o-linear-gradient(top, $start $startPercent, $middle $middlePercent, $end $endPercent);
+    background: -ms-linear-gradient(top, $start $startPercent, $middle $middlePercent, $end $endPercent);
+    background: -ms-linear-gradient(top, $gray 0%, $gray 50%, $dark-blue 50%, $dark-blue 100%);
+
+
+    background: linear-gradient(to bottom, $start $startPercent, $middle $middlePercent, $end $endPercent);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$start, endColorstr=$end, GradientType=0 );
+}
+
+@mixin transform($params) {
+    -ms-transform: $params; /* IE 9 */
+    -webkit-transform:$params; /* Chrome, Safari, Opera */
+    -moz-transform: $params;
+    -o-transform: $params;
+    transform: $params;
+}
+
+@mixin transform-style($params) {
+    -webkit-transform-style: $params;
+    -moz-transform-style: $params;
+    -ms-transform-style: $params;
+    transform-style: $params;
+}
+
+@mixin backface-visibility ($arguments) {
+    -webkit-backface-visibility: $arguments;
+    -moz-backface-visibility: $arguments;
+    -ms-backface-visibility: $arguments;
+    -o-backface-visibility: $arguments;
+    backface-visibility: $arguments;
+}
+
+@mixin box-shadow($params) {
+    -webkit-box-shadow: $params;
+    -moz-box-shadow: $params;
+    box-shadow: $params;
+}
+
+@mixin transition($params) {
+    -webkit-transition: $params;
+    -moz-transition: $params;
+    -ms-transition: $params;
+    -o-transition: $params;
+    transition: $params;
+}
+
+@mixin transition-duration($params) {
+    -webkit-transition-duration: $params;
+    -moz-transition-duration: $params;
+    -ms-transition-duration: $params;
+    -o-transition-duration: $params;
+    transition-duration: $params;
+}
+
+@mixin transition-timing-function($params) {
+    -webkit-transition-timing-function: $params;
+    -moz-transition-timing-function: $params;
+    -o-transition-timing-function: $params;
+    transition-timing-function: $params;
+}
+
+@mixin border-radius($params) {
+    border-radius: $params;
+    -moz-border-radius: $params;
+    -webkit-border-radius: $params;
+}
+
+@mixin filter($params) {
+    -webkit-filter: $params; /* Chrome, Safari, Opera */
+    filter: $params;
+}
+
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
 }

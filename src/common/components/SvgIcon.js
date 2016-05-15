@@ -9,7 +9,7 @@ class SvgIcon extends Component {
         var iconName = 'staticFiles/icons/' + this.props.iconName + '.svg';
 
         return (
-            <object {...this.props} data={iconName}>
+            <object {...this.props} data={iconName} className="svg-icon">
                 <img src={iconName}/>
             </object>
         )
