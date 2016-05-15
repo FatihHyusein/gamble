@@ -19,7 +19,7 @@ class Nav extends Component {
             Profile
         </NavLink></li>;
 
-        var steamLoginLink = <SvgIcon iconName='test' className='login-link'/>;
+        var steamLoginLink = <SvgIcon iconName='fb' className='login-link'/>;
 
         var userLink = token ? profileLink : steamLoginLink;
 

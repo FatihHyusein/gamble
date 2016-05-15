@@ -4,7 +4,7 @@ class MarketItem extends Component {
 
 
         return (
-            <div className="market-item">
+            <div className="market-item" onClick={this.props.onClick.bind(this, item)}>
                 <img src={item.image}/>
                 <div className="description">{item.description}</div>
                 <div className="price-container">

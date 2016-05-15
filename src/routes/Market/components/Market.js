@@ -17,12 +17,11 @@ class Market extends Component {
 
     }
 
-    openMarketItem() {
-        console.log('hit');
-        // this.setState({
-        //     modalIsOpen: true,
-        //     selectedItem: item
-        // });
+    openMarketItem(item) {
+        this.setState({
+            modalIsOpen: true,
+            selectedItem: item
+        });
     }
 
     closeMarketItem(item) {
@@ -32,7 +31,7 @@ class Market extends Component {
     render() {
         var marketItems = this.props.marketItems.map((item, idx) =>
             <MarketItem key={idx} item={item}
-                        onClick={this.openMarketItem()}
+                        onClick={this.openMarketItem}
             />
         );
 
