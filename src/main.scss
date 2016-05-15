@@ -5,11 +5,18 @@ a:link {
     cursor: auto;
 }
 
+ul {
+    li {
+        list-style: none;
+    }
+}
+
 @import "common/scss/index";
 @import "components/navigation/navigation";
 @import "components/footer/footer";
 @import "components/home/home";
+@import "routes/Market/components/market";
 
-body{
+body {
     color: $white;
 }

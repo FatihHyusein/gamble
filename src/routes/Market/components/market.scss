@@ -1,0 +1,94 @@
+#market {
+    .top-container {
+        position: relative;
+        min-height: 400px;
+        text-align: center;
+        background: url('../staticFiles/images/bg.jpg') no-repeat;
+        background-size: cover;
+
+    }
+    .items-container {
+        padding: 50px;
+        background-color: $black;
+        text-align: center;
+    }
+}
+
+.search-bar {
+    position: absolute;
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $dark-gray;
+    text-transform: uppercase;
+
+    & > div,
+    h1 {
+        display: inline-block;
+        width: 50%;
+        margin: auto;
+        vertical-align: middle;
+        font-weight: 700;
+    }
+    & > div > *,
+    .search-btn {
+        display: inline-block;
+        vertical-align: middle;
+
+        input[type="text"] {
+            margin: 0 5px;
+            padding: 10px;
+            border: none;
+            @include border-radius(20px 0 0 20px);
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+        input[type="text"]:focus {
+            @include box-shadow(0 0 5px 1px $dark-blue);
+        }
+    }
+
+    .svg-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.market-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px;
+    max-width: 250px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba($dark-blue, 0.7);
+    border: 3px solid rgba($gray, 0.7);
+
+    .description {
+        padding: 5px;;
+        border-color: 3px solid rgba($gray, 0.7);
+        border-top: 3px solid;
+        border-bottom: 3px solid;
+    }
+    .price-container {
+        @include flexbox();
+        @include justify-content(space-between);
+        padding: 5px 10px;
+
+    }
+    .svg-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    &:hover {
+        background-color: rgba($dark-blue, 1);
+        border: 3px solid rgba($gray, 1);
+        .description {
+            border-color: 3px solid rgba($gray, 1);
+        }
+    }
+}
+
+.paging {
+}

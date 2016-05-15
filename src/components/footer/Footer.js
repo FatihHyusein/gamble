@@ -39,37 +39,37 @@ class Footer extends Component {
 Footer.defaultProps = {
     innerLinks: [
         {
-            url: '/freeMuffins',
+            url: '/index',
             name: 'Home'
         },
         {
-            url: '/jackpot',
+            url: '/support',
             name: 'Support'
         },
         {
-            url: '/market',
+            url: '/freeMuffins',
             name: 'Get free muffins'
         },
         {
-            url: '/jackpot',
+            url: '/tofs',
             name: 'Terms of service'
         },
         {
-            url: '/market',
+            url: '/faq',
             name: 'F.A.Q.'
         }
     ],
     socialLinks: [
         {
-            url: '/freeMuffins',
+            url: '/twitter',
             icon: 'twitter'
         },
         {
-            url: '/jackpot',
+            url: '/fb',
             icon: 'fb'
         },
         {
-            url: '/market',
+            url: '/yt',
             icon: 'yt'
         }
     ]
