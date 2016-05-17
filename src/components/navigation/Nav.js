@@ -52,6 +52,10 @@ Nav.defaultProps = {
         {
             url: '/market',
             name: 'Market'
+        },
+        {
+            url: '/support',
+            name: 'Support'
         }
     ]
 };

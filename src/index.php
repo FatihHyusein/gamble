@@ -14,9 +14,9 @@ session_start();
 <div id="app"></div>
 
 </body>
-<script src="scripts/bundle.js" async></script>
+<script src="bundle.js" async></script>
 <noscript id="deferred-styles">
-    <link rel="stylesheet" href="css/bundle.css" type="text/css"/>
+    <link rel="stylesheet" href="bundle.css" type="text/css"/>
 </noscript>
 <script>
     var token = '<?php echo $_SESSION['token'] ? $_SESSION['token'] : ''?>';

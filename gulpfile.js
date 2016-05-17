@@ -24,9 +24,9 @@ const config = {
         css: [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
-            'dist/scss/main.css'
+            'main.css'
         ],
-        dist: './dist',
+        dist: '.',
         // mainScss: './dist/scss/style.scss',
         mainCss: './dist/scss/style.css',
         mainJs: './src/main.js',
@@ -35,20 +35,20 @@ const config = {
 };
 
 //Start a local development server
-gulp.task('connect', function () {
-    connect.server({
-        root: ['dist'],
-        port: config.port,
-        base: config.devBaseUrl,
-        livereload: true
-    });
-});
+// gulp.task('connect', function () {
+//     connect.server({
+//         root: ['dist'],
+//         port: config.port,
+//         base: config.devBaseUrl,
+//         livereload: true
+//     });
+// });
 
 //Open when is connected
-gulp.task('open', ['connect'], function () {
-    gulp.src('dist/index.php')
-        .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
-});
+// gulp.task('open', ['connect'], function () {
+//     gulp.src('dist/index.php')
+//         .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
+// });
 
 //copy the main index.php file to build folder
 gulp.task('html', function () {
@@ -58,11 +58,11 @@ gulp.task('html', function () {
 });
 
 //copy static files
-gulp.task('staticFiles', function () {
-    gulp.src(config.paths.staticFiles)
-        .pipe(gulp.dest(config.paths.dist + '/staticFiles'))
-        .pipe(connect.reload());
-});
+// gulp.task('staticFiles', function () {
+//     gulp.src(config.paths.staticFiles)
+//         .pipe(gulp.dest(config.paths.dist + '/staticFiles'))
+//         .pipe(connect.reload());
+// });
 
 //concat, compile jsx/es6 and copy to build folder
 gulp.task('js', function () {
@@ -71,7 +71,7 @@ gulp.task('js', function () {
         .bundle()
         .on('error', console.error.bind(console))
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest(config.paths.dist + '/scripts'))
+        .pipe(gulp.dest(config.paths.dist))
         .pipe(connect.reload());
 });
 
@@ -95,7 +95,7 @@ gulp.task('sass', ['concatSass'], function () {
             browsers: ['last 2 versions', 'Safari >= 8'],
             cascade: false
         }))
-        .pipe(gulp.dest(config.paths.dist + '/scss'))
+        .pipe(gulp.dest(config.paths.dist))
         ;
 });
 
@@ -103,7 +103,7 @@ gulp.task('sass', ['concatSass'], function () {
 gulp.task('css', ['sass'], function () {
     gulp.src(config.paths.css)
         .pipe(concat('bundle.css'))
-        .pipe(gulp.dest(config.paths.dist + '/css'))
+        .pipe(gulp.dest(config.paths.dist))
         .pipe(connect.reload());
 });
 
@@ -114,19 +114,19 @@ gulp.task('lint', function () {
         .pipe(lint.format());
 });
 
-gulp.task('upload', function () {
-
-    return gulp.src(config.paths.dist + '/**/*')
-        .pipe(sftp());
-});
+// gulp.task('upload', function () {
+//
+//     return gulp.src(config.paths.dist + '/**/*')
+//         .pipe(sftp( ));
+// });
 
 //watch for changes and update the page
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
     gulp.watch(config.paths.js, ['js', 'lint']);
     gulp.watch(config.paths.scss, ['css']);
-    gulp.watch(config.paths.staticFiles, ['staticFiles']);
-    gulp.watch(config.paths.dist + '/**/*', ['upload']);
+    // gulp.watch(config.paths.staticFiles, ['staticFiles']);
+    // gulp.watch(config.paths.dist + '/**/*', ['upload']);
 });
 
-gulp.task('default', ['staticFiles', 'html', 'js', 'css', 'lint', 'upload', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'lint', 'watch']);

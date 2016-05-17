@@ -23,11 +23,10 @@ const rootRoute = {
         component: require('./components/MuffinApp'),
         childRoutes: [
             //require('./routes/FreeMuffins'),
-            //require('./routes/Jackpot'),
-            require('./routes/Market')
+            require('./routes/Jackpot'),
+            require('./routes/Market'),
             //require('./routes/Deposit'),
-            //require('./routes/TermsOfService'),
-            //require('./routes/Faq')
+            require('./routes/Support')
         ]
     }]
 };

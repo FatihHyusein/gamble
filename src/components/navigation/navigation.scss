@@ -31,6 +31,8 @@ nav {
         ul {
             @include flexbox();
             margin-left: auto;
+            @include align-items(center);
+
             li {
                 @include flexbox();
                 margin-right: 20px;
