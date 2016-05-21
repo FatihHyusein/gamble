@@ -19,6 +19,7 @@ module.exports = {
         CHANGE_HEADER: null,
         UPDATE_JACKPOT_GAME: null,
         GET_WINNER: null,
+        PLACE_BET: null,
 
         RECEIVED_TOAST_MESSAGE: null
     }),

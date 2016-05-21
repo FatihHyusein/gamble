@@ -1,13 +1,16 @@
 import MuffinDispatcher from '../../dispather/MuffinDispatcher';
 import MuffinConstants from '../../constants/MuffinConstants';
+import SendViaSocket from '../../actions/SocketActionCreators';
 
 var ActionTypes = MuffinConstants.ActionTypes;
 
 export default {
 
-    getWinner: function () {
+    placeBet: function () {
+        
+
         MuffinDispatcher.dispatch({
-            type: ActionTypes.GET_WINNER
+            type: ActionTypes.PLACE_BET
         });
     }
 

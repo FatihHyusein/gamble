@@ -1,17 +1,22 @@
 import JackpotGame from './JackpotGame';
+import GameActionCreator from '../../../actions/games/GameActionCreators';
+import JackpotStore from '../../../stores/games/JackpotGameStore';
 
 class Jackpot extends Component {
     constructor() {
         super();
+
+        this.state = {gameData: JackpotStore.getJackpotData()};
     }
 
     render() {
-
-
         return (
             <div>
-                <h1>FADX</h1>
-                <JackpotGame />
+                <div className="top-container">
+                    <h1>JACKPOT</h1>
+                </div>
+
+                <JackpotGame game={this.state.gameData}/>
             </div>
         )
     }

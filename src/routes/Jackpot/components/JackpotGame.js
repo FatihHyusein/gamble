@@ -1,7 +1,7 @@
 import BaseComponent from '../../../base/BaseComponent';
-
-
-import HeaderActionCreators from '../../../actions/HeaderActionCreators';
+import DepositList from './DepositList';
+import Timer from './Timer';
+import ProfileBet from './ProfileBet';
 
 
 export default
@@ -9,31 +9,26 @@ class JackpotGame extends BaseComponent {
 
     constructor() {
         super();
-        // this.state = getStateFromStores();
-        this.bet = this.bet.bind(this);
-    }
-
-    bet() {
-        BaseComponent.sendViaSocket({
-            type: 'TEST123',
-            data: {
-                cs:'go'
-            }
-        });
-
-        HeaderActionCreators.testToast();
     }
 
     render() {
         return (
             <div>
-                <h1>1112221</h1>
-                <button onClick={this.bet}>BET</button>
+                <div>
+                    <Timer time={this.props.game.startTime}/>
+                    <DepositList profiles={this.props.game.players}/>
+                </div>
+                <div>
+                    <div>
+                        <input type="number"/>
+                        <button>PLACE BET</button>
+                    </div>
+                    <div>
+                        <ProfileBet game={this.props.game}/>
+                    </div>
+                </div>
             </div>
         )
-    }
-
-    componentDidMount() {
     }
 }
 
