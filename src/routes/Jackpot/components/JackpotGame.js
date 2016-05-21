@@ -1,30 +1,34 @@
-class JackpotGame extends Component {
+import BaseComponent from '../../../base/BaseComponent';
+
+
+import HeaderActionCreators from '../../../actions/HeaderActionCreators';
+
+
+export default
+class JackpotGame extends BaseComponent {
 
     constructor() {
         super();
         // this.state = getStateFromStores();
-
-        this.newValue = this.newValue.bind(this);
-        this.updateValue = this.updateValue.bind(this);
+        this.bet = this.bet.bind(this);
     }
 
-    newValue() {
-        if (Math.random() > .5) {
-            return Math.round(Math.random() * 100);
-        } else {
-            return (Math.random() * 100).toFixed(1);
-        }
-    }
+    bet() {
+        BaseComponent.sendViaSocket({
+            type: 'TEST123',
+            data: {
+                cs:'go'
+            }
+        });
 
-    updateValue() {
+        HeaderActionCreators.testToast();
     }
-
 
     render() {
-
-
         return (
             <div>
+                <h1>1112221</h1>
+                <button onClick={this.bet}>BET</button>
             </div>
         )
     }
@@ -34,5 +38,3 @@ class JackpotGame extends Component {
 }
 
 JackpotGame.defaultProps = {};
-
-module.exports = JackpotGame;

@@ -35,20 +35,20 @@ const config = {
 };
 
 //Start a local development server
-// gulp.task('connect', function () {
-//     connect.server({
-//         root: ['dist'],
-//         port: config.port,
-//         base: config.devBaseUrl,
-//         livereload: true
-//     });
-// });
+gulp.task('connect', function () {
+    connect.server({
+        root: ['dist'],
+        port: config.port,
+        base: config.devBaseUrl,
+        livereload: true
+    });
+});
 
 //Open when is connected
-// gulp.task('open', ['connect'], function () {
-//     gulp.src('dist/index.php')
-//         .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
-// });
+gulp.task('open', ['connect'], function () {
+    gulp.src('dist/index.php')
+        .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
+});
 
 //copy the main index.php file to build folder
 gulp.task('html', function () {

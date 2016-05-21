@@ -17,7 +17,10 @@ function createRouterStrings(routes) {
 module.exports = {
     ActionTypes: keyMirror({
         CHANGE_HEADER: null,
-        UPDATE_JACKPOT_GAME: null
+        UPDATE_JACKPOT_GAME: null,
+        GET_WINNER: null,
+
+        RECEIVED_TOAST_MESSAGE: null
     }),
 
     ROUTES: createRouterStrings(['support'])

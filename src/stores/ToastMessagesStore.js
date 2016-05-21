@@ -1,8 +1,3 @@
-//var ChatMessageUtils = require('../utils/ChatMessageUtils');
-//var EventEmitter = require('events').EventEmitter;
-//var ThreadStore = require('../stores/ThreadStore');
-//var assign = require('object-assign');
-
 import MuffinDispatcher from '../dispather/MuffinDispatcher';
 import MuffinConstants from '../constants/MuffinConstants';
 import {EventEmitter} from 'events';
@@ -11,13 +6,17 @@ import {EventEmitter} from 'events';
 var ActionTypes = MuffinConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
-export default class HeaderStore extends EventEmitter {
+class ToastMessagesStore extends EventEmitter {
+
+
+    getToastMessages() {
+        return this.toastMessages;
+    }
+
     constructor(props) {
         super(props);
 
-        this.dafuq = function () {
-            console.log('asd');
-        }
+        this.toastMessages = [];
     }
 
     emitChange() {
@@ -32,23 +31,23 @@ export default class HeaderStore extends EventEmitter {
         this.removeListener(CHANGE_EVENT, callback);
     }
 }
-HeaderStore.getNewHeader = function () {
-    return 'HEEE';
-};
 
-HeaderStore.dispatchToken = MuffinDispatcher.register(function (action) {
+let toastMessagesStoreInstance = new ToastMessagesStore();
 
+toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
     switch (action.type) {
-
-        case ActionTypes.CHANGE_HEADER:
-            console.log(arguments);
-            console.log('hit');
+        case ActionTypes.RECEIVED_TOAST_MESSAGE:
             //MuffinDispatcher.waitFor([ThreadStore.dispatchToken]);
-            HeaderStore.emitChange();
+
+
+            toastMessagesStoreInstance.toastMessages = action.toasts;
+            toastMessagesStoreInstance.emitChange();
             break;
 
         default:
         // do nothing
     }
-
 });
+
+
+export default toastMessagesStoreInstance;

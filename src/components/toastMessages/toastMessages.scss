@@ -1,0 +1,18 @@
+#toast {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    .success {
+        background-color: $green;
+    }
+    .error {
+        background-color: $red;
+    }
+    .warning {
+        background-color: $gray-blue-border;
+    }
+    .info {
+        background-color: $gray;
+    }
+}

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
+import BaseComponent from '../../base/BaseComponent';
 
-class Game extends Component {
+class Game extends BaseComponent {
     constructor(props) {
         super(props);
         this.openGame = this.openGame.bind(this);
