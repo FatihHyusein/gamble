@@ -86,4 +86,4 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
 });
 
 
-export default toastMessagesStoreInstance;
+export default jackpotGameStoreInstance;

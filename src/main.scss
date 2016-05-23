@@ -17,6 +17,7 @@ ul {
 @import "components/home/home";
 @import "components/toastMessages/toastMessages";
 @import "routes/Market/components/market";
+@import "routes/Jackpot/components/jackpot";
 
 body {
     background: $black;
@@ -50,4 +51,8 @@ body {
             font-weight: 700;
         }
     }
+}
+
+object {
+    width: 30px;
 }

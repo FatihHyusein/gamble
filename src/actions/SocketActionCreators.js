@@ -5,6 +5,10 @@ var ActionTypes = MuffinConstants.ActionTypes;
 
 class Socket {
     constructor(domain, port, secure, isDebugMode) {
+        this.init(domain, port, secure, isDebugMode);
+    }
+
+    init(domain, port, secure, isDebugMode){
         if (!this.location) {
             if (!domain) {
                 domain = document.domain.toString();

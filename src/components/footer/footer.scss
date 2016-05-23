@@ -1,5 +1,6 @@
 #footer {
     position: relative;
+    margin-top: 35px;
     padding-top: 10px;
     background: $dark-blue;
     &::before {
@@ -34,16 +35,15 @@
         display: inline-block;
         width: 40%;
 
-
         .footer-link {
             margin: 5px;
-            .svg-icon{
+            .svg-icon {
                 width: 25px;
                 cursor: pointer;
             }
         }
     }
-    .reserved{
+    .reserved {
         padding: 20px;
         text-align: end;
     }

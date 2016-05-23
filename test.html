@@ -83,7 +83,7 @@
 
     var color = d3.scale.ordinal()
         .domain(["Profile", "All other"])
-        .range(["#98abc5", "#8a89a6"]);
+        .range(["yellow", "#8a89a6"]);
 
     function randomData() {
         var labels = color.domain();
@@ -96,7 +96,16 @@
 
     d3.select(".randomize")
         .on("click", function () {
-            change(randomData());
+            var newVal = Math.random();
+
+            change([{
+                label: 'Profile',
+                value: newVal
+            },
+                {
+                    label: 'All other',
+                    value: 1 - newVal
+                }]);
         });
 
 
@@ -131,12 +140,30 @@
         var profilePercent = 0;
         for (var i = 0; i < data.length; i++) {
             if (data[i].label == 'Profile') {
-                profilePercent = Math.round(data[i].value * 100);
+                profilePercent = data[i].value * 100;
                 break;
             }
         }
 
-        svg.select(".percent-text").text(profilePercent + '%');
+        svg.select(".percent-text")
+            .attr('text-anchor', 'middle')
+            .attr("dy", ".35em")
+            .transition().duration(1000)
+            .tween('text', tweenText(profilePercent));
+
+
+        function tweenText(newValue) {
+            return function () {
+                var currentValue = +this.textContent;
+
+                var i = d3.interpolateRound(currentValue, newValue);
+
+                return function (t) {
+                    this.textContent = i(t);
+                };
+            }
+        }
+
     }
 </script>
 </body>

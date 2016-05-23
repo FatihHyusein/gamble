@@ -3,116 +3,121 @@ import d3 from 'd3';
 
 export default
 class Chart extends BaseComponent {
-
     constructor() {
         super();
-        this.change = this.change.bind(this);
+
+        this.state = {
+            data: ''
+        };
+
+        this.update = this.update.bind(this);
+        this.createChart = this.createChart.bind(this);
+        this.easeInOutQuad = this.easeInOutQuad.bind(this);
     }
 
-    componentDidMount() {
-        this.svg = d3.select("chart-container")
-            .append("svg")
-            .append("g");
+    componentWillMount() {
+        var radius = Math.min(this.props.width, this.props.height) / 2;
 
-        this.svg.append("g")
-            .attr("class", "slices");
-
-        var width = 960,
-            height = 450,
-            radius = Math.min(width, height) / 2;
-
-        this.svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-        var svgText = this.svg.append('g');
-
-        svgText.append('image')
-            .attr('height', 50)
-            .attr('width', 100)
-            .style('transform', "translate(-50%, -100%)");
-
-        svgText.append("text")
-            .attr("class", "percent-text")
-            .attr("dy", ".35em")
-            .style("text-anchor", "middle");
-
-        svgText.append("text")
-            .attr("dy", "2em")
-            .style("text-anchor", "middle")
-            .attr("class", "data")
-            .text(function (d) {
-                return 'CHANCE';
-            });
-    }
-
-    render() {
-        this.change([{
-            label: 'Profile',
-            value: 0.6
-        }, {
-            label: 'AllOther',
-            value: 0.4
-        }]);
-
-        return (
-            <div id="chart-container">
-
-            </div>
-        )
-    }
-
-    change(data) {
-        var pie = d3.layout.pie()
+        this.pie = d3.layout.pie()
             .sort(null)
-            .value(function (d) {
-                return d.value;
-            });
+            .value((d)=> d.value);
 
-        var arc = d3.svg.arc()
+        this.arc = d3.svg.arc()
             .outerRadius(radius * 0.8)
             .innerRadius(radius * 0.6);
 
-        var key = function (d) {
-            return d.data.label;
-        };
+        this.key = (d)=> d.data.label;
 
-        var color = d3.scale.ordinal()
+        this.color = d3.scale.ordinal()
             .domain(["Profile", "All other"])
-            .range(["#98abc5", "#8a89a6"]);
+            .range(["yellow", "#8a89a6"]);
 
-        /* ------- PIE SLICES -------*/
-        var slice = this.svg.select(".slices").selectAll("path.slice")
-            .data(pie(data), key);
+        this.setState({'data': this.props.profilePercent});
+    }
 
-        slice.enter()
-            .insert("path")
-            .style("fill", function (d) {
-                return color(d.data.label);
-            })
-            .attr("class", "slice");
+    componentWillReceiveProps(nextProps) {
+        this.updatedProps = true;
+    }
 
-        slice
-            .transition().duration(1000)
-            .attrTween("d", function (d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function (t) {
-                    return arc(interpolate(t));
-                };
-            });
 
-        slice.exit()
-            .remove();
+    easeInOutQuad(t, b, _c, d) {
+        var c = _c - b;
+        if ((t /= d / 2) < 1) {
+            return c / 2 * t * t + b;
+        } else {
+            return -c / 2 * ((--t) * (t - 2) - 1) + b;
+        }
+    }
 
-        var profilePercent = 0;
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].label == 'Profile') {
-                profilePercent = Math.round(data[i].value * 100);
-                break;
-            }
+    update() {
+        this.tickTime = 1;
+        this.startProfilePercent = this.state.data;
+
+        function timeout() {
+            setTimeout(()=> {
+                this.tickTime = 10 + this.tickTime;
+                this.setState
+                ({data: parseFloat((this.easeInOutQuad(this.tickTime, this.startProfilePercent, this.props.profilePercent, 1000)).toFixed(4))});
+
+                if (this.props.profilePercent != this.state.data) {
+                    timeout.call(this);
+                }
+            }, 1);
         }
 
-        this.svg.select(".percent-text").text(profilePercent + '%');
-        this.svg.select("image").attr('href', 'staticFiles/images/ak.png');
+        timeout.call(this);
+    }
+
+
+    createChart() {
+        var data = [
+            {
+                label: 'Profile',
+                value: this.state.data
+            },
+            {
+                label: 'All other',
+                value: 1 - this.state.data
+            }
+        ];
+
+        return (this.pie(data)).map((d, i)=> {
+            return (
+                <path fill={this.color(i)} d={this.arc(d)} key={i}/>
+            )
+        });
+    }
+
+    render() {
+        var paths = this.createChart();
+        var transformData = `translate(${this.props.width / 2},${this.props.height / 2})`;
+
+        if (this.updatedProps) {
+            this.updatedProps = false;
+            this.update();
+        }
+
+        return (
+            <div id="chart-container" onClick={this.update}>
+                <h1>{this.props.profilePercent}</h1>
+                <svg>
+                    <g transform={transformData}>
+                        <g class="slices">
+                            {paths}
+                        </g>
+                        <g>
+                            <image href="staticFiles/images/ak.png" height="50" width="100"></image>
+                            <text class="percent-text" dy=".35em" text-anchor="middle">{this.state.data}</text>
+                            <text dy="2em" class="data" text-anchor="middle">CHANCE</text>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        )
     }
 }
+
+Chart.defaultProps = {
+    width: 960,
+    height: 450
+};

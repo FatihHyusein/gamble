@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="/casino/public/"/>
+    <base href="/public/"/>
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>CSGO Muffin</title>
