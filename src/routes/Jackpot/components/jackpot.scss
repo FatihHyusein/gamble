@@ -35,7 +35,11 @@
     }
 
     text {
-        fill: $white;
+        //fill: $white;
+    }
+
+    .percent-text {
+        font-size: 200%;
     }
 
 }

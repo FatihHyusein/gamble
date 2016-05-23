@@ -28,10 +28,6 @@ class Chart extends BaseComponent {
 
         this.key = (d)=> d.data.label;
 
-        this.color = d3.scale.ordinal()
-            .domain(["Profile", "All other"])
-            .range(["yellow", "#8a89a6"]);
-
         this.setState({'data': this.props.profilePercent});
     }
 
@@ -82,13 +78,20 @@ class Chart extends BaseComponent {
         ];
 
         return (this.pie(data)).map((d, i)=> {
-            return (
-                <path fill={this.color(i)} d={this.arc(d)} key={i}/>
-            )
+            var path;
+            if (d.data.label == 'Profile') {
+                path = <path fill={this.fillColor} d={this.arc(d)} key={i}/>
+            }
+            else {
+                path = <path opacity="0.3" fill="#8a89a6" d={this.arc(d)} key={i}/>
+            }
+
+            return path;
         });
     }
 
     render() {
+        this.fillColor = d3.interpolateRgb('#ff0000', '#2ca911')(this.state.data);
         var paths = this.createChart();
         var transformData = `translate(${this.props.width / 2},${this.props.height / 2})`;
 
@@ -97,18 +100,21 @@ class Chart extends BaseComponent {
             this.update();
         }
 
+
         return (
             <div id="chart-container" onClick={this.update}>
                 <h1>{this.props.profilePercent}</h1>
                 <svg>
                     <g transform={transformData}>
-                        <g class="slices">
+                        <g className="slices">
                             {paths}
                         </g>
                         <g>
                             <image href="staticFiles/images/ak.png" height="50" width="100"></image>
-                            <text class="percent-text" dy=".35em" text-anchor="middle">{this.state.data}</text>
-                            <text dy="2em" class="data" text-anchor="middle">CHANCE</text>
+                            <text fill={this.fillColor} className="percent-text" dy=".35em" text-anchor="middle">
+                                {(this.state.data * 100).toFixed(2)}%
+                            </text>
+                            <text fill={this.fillColor} dy="2em" className="data" text-anchor="middle">CHANCE</text>
                         </g>
                     </g>
                 </svg>
