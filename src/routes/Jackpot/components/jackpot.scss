@@ -1,15 +1,87 @@
-.timer-container {
-    .timer-line {
 
+#jackpot-game {
+    & > div {
+        display: inline-block;
+        vertical-align: text-top;
+        width: 49%;
+        text-align: left;
+    }
+}
+
+#timer-container {
+    & > div {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .timer-line {
+        width: 80%;
+        height: 40px;
+        background: $dark-gray;
     }
     .timer {
+        width: 20%;
+
+        .svg-icon {
+            width: 10px;
+            height: 10px;
+        }
+
+        .timer-counter {
+            display: inline-block;
+            vertical-align: middle;
+            .seconds{
+                font-size: 150%;
+            }
+        }
 
     }
 }
 
+
+#deposit-list {
+
+}
+
+#profile-bet {
+    object {
+        width: 25px;
+        height: 25px;
+    }
+    .profile-money-container {
+        & > div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .bet {
+            width: 39%;
+        }
+        .credit {
+            width: 59%;
+        }
+    }
+
+    .game-info-container {
+        & > div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .chart-container {
+            width: 39%;
+        }
+        .game-info {
+            width: 59%;
+        }
+    }
+    .prev-game-info-container {
+        & > div {
+            display: inline-block;
+            width: 49%;
+        }
+    }
+}
+
 #chart-container {
-    width: 960px;
-    height: 500px;
     position: relative;
     text-anchor: middle;
 

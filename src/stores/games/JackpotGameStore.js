@@ -29,6 +29,7 @@ class JackpotGameStore extends GameStore {
                     gunIcon: ''
                 }
             ],
+            profileBetAmount: 250,
             dailyLucker: {
                 profileIcon: 'fb',
                 name: 'Kircho',

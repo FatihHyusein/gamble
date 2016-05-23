@@ -9,14 +9,12 @@ class Timer extends BaseComponent {
 
     render() {
         return (
-            <div className="timer-container">
+            <div id="timer-container">
                 <div className="timer-line"></div>
                 <div className="timer">
-                    <div>
-                        <CommonComponents.SvgIcon iconName="fb"/>
-                    </div>
-                    <div>
-                        <div>17</div>
+                    <CommonComponents.SvgIcon iconName="fb"/>
+                    <div className="timer-counter">
+                        <div className="seconds">{this.props.time}</div>
                         <div>seconds</div>
                     </div>
                 </div>
@@ -24,3 +22,6 @@ class Timer extends BaseComponent {
         )
     }
 }
+
+Timer.propTypes = {time: React.PropTypes.number};
+

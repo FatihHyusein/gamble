@@ -1,18 +1,30 @@
 import {Component} from 'react';
+import d3 from 'd3';
 
 class SvgIcon extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            iconData: ''
+        }
+    }
+
+    componentDidMount() {
+        d3.xml(this.iconName, "image/svg+xml", (error, xml) => {
+            // if (error) throw error;
+            this.setState({iconData: xml.documentElement.outerHTML});
+        });
     }
 
     render() {
-        var iconName = 'staticFiles/icons/' + this.props.iconName + '.svg';
+        this.iconName = 'staticFiles/icons/' + this.props.iconName + '.svg';
+        function createMarkup(html) {
+            return {__html: html};
+        }
 
-        return (
-            <object {...this.props} data={iconName} className="svg-icon">
-                <img src={iconName}/>
-            </object>
-        )
+        return <div className="svg-icon" {...this.props}
+                    dangerouslySetInnerHTML={createMarkup(this.state.iconData)}></div>;
     }
 }
 

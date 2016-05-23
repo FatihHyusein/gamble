@@ -6,17 +6,16 @@ import ProfileBet from './ProfileBet';
 
 export default
 class JackpotGame extends BaseComponent {
-
     constructor() {
         super();
     }
 
     render() {
         return (
-            <div>
+            <div id="jackpot-game">
                 <div>
                     <Timer time={this.props.game.startTime}/>
-                    <DepositList profiles={this.props.game.players}/>
+                    <DepositList players={this.props.game.players}/>
                 </div>
                 <div>
                     <div>
@@ -31,5 +30,9 @@ class JackpotGame extends BaseComponent {
         )
     }
 }
+
+JackpotGame.propTypes = {
+    game: React.PropTypes.object
+};
 
 JackpotGame.defaultProps = {};

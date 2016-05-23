@@ -13,10 +13,18 @@ class Chart extends BaseComponent {
         this.update = this.update.bind(this);
         this.createChart = this.createChart.bind(this);
         this.easeInOutQuad = this.easeInOutQuad.bind(this);
+        this.initChart = this.initChart.bind(this);
     }
 
     componentWillMount() {
-        var radius = Math.min(this.props.width, this.props.height) / 2;
+        this.initChart({
+            width: this.props.width,
+            height: this.props.height
+        });
+    }
+
+    initChart(dimensions) {
+        var radius = Math.min(dimensions.width, dimensions.height) / 2;
 
         this.pie = d3.layout.pie()
             .sort(null)
@@ -32,7 +40,16 @@ class Chart extends BaseComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.updatedProps = true;
+        if (nextProps.profilePercent != this.props.profilePercent) {
+            this.updatedProps = true;
+        }
+
+        if (nextProps.width != this.props.width || nextProps.height != this.props.height) {
+            this.initChart({
+                width: nextProps.width,
+                height: nextProps.height
+            });
+        }
     }
 
 
@@ -49,8 +66,9 @@ class Chart extends BaseComponent {
         this.tickTime = 1;
         this.startProfilePercent = this.state.data;
 
+        clearTimeout(this.updateTimeout);
         function timeout() {
-            setTimeout(()=> {
+            this.updateTimeout = setTimeout(()=> {
                 this.tickTime = 10 + this.tickTime;
                 this.setState
                 ({data: parseFloat((this.easeInOutQuad(this.tickTime, this.startProfilePercent, this.props.profilePercent, 1000)).toFixed(4))});
@@ -102,8 +120,7 @@ class Chart extends BaseComponent {
 
 
         return (
-            <div id="chart-container" onClick={this.update}>
-                <h1>{this.props.profilePercent}</h1>
+            <div id="chart-container">
                 <svg>
                     <g transform={transformData}>
                         <g className="slices">
@@ -123,7 +140,14 @@ class Chart extends BaseComponent {
     }
 }
 
-Chart.defaultProps = {
-    width: 960,
-    height: 450
+// Chart.defaultProps = {
+//     width: 960,
+//     height: 450
+// };
+
+Chart.propTypes = {
+    profilePercent: React.PropTypes.number,
+    width: React.PropTypes.number,
+    height: React.PropTypes.number
 };
+

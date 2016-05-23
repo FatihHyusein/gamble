@@ -8,10 +8,17 @@ import SendViaSocket from '../actions/SocketActionCreators';
 class BaseComponent extends Component {
     constructor(props) {
         super(props);
+
+        this._onChange = this._onChange.bind(this);
+
     }
 
     static sendViaSocket(data) {
         return SendViaSocket(data);
+    }
+
+    _onChange(){
+        this.setState(getStateFromStores());
     }
 }
 

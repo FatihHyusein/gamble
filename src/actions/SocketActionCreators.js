@@ -9,6 +9,7 @@ class Socket {
     }
 
     init(domain, port, secure, isDebugMode){
+        return;
         if (!this.location) {
             if (!domain) {
                 domain = document.domain.toString();
