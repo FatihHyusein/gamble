@@ -36,16 +36,16 @@ class ProfileBet extends BaseComponent {
         return (
             <div id="profile-bet">
                 <div className="profile-money-container">
-                    <div className="bet" onClick={this.changePercentTest}>
-                        <span>
-                            <CommonComponents.SvgIcon iconName={this.props.icon}/> BET
+                    <div className="bet tcenter" onClick={this.changePercentTest}>
+                        <span className="label">
+                            <CommonComponents.SvgIcon iconName="dice"/> BET
                         </span>
                         <span>
                             {this.props.game.profileBetAmount}
                         </span>
                     </div>
                     <div className="credit">
-                        <span>
+                        <span className="label">
                             <CommonComponents.SvgIcon iconName="muffin-currency"/> CREDITS
                         </span>
                         <span>
@@ -57,12 +57,12 @@ class ProfileBet extends BaseComponent {
                 <div className="game-info-container">
                     <div className="chart-container" ref={(c)=>this.chartContainer=c}>
                         <Chart
-                            profilePercent={ parseFloat(this.props.game.profileBetAmount/this.props.game.jackpot).toFixed(4)}
+                            profilePercent={ parseFloat((this.props.game.profileBetAmount/this.props.game.jackpot).toFixed(4))}
                             width={this.state.chartDimensions.width} height={this.state.chartDimensions.height}/>
                     </div>
                     <div className="game-info">
                         <div>
-                            <span>
+                          <span className="label">
                                 <CommonComponents.SvgIcon iconName="cup-jackpot"/> JACKPOT
                             </span>
                             <span>
@@ -70,7 +70,7 @@ class ProfileBet extends BaseComponent {
                             </span>
                         </div>
                         <div>
-                            <span>
+                            <span className="label">
                                 <CommonComponents.SvgIcon iconName="players"/> PLAYERS
                             </span>
                             <span>
@@ -78,7 +78,7 @@ class ProfileBet extends BaseComponent {
                             </span>
                         </div>
                         <div>
-                            <span>
+                            <span className="label">
                                 <CommonComponents.SvgIcon iconName="lock-roundhash"/> ROUND HASH
                             </span>
                             <span>
@@ -89,19 +89,19 @@ class ProfileBet extends BaseComponent {
                 </div>
 
                 <div className="prev-game-info-container">
-                    <div>
+                    <div className="tcenter">
                         <CommonComponents.SvgIcon iconName={this.props.icon}/>
-                        <span>
-                            <div>
+                        <span >
+                            <div className="label">
                                 LAST WINNER
                             </div>
                             <div>57%/45%</div>
                         </span>
                     </div>
-                    <div>
+                    <div className="tcenter">
                         <CommonComponents.SvgIcon iconName={this.props.icon}/>
                         <span>
-                            <div>
+                            <div className="label">
                                 TODAYS LUCKER
                             </div>
                             <div>355%/4%</div>

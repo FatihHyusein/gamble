@@ -2,7 +2,14 @@
     position: absolute;
     right: 15px;
     top: 15px;
+    @include transition(all 500ms ease-out 50ms);
+    z-index: 99999;
+    cursor: pointer;
 
+    .text {
+        padding: 15px;
+        font-size: 150%;
+    }
     .success {
         background-color: $green;
     }
@@ -14,5 +21,28 @@
     }
     .info {
         background-color: $gray;
+    }
+
+    .toast-inner-container {
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .example-enter {
+        opacity: 0.01;
+    }
+
+    .example-enter.example-enter-active {
+        opacity: 1;
+        transition: opacity 500ms ease-in;
+    }
+
+    .example-leave {
+        opacity: 1;
+    }
+
+    .example-leave.example-leave-active {
+        opacity: 0.01;
+        transition: opacity 300ms ease-in;
     }
 }

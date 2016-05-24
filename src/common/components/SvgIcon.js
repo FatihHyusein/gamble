@@ -13,7 +13,9 @@ class SvgIcon extends Component {
     componentDidMount() {
         d3.xml(this.iconName, "image/svg+xml", (error, xml) => {
             // if (error) throw error;
-            this.setState({iconData: xml.documentElement.outerHTML});
+            if (xml && xml.documentElement) {
+                this.setState({iconData: xml.documentElement.outerHTML});
+            }
         });
     }
 

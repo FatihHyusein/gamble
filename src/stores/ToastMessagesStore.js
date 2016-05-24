@@ -41,6 +41,20 @@ toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> 
 
 
             toastMessagesStoreInstance.toastMessages = action.toasts;
+            toastMessagesStoreInstance.clearToastsTimeout = setTimeout(()=> {
+                toastMessagesStoreInstance.toastMessages = [];
+                toastMessagesStoreInstance.emitChange();
+            }, 3000);
+
+            toastMessagesStoreInstance.emitChange();
+            break;
+
+        case ActionTypes.CLEAR_TOAST_MESSAGES:
+            if (toastMessagesStoreInstance.clearToastsTimeout) {
+                clearTimeout(toastMessagesStoreInstance.clearToastsTimeout);
+            }
+
+            toastMessagesStoreInstance.toastMessages = [];
             toastMessagesStoreInstance.emitChange();
             break;
 

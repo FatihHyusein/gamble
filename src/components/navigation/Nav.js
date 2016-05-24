@@ -2,11 +2,23 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import NavLink from './NavLink';
 const SvgIcon = CommonComponents.SvgIcon;
+import BaseComponent from '../../base/BaseComponent';
 
-class Nav extends Component {
+class Nav extends BaseComponent {
 
     constructor(props, context) {
         super(props, context);
+
+        this.openSteam = this.openSteam.bind(this);
+    }
+
+    openSteam() {
+        BaseComponent.getAjax({
+            url: "login/url",
+            successFunction: (data)=> {
+                window.location = data.url;
+            }
+        });
     }
 
     render() {
@@ -19,7 +31,8 @@ class Nav extends Component {
             Profile
         </NavLink></li>;
 
-        var steamLoginLink = <SvgIcon iconName='fb' className='login-link'/>;
+        var steamLoginLink = <img src="staticFiles/icons/signinwithsteam.png" className='login-link'
+                                  onClick={this.openSteam}/>;
 
         var userLink = token ? profileLink : steamLoginLink;
 

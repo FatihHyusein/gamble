@@ -8,19 +8,33 @@ export default
 class JackpotGame extends BaseComponent {
     constructor() {
         super();
+
+        this.timerStopped = this.timerStopped.bind(this);
+        this.state = {
+            gameState: 1
+        }
+    }
+
+    timerStopped() {
+        this.setState({gameState: 2})
     }
 
     render() {
         return (
             <div id="jackpot-game">
                 <div>
-                    <Timer time={this.props.game.startTime}/>
-                    <DepositList players={this.props.game.players}/>
+                    <Timer time={this.props.game.startTime} onTimerStopped={this.timerStopped}/>
+                    <DepositList players={this.props.game.players} gameState={this.state.gameState}/>
                 </div>
                 <div>
-                    <div>
-                        <input type="number"/>
-                        <button>PLACE BET</button>
+                    <div className="place-bet-container">
+                        <input type="number"
+                               disabled={this.state.gameState == 2}
+                        />
+                        <button className="bg-green"
+                                disabled={this.state.gameState == 2}>
+                            PLACE BET
+                        </button>
                     </div>
                     <div>
                         <ProfileBet game={this.props.game}/>

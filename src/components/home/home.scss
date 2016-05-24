@@ -3,7 +3,7 @@
         @include flexbox();
         @include justify-content(center);
         @include align-items(center);
-        min-height: 500px;
+        min-height: 40vh;
         text-align: center;
         background: url('staticFiles/images/bg.jpg') no-repeat;
         background-size: cover;

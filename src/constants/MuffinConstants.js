@@ -21,7 +21,8 @@ module.exports = {
         GET_WINNER: null,
         PLACE_BET: null,
 
-        RECEIVED_TOAST_MESSAGE: null
+        RECEIVED_TOAST_MESSAGE: null,
+        CLEAR_TOAST_MESSAGES: null
     }),
 
     ROUTES: createRouterStrings(['support'])

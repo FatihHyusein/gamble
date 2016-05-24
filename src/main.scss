@@ -41,9 +41,22 @@ body {
     background-color: $green;
 }
 
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+.tcenter {
+    text-align: center;
+}
+
 .top-container {
     position: relative;
-    min-height: 400px;
+    @include transition(all 500ms ease-out 50ms);
+    min-height: 30vh;
     text-align: center;
     background: url("staticFiles/images/bg.jpg") no-repeat;
     background-size: cover;
@@ -60,32 +73,4 @@ body {
             font-weight: 700;
         }
     }
-}
-
-.st0 {
-    fill: transparent !important;
-}
-
-.st1,
-.st2,
-.st3 {
-    fill: #ffffff !important;
-    transition: all 50ms;
-    &:hover {
-        fill: yellow !important;
-    }
-}
-
-.svg-icon {
-    fill: #ffffff;
-    transition: all 500ms ease-out 50ms;
-}
-
-.svg-icon:hover {
-    fill: red !important;
-    transform: scale(1.5);
-}
-
-.svg-icon {
-    width: 25px;
 }

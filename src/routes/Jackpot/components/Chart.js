@@ -1,3 +1,4 @@
+import JackpotGameStore from '../../../stores/games/JackpotGameStore';
 import BaseComponent from '../../../base/BaseComponent';
 import d3 from 'd3';
 
@@ -127,7 +128,10 @@ class Chart extends BaseComponent {
                             {paths}
                         </g>
                         <g>
-                            <image href="staticFiles/images/ak.png" height="50" width="100"></image>
+                            <foreignObject className="foreign-object">
+                                <CommonComponents.SvgIcon
+                                    iconName={JackpotGameStore.getPercentGunIcon({percent:this.props.profilePercent})}/>
+                            </foreignObject>
                             <text fill={this.fillColor} className="percent-text" dy=".35em" text-anchor="middle">
                                 {(this.state.data * 100).toFixed(2)}%
                             </text>
@@ -137,6 +141,10 @@ class Chart extends BaseComponent {
                 </svg>
             </div>
         )
+    }
+
+    componentWillUnmount(){
+        clearTimeout(this.updateTimeout);
     }
 }
 
