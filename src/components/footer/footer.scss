@@ -1,6 +1,6 @@
 #footer {
     position: relative;
-    margin-top: 35px;
+    //margin-top: 35px;
     padding-top: 10px;
     background: $dark-blue;
     &::before {
@@ -11,7 +11,7 @@
         height: 20px;
         content: "";
         z-index: 1;
-        transform: skew(0, -359deg);
+        //transform: skew(0, -359deg);
         background: $gray;
         background: -moz-linear-gradient(top, $gray 0%, $gray 20%, $dark-blue 25%, $dark-blue 100%);
         background: -webkit-gradient(left top, left bottom, color-stop(0%, $gray), color-stop(20%, $gray), color-stop(25%, $dark-blue), color-stop(100%, $dark-blue));

@@ -42,7 +42,26 @@ nav {
     }
 
     .active {
-        color: $white;
+        color: $gray;
+    }
+
+    .logged-profile-nav-btn {
+        @include flexbox();
+        @include align-items(center);
+        img {
+            width: 35px;
+            @include border-radius(50%);
+        }
+        .user-data-container {
+            margin-left: 10px;
+            text-align: center;
+        }
+
+        &:hover {
+            animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+            @include transform(translate3d(0, 0, 0));
+            @include backface-visibility(hidden);
+            perspective: 1000px;
+        }
     }
 }
-

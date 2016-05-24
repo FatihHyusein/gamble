@@ -8,6 +8,10 @@ class DepositList extends BaseComponent {
         super();
     }
 
+    componentWillReceiveProps(nextProps) {
+        // this.forceUpdate();
+    }
+
     render() {
         if (!this.deposits) {
             this.deposits = this.props.players;

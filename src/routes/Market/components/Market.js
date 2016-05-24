@@ -35,6 +35,10 @@ class Market extends Component {
             />
         );
 
+
+        var cart = (this.props.children) ? (<div className="cart-drop-down">
+            {this.props.children}
+        </div>) : '';
         return (
             <div id="market">
                 <MarketItemPopup item={this.state.selectedItem} modalIsOpen={this.state.modalIsOpen}
@@ -45,6 +49,7 @@ class Market extends Component {
                         inputPlaceholder="search for an item..."/>
                 </div>
                 <div className="items-container">
+                    {cart}
                     {marketItems}
                     <Paging totalItems={marketItems.length}/>
                 </div>

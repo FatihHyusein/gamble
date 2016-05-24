@@ -7,6 +7,7 @@ class Timer extends BaseComponent {
     constructor() {
         super();
 
+        this.startTimer = this.startTimer.bind(this);
         this.state = {
             // remainTime: this.props.time
         };
@@ -17,6 +18,18 @@ class Timer extends BaseComponent {
         this.setState({
             remainTime: this.props.time
         });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.timerStarted) {
+            this.startTimer();
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.timerStarted) {
+            this.startTimer();
+        }
     }
 
     render() {
@@ -55,7 +68,8 @@ class Timer extends BaseComponent {
         )
     }
 
-    componentDidMount() {
+
+    startTimer() {
         this.timerInterval = setInterval(()=> {
             if (this.state.remainTime == 1) {
                 clearTimeout(this.timerInterval);
@@ -93,6 +107,7 @@ class Timer extends BaseComponent {
 }
 
 Timer.propTypes = {
+    timerStarted: React.PropTypes.bool,
     time: React.PropTypes.number,
     onTimerStopped: React.PropTypes.func
 };

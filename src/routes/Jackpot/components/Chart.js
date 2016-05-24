@@ -37,7 +37,7 @@ class Chart extends BaseComponent {
 
         this.key = (d)=> d.data.label;
 
-        this.setState({'data': this.props.profilePercent});
+        this.setState({'data': this.props.profilePercent || 0});
     }
 
     componentWillReceiveProps(nextProps) {
@@ -64,6 +64,8 @@ class Chart extends BaseComponent {
     }
 
     update() {
+        var profilePercent = this.props.profilePercent || 0;
+
         this.tickTime = 1;
         this.startProfilePercent = this.state.data;
 
@@ -72,9 +74,9 @@ class Chart extends BaseComponent {
             this.updateTimeout = setTimeout(()=> {
                 this.tickTime = 10 + this.tickTime;
                 this.setState
-                ({data: parseFloat((this.easeInOutQuad(this.tickTime, this.startProfilePercent, this.props.profilePercent, 1000)).toFixed(4))});
+                ({data: parseFloat((this.easeInOutQuad(this.tickTime, this.startProfilePercent, profilePercent, 1000)).toFixed(4))});
 
-                if (this.props.profilePercent != this.state.data) {
+                if (profilePercent != this.state.data) {
                     timeout.call(this);
                 }
             }, 1);
@@ -143,7 +145,7 @@ class Chart extends BaseComponent {
         )
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearTimeout(this.updateTimeout);
     }
 }

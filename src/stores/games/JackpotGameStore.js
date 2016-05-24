@@ -47,54 +47,63 @@ class JackpotGameStore extends GameStore {
         super(props);
 
         this.game = {
-            roundHash: '65scxz123',
-            startTime: 8,
-            jackpot: 555,
-            players: [
-                {
-                    profileIcon: 'fb',
-                    name: 'Kircho',
-                    betAmount: 15
-                },
-                {
-                    profileIcon: 'fb',
-                    name: 'VUYCHO',
-                    betAmount: 155
-                },
-                {
-                    profileIcon: 'yt',
-                    name: 'DIMCHO',
-                    betAmount: 1,
-                    isKilled: true
-                }
-            ],
-            profileBetAmount: 250,
-            dailyLucker: {
-                profileIcon: 'fb',
-                name: 'Kircho',
-                betAmount: 15,
-                gunIcon: ''
-            },
-            history: [
-                {
-                    winner: {
-                        profileIcon: 'fb',
-                        name: 'Kircho',
-                        betAmount: 15,
-                        gunIcon: ''
-                    },
-                    players: [
-                        {
-                            profileIcon: 'fb',
-                            name: 'Kircho',
-                            betAmount: 15,
-                            gunIcon: ''
-                        }
-                    ]
-                }
-            ]
-
+            roundHash: "*************",
+            profileBetAmount: 0,
+            startTime: 30,
+            timerStarted: false,
+            jackpot: 0,
+            players: []
         };
+
+        // this.game = {
+        //     roundHash: '65scxz123',
+        //     startTime: 88,
+        //     jackpot: 555,
+        //     players: [
+        //         {
+        //             profileIcon: 'fb',
+        //             name: 'Kircho',
+        //             betAmount: 15
+        //         },
+        //         {
+        //             profileIcon: 'fb',
+        //             name: 'VUYCHO',
+        //             betAmount: 155
+        //         },
+        //         {
+        //             profileIcon: 'yt',
+        //             name: 'DIMCHO',
+        //             betAmount: 1,
+        //             isKilled: true
+        //         }
+        //     ],
+        //     profileBetAmount: 250,
+        //     dailyLucker: {
+        //         profileIcon: 'fb',
+        //         name: 'Kircho',
+        //         betAmount: 15,
+        //         gunIcon: ''
+        //     },
+        //     history: [
+        //         {
+        //             winner: {
+        //                 profileIcon: 'fb',
+        //                 name: 'Kircho',
+        //                 betAmount: 15,
+        //                 gunIcon: ''
+        //             },
+        //             players: [
+        //                 {
+        //                     profileIcon: 'fb',
+        //                     name: 'Kircho',
+        //                     betAmount: 15,
+        //                     gunIcon: ''
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        //
+        // };
     }
 
     emitChange() {
@@ -114,8 +123,63 @@ let jackpotGameStoreInstance = new JackpotGameStore();
 
 jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
     switch (action.type) {
-        case ActionTypes.PLACE_BET:
-            //MuffinDispatcher.waitFor([ThreadStore.dispatchToken]);
+        case ActionTypes.JACKPOT_PLACE_BET:
+            jackpotGameStoreInstance.game = {
+                roundHash: jackpotGameStoreInstance.game.roundHash,
+                jackpot: action.bets.players.reduce((previousValue, currentValue)=> previousValue.betAmount + currentValue.betAmount).betAmount,
+                profileBetAmount: action.bets.yourBet.betAmount,
+                players: action.bets.players
+            };
+
+            jackpotGameStoreInstance.emitChange();
+            break;
+        case ActionTypes.JACKPOT_START_TIMER:
+            jackpotGameStoreInstance.game.startTime = action.timer;
+            jackpotGameStoreInstance.game.timerStarted = true;
+            jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
+
+            jackpotGameStoreInstance.emitChange();
+            break;
+        case ActionTypes.JACKPOT_TIMER_ENDED:
+
+            jackpotGameStoreInstance.game.startTime = action.timer;
+            jackpotGameStoreInstance.game.timerStarted = false;
+            jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
+
+            jackpotGameStoreInstance.emitChange();
+            break;
+        case ActionTypes.JACKPOT_START_GAME:
+            jackpotGameStoreInstance.game.startTime = action.timer;
+            jackpotGameStoreInstance.game.timerStarted = false;
+            jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
+
+            jackpotGameStoreInstance.emitChange();
+            break;
+        case ActionTypes.JACKPOT_KILL_PLAYER:
+            let killed = jackpotGameStoreInstance.game.players.find(p=> p.id == killed.id);
+            killed.isKilled = true;
+            jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
+
+            jackpotGameStoreInstance.emitChange();
+            break;
+        case ActionTypes.JACKPOT_ROUND_WINNER:
+            // winner
+
+            let winnerPlayer = jackpotGameStoreInstance.game.players.find(p=> p.id == winner.id);
+            winnerPlayer.isWinner = true;
+            jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
+
+            jackpotGameStoreInstance.emitChange();
+            break;
+        case ActionTypes.JACKPOT_NEW_ROUND:
+            jackpotGameStoreInstance.game = {
+                roundHash: action.roundHash.gameHash,
+                profileBetAmount: 0,
+                startTime: 30,
+                timerStarted: false,
+                jackpot: 0,
+                players: []
+            };
 
             jackpotGameStoreInstance.emitChange();
             break;
@@ -123,6 +187,8 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
         default:
         // do nothing
     }
+
+
 });
 
 

@@ -1,5 +1,9 @@
 import MuffinDispatcher from '../dispather/MuffinDispatcher';
 import MuffinConstants from '../constants/MuffinConstants';
+import UserDataSore from '../stores/UserDataStore';
+import ToastMessagesActionCreators from './ToastMessagesActionCreators';
+import GameActionCreators from './games/GameActionCreators';
+import UserDataActionsCreators from './UserDataActionsCreators';
 
 var ActionTypes = MuffinConstants.ActionTypes;
 
@@ -8,8 +12,7 @@ class Socket {
         this.init(domain, port, secure, isDebugMode);
     }
 
-    init(domain, port, secure, isDebugMode){
-        return;
+    init(domain, port, secure, isDebugMode) {
         if (!this.location) {
             if (!domain) {
                 domain = document.domain.toString();
@@ -72,11 +75,11 @@ class Socket {
             this.send(this._pending_messages.pop());
         }
 
-        for (var key in  this.lastMessageType) {
-            if (this.lastMessageType.hasOwnProperty(key)) {
-                this.send(this.lastMessageType[key]);
-            }
-        }
+        // for (var key in  this.lastMessageType) {
+        //     if (this.lastMessageType.hasOwnProperty(key)) {
+        //         this.send(this.lastMessageType[key]);
+        //     }
+        // }
 
         this.pingIntervalFunction = function () {
             this.send({"ping": "pong"});
@@ -85,13 +88,21 @@ class Socket {
     };
 
     send(message) {
+
         if (!this.opened) {
+            ToastMessagesActionCreators.setNewToasts([{
+                type: "error",
+                message: "Socket Connection is closed. Please try again."
+            }]);
+
             clearInterval(this.timerSend);
             if (message.ping) {
                 return;
             }
 
-            this._pending_messages.push(message);
+            if (message.sendOnConnect) {
+                this._pending_messages.push(message);
+            }
             return;
         }
 
@@ -99,9 +110,9 @@ class Socket {
             return;
         }
 
-        if (message.type) {
-            this.lastMessageType[message.type] = message;
-        }
+        // if (message.type) {
+        //     this.lastMessageType[message.type] = message;
+        // }
 
         var msg = {};
         var renew_ping = 0;
@@ -122,7 +133,7 @@ class Socket {
         msg.date = new Date().getTime();
 
         msg = {
-            token: token,
+            token: UserDataSore.getToken(),
             type: message.type,
             data: message.data
         };
@@ -167,6 +178,43 @@ class Socket {
             type: ActionTypes.RECEIVED_TOAST_MESSAGE,
             toasts: parsedMessage.toasts
         });
+
+
+        switch (parsedMessage.type) {
+            case "onlinePlayers":
+                break;
+            case "playerBet":
+                GameActionCreators.jackpotPlaceBet(parsedMessage.data);
+                break;
+
+            case "startTimer":
+                GameActionCreators.jackpotStartTimer(parsedMessage.data);
+                break;
+            case "timerEnded":
+                GameActionCreators.jackpotTimerEnded(parsedMessage.data);
+                break;
+            case "startGame":
+                GameActionCreators.jackpotStartGame(parsedMessage.data);
+                break;
+
+            case "killPlayer":
+                GameActionCreators.jackpotKillPlayer(parsedMessage.data);
+                break;
+
+            case "roundWinner":
+                GameActionCreators.jackpotRoundWinner(parsedMessage.data);
+                break;
+            case "newRound":
+                GameActionCreators.jackpotNewRound(parsedMessage.data);
+                break;
+
+            case "updateProfileData":
+                UserDataActionsCreators.updateProfile(parsedMessage.data);
+                break;
+
+            default:
+                break;
+        }
     };
 
     onClose(m) {

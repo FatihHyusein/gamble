@@ -74,7 +74,7 @@ class ProfileBet extends BaseComponent {
                                 <CommonComponents.SvgIcon iconName="players"/> PLAYERS
                             </span>
                             <span>
-                                {this.props.game.players.length + 1}
+                                {this.props.game.players.length}
                             </span>
                         </div>
                         <div>

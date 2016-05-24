@@ -16,7 +16,6 @@ export default class HeaderStore extends EventEmitter {
         super(props);
 
         this.dafuq = function () {
-            console.log('asd');
         }
     }
 
@@ -41,8 +40,6 @@ HeaderStore.dispatchToken = MuffinDispatcher.register(function (action) {
     switch (action.type) {
 
         case ActionTypes.CHANGE_HEADER:
-            console.log(arguments);
-            console.log('hit');
             //MuffinDispatcher.waitFor([ThreadStore.dispatchToken]);
             HeaderStore.emitChange();
             break;

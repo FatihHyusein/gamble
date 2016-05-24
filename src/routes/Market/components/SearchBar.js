@@ -1,14 +1,20 @@
+import {Link} from 'react-router';
+
 class SearchBar extends Component {
     render() {
         return (
             <div className="search-bar">
                 <h1>{this.props.header}</h1>
                 <div>
-                    <CommonComponents.SvgIcon iconName="yt"/>
+                    <Link to="/market/cart" activeClassName="active">
+                        <CommonComponents.SvgIcon iconName="cart"/>
+                    </Link>
+
+
                     <div className="search-container">
                         <input type="text" placeholder={this.props.inputPlaceholder}/>
                         <div className="search-btn">
-                            <CommonComponents.SvgIcon iconName="fb"/>
+                            <CommonComponents.SvgIcon iconName="searchico"/>
                         </div>
                     </div>
                 </div>

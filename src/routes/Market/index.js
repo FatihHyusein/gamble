@@ -3,7 +3,7 @@ module.exports = {
 
     getChildRoutes(location, cb) {
         cb(null, [
-            require('./routes/nestedMarked')
+            require('./routes/Cart')
         ])
     },
 

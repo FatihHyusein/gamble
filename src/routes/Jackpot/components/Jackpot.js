@@ -17,6 +17,16 @@ class Jackpot extends Component {
         this._onChange = this._onChange.bind(this);
     }
 
+    componentWillMount() {
+        BaseComponent.sendViaSocket({
+            sendOnConnect: true,
+            type: "currentGameStatus",
+            data: {
+                game: "jackpot"
+            }
+        })
+    }
+
     render() {
         return (
             <div>
