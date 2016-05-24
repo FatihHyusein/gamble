@@ -82,15 +82,24 @@
         @include transition(all 500ms ease-out 50ms);
     }
     .even.killed {
-        background-color: rgba($red, 0.4);
+        color: rgba($red, 0.9);
+        .svg-icon {
+            fill: rgba($red, 0.9);
+        }
     }
 
     .odd.killed {
-        background-color: rgba($red, 0.3);
+        color: rgba($red, 0.9);
+        .svg-icon {
+            fill: rgba($red, 0.9);
+        }
     }
 
     .winner {
-        background-color: rgba($green, 0.4);
+        color: rgba($green, 0.9);
+        .svg-icon {
+            fill: rgba($green, 0.9);
+        }
     }
 
     .gun-icon-wrapper {

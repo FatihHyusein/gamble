@@ -43,10 +43,26 @@ class JackpotGame extends BaseComponent {
     timerStopped() {
         this.setState({gameState: 2})
     }
-    
-    
 
     render() {
+        var betInputContainer = '';
+        if (this.props.isHistory !== true) {
+            betInputContainer = (
+                <div className="place-bet-container">
+                    <input type="number"
+                           onChange={this.betAmountChanged}
+                           disabled={this.state.gameState == 2 && false}
+                           ref={(c) => this._betAmount = c}
+                    />
+                    <button className="bg-green" onClick={this.placeBet}
+                            disabled={this.state.gameState == 2 && false}>
+                        PLACE BET
+                    </button>
+                </div>
+            );
+        }
+
+
         return (
             <div id="jackpot-game">
                 <div>
@@ -56,19 +72,9 @@ class JackpotGame extends BaseComponent {
                     <DepositList players={this.props.game.players} gameState={this.state.gameState}/>
                 </div>
                 <div>
-                    <div className="place-bet-container">
-                        <input type="number"
-                               onChange={this.betAmountChanged}
-                               disabled={this.state.gameState == 2 && false}
-                               ref={(c) => this._betAmount = c}
-                        />
-                        <button className="bg-green" onClick={this.placeBet}
-                                disabled={this.state.gameState == 2 && false}>
-                            PLACE BET
-                        </button>
-                    </div>
+                    {betInputContainer}
                     <div>
-                        <ProfileBet game={this.props.game}/>
+                        <ProfileBet game={this.props.game} isHistory={this.props.isHistory}/>
                     </div>
                 </div>
             </div>
@@ -77,7 +83,8 @@ class JackpotGame extends BaseComponent {
 }
 
 JackpotGame.propTypes = {
-    game: React.PropTypes.object
+    game: React.PropTypes.object,
+    isHistory: React.PropTypes.bool
 };
 
 JackpotGame.defaultProps = {};

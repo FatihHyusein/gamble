@@ -85,7 +85,7 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             userDataStoreInstance.token = action.profile.token;
             localStorage.setItem('token', userDataStoreInstance.token);
 
-            userDataStoreInstance.profileIcon = action.profile.profileIcon;
+            userDataStoreInstance.profileIcon = action.profile.icon;
             localStorage.setItem('profileIcon', userDataStoreInstance.profileIcon);
 
             userDataStoreInstance.name = action.profile.name;

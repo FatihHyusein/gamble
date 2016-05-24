@@ -208,6 +208,10 @@ class Socket {
                 GameActionCreators.jackpotNewRound(parsedMessage.data);
                 break;
 
+            case "currentGameStatus":
+                GameActionCreators.jackpotCurrentGameStatus(parsedMessage.data);
+                break;
+
             case "updateProfileData":
                 UserDataActionsCreators.updateProfile(parsedMessage.data);
                 break;

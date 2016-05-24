@@ -30,6 +30,7 @@ module.exports = {
         JACKPOT_KILL_PLAYER: null,
         JACKPOT_ROUND_WINNER: null,
         JACKPOT_NEW_ROUND: null,
+        JACKPOT_GAME_STATUS: null,
 
         
         

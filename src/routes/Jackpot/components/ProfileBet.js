@@ -1,5 +1,10 @@
 import BaseComponent from '../../../base/BaseComponent';
 import Chart from './Chart';
+import UserDataStore from '../../../stores/UserDataStore';
+
+function getCredits() {
+    return UserDataStore.getMuffins();
+}
 
 export default
 class ProfileBet extends BaseComponent {
@@ -8,35 +13,61 @@ class ProfileBet extends BaseComponent {
         super();
 
         this.state = {
-            testProfilePercent: 0.8222,
             chartDimensions: {
                 width: 50,
                 height: 50
-            }
+            },
+            credits: getCredits()
         };
-        this.changePercentTest = this.changePercentTest.bind(this);
+
+        this._onChange = this._onChange.bind(this);
     }
 
-    changePercentTest() {
-        this.setState({testProfilePercent: parseFloat((Math.random()).toFixed(4))});
-    }
 
     componentDidMount() {
         this.setState({
-            testProfilePercent: 0.8222,
             chartDimensions: {
                 width: this.chartContainer.offsetWidth,
                 height: this.chartContainer.offsetHeight
             }
         });
+
+        UserDataStore.addChangeListener(this._onChange);
+    }
+
+
+    componentWillUnmount() {
+        UserDataStore.removeChangeListener(this._onChange);
+    }
+
+    _onChange() {
+        this.setState({
+            credits: getCredits()
+        });
     }
 
     render() {
+        var profilePercent = 0;
+        if (this.props.game.jackpot > 0 && this.props.game.profileBetAmount > 0) {
+            profilePercent = parseFloat((this.props.game.profileBetAmount / this.props.game.jackpot).toFixed(4));
+        }
+
+        var creditsContainer = "";
+        if (this.props.isHistory !== true) {
+            creditsContainer = ( <div className="credit">
+                        <span className="label">
+                            <CommonComponents.SvgIcon iconName="muffin-currency"/> CREDITS
+                        </span>
+                        <span>
+                            {this.state.credits}
+                        </span>
+            </div>);
+        }
 
         return (
             <div id="profile-bet">
                 <div className="profile-money-container">
-                    <div className="bet tcenter" onClick={this.changePercentTest}>
+                    <div className="bet tcenter">
                         <span className="label">
                             <CommonComponents.SvgIcon iconName="dice"/> BET
                         </span>
@@ -44,20 +75,13 @@ class ProfileBet extends BaseComponent {
                             {this.props.game.profileBetAmount}
                         </span>
                     </div>
-                    <div className="credit">
-                        <span className="label">
-                            <CommonComponents.SvgIcon iconName="muffin-currency"/> CREDITS
-                        </span>
-                        <span>
-                            6620
-                        </span>
-                    </div>
+                    {creditsContainer}
                 </div>
 
                 <div className="game-info-container">
                     <div className="chart-container" ref={(c)=>this.chartContainer=c}>
                         <Chart
-                            profilePercent={ parseFloat((this.props.game.profileBetAmount/this.props.game.jackpot).toFixed(4))}
+                            profilePercent={ profilePercent}
                             width={this.state.chartDimensions.width} height={this.state.chartDimensions.height}/>
                     </div>
                     <div className="game-info">
@@ -117,4 +141,7 @@ ProfileBet.defaultProps = {
     icon: 'fb'
 
 };
-ProfileBet.propTypes = {game: React.PropTypes.object};
+ProfileBet.propTypes = {
+    game: React.PropTypes.object,
+    isHistory: React.PropTypes.bool
+};

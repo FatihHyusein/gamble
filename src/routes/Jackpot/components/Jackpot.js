@@ -6,7 +6,8 @@ import BaseComponent from '../../../base/BaseComponent';
 
 function getStateFromStores() {
     return {
-        gameData: JackpotStore.getJackpotData()
+        gameData: JackpotStore.getJackpotData(),
+        historyGames: JackpotStore.getHistory()
     }
 }
 
@@ -28,6 +29,20 @@ class Jackpot extends Component {
     }
 
     render() {
+        var history = [];
+        var historyContainer = "";
+        if (this.state.historyGames && this.state.historyGames.length > 0) {
+            history = this.state.historyGames.map((histGame, idx)=> {
+                return <JackpotGame key={idx} game={histGame} isHistory={true}/>;
+            });
+
+            historyContainer = (
+                <div>
+                    {history}
+                </div>
+            );
+        }
+
         return (
             <div>
                 <div className="top-container">
@@ -35,6 +50,8 @@ class Jackpot extends Component {
                 </div>
 
                 <JackpotGame game={this.state.gameData}/>
+
+                {historyContainer}
             </div>
         )
     }

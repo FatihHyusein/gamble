@@ -49,5 +49,11 @@ export default {
             type: ActionTypes.JACKPOT_NEW_ROUND,
             roundHash: roundHash
         });
+    },
+    jackpotCurrentGameStatus: function (gameStatus) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.JACKPOT_GAME_STATUS,
+            gameStatus: gameStatus
+        });
     }
 };

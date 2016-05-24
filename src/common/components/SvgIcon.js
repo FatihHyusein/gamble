@@ -1,17 +1,26 @@
-import {Component} from 'react';
+import BaseComponent from '../../base/BaseComponent';
+import React, {Component}from 'react';
 import d3 from 'd3';
 
-class SvgIcon extends Component {
+class SvgIcon extends BaseComponent {
     constructor(props) {
         super(props);
 
         this.state = {
             iconData: ''
-        }
+        };
+
+        this.getIcon = this.getIcon.bind(this);
     }
 
     componentDidMount() {
-        d3.xml(this.iconName, "image/svg+xml", (error, xml) => {
+        this.getIcon(this.props.iconName);
+    }
+
+    getIcon(iconName) {
+        var iconUrl = 'staticFiles/icons/' + iconName + '.svg';
+
+        d3.xml(iconUrl, "image/svg+xml", (error, xml) => {
             // if (error) throw error;
             if (xml && xml.documentElement) {
                 this.setState({iconData: xml.documentElement.outerHTML});
@@ -19,8 +28,13 @@ class SvgIcon extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.iconName && nextProps.iconName != this.props.iconName) {
+            this.getIcon(nextProps.iconName);
+        }
+    }
+
     render() {
-        this.iconName = 'staticFiles/icons/' + this.props.iconName + '.svg';
         function createMarkup(html) {
             return {__html: html};
         }
@@ -29,5 +43,10 @@ class SvgIcon extends Component {
                     dangerouslySetInnerHTML={createMarkup(this.state.iconData)}></div>;
     }
 }
+
+
+SvgIcon.propTypes = {
+    props: React.PropTypes.string
+};
 
 module.exports = SvgIcon;

@@ -9,21 +9,10 @@ class DepositList extends BaseComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        // this.forceUpdate();
     }
 
     render() {
-        if (!this.deposits) {
-            this.deposits = this.props.players;
-        }
-
-        var newItemStyle = {
-            backgroundColor: "blue",
-            height: 0 + 'px',
-            visibility: "hidden",
-            opacity: 0
-        };
-
+        this.deposits = this.props.players;
 
         var depositList = this.deposits.map((deposit, idx)=> {
             let rowClass = (idx % 2) ? 'even' : 'odd';

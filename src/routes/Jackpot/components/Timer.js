@@ -20,14 +20,20 @@ class Timer extends BaseComponent {
         });
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.timerStarted) {
+    componentWillReceiveProps(nextProps){
+        if(nextProps.time) {
+            this.setState({
+                remainTime: nextProps.time
+            });
+        }
+
+        if(nextProps.timerStarted === true){
             this.startTimer();
         }
     }
 
     componentDidMount() {
-        if (this.props.timerStarted) {
+        if(this.props.timerStarted){
             this.startTimer();
         }
     }

@@ -14,6 +14,10 @@ class JackpotGameStore extends GameStore {
         return this.game;
     }
 
+    getHistory() {
+        return this.historyGames;
+    }
+
     getPercentGunIcon(betAmount) {
         let percent;
         if (betAmount && betAmount.amount) {
@@ -31,16 +35,16 @@ class JackpotGameStore extends GameStore {
             return iconUrl + 'AK-47';
         }
         if (percent > 0.25) {
-            return iconUrl + 'glock';
+            return iconUrl + 'p90';
         }
         if (percent > 0.15) {
-            return iconUrl + 'karambit';
+            return iconUrl + 'sawed-off';
         }
         if (percent > 0.05) {
-            return iconUrl + 'm9bayonet';
+            return iconUrl + 'glock';
         }
 
-        return iconUrl + 'nova';
+        return iconUrl + 'm9bayonet';
     }
 
     constructor(props) {
@@ -55,55 +59,7 @@ class JackpotGameStore extends GameStore {
             players: []
         };
 
-        // this.game = {
-        //     roundHash: '65scxz123',
-        //     startTime: 88,
-        //     jackpot: 555,
-        //     players: [
-        //         {
-        //             profileIcon: 'fb',
-        //             name: 'Kircho',
-        //             betAmount: 15
-        //         },
-        //         {
-        //             profileIcon: 'fb',
-        //             name: 'VUYCHO',
-        //             betAmount: 155
-        //         },
-        //         {
-        //             profileIcon: 'yt',
-        //             name: 'DIMCHO',
-        //             betAmount: 1,
-        //             isKilled: true
-        //         }
-        //     ],
-        //     profileBetAmount: 250,
-        //     dailyLucker: {
-        //         profileIcon: 'fb',
-        //         name: 'Kircho',
-        //         betAmount: 15,
-        //         gunIcon: ''
-        //     },
-        //     history: [
-        //         {
-        //             winner: {
-        //                 profileIcon: 'fb',
-        //                 name: 'Kircho',
-        //                 betAmount: 15,
-        //                 gunIcon: ''
-        //             },
-        //             players: [
-        //                 {
-        //                     profileIcon: 'fb',
-        //                     name: 'Kircho',
-        //                     betAmount: 15,
-        //                     gunIcon: ''
-        //                 }
-        //             ]
-        //         }
-        //     ]
-        //
-        // };
+        this.historyGames = [];
     }
 
     emitChange() {
@@ -124,9 +80,17 @@ let jackpotGameStoreInstance = new JackpotGameStore();
 jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
     switch (action.type) {
         case ActionTypes.JACKPOT_PLACE_BET:
+            var jackpot = 0;
+            if (action.bets.players.length > 1) {
+                jackpot = action.bets.players.reduce((previousValue, currentValue)=> previousValue.betAmount + currentValue.betAmount);
+            }
+            else if (action.bets.players.length == 1) {
+                jackpot = action.bets.players[0].betAmount;
+            }
+
             jackpotGameStoreInstance.game = {
                 roundHash: jackpotGameStoreInstance.game.roundHash,
-                jackpot: action.bets.players.reduce((previousValue, currentValue)=> previousValue.betAmount + currentValue.betAmount).betAmount,
+                jackpot: jackpot,
                 profileBetAmount: action.bets.yourBet.betAmount,
                 players: action.bets.players
             };
@@ -134,14 +98,13 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             jackpotGameStoreInstance.emitChange();
             break;
         case ActionTypes.JACKPOT_START_TIMER:
-            jackpotGameStoreInstance.game.startTime = action.timer;
+            jackpotGameStoreInstance.game.startTime = action.timer.timer;
             jackpotGameStoreInstance.game.timerStarted = true;
             jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
 
             jackpotGameStoreInstance.emitChange();
             break;
         case ActionTypes.JACKPOT_TIMER_ENDED:
-
             jackpotGameStoreInstance.game.startTime = action.timer;
             jackpotGameStoreInstance.game.timerStarted = false;
             jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
@@ -156,18 +119,18 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             jackpotGameStoreInstance.emitChange();
             break;
         case ActionTypes.JACKPOT_KILL_PLAYER:
-            let killed = jackpotGameStoreInstance.game.players.find(p=> p.id == killed.id);
+            var killed = jackpotGameStoreInstance.game.players.find(p=> p.id == action.killed.id);
             killed.isKilled = true;
             jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
 
             jackpotGameStoreInstance.emitChange();
             break;
         case ActionTypes.JACKPOT_ROUND_WINNER:
-            // winner
-
-            let winnerPlayer = jackpotGameStoreInstance.game.players.find(p=> p.id == winner.id);
+            let winnerPlayer = jackpotGameStoreInstance.game.players.find(p=> p.id == action.winner.id);
             winnerPlayer.isWinner = true;
-            jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
+
+            jackpotGameStoreInstance.game.timerStarted = false;
+            jackpotGameStoreInstance.historyGames.push(Object.assign({}, jackpotGameStoreInstance.game));
 
             jackpotGameStoreInstance.emitChange();
             break;
@@ -179,6 +142,19 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
                 timerStarted: false,
                 jackpot: 0,
                 players: []
+            };
+
+            jackpotGameStoreInstance.emitChange();
+            break;
+
+        case ActionTypes.JACKPOT_GAME_STATUS:
+            jackpotGameStoreInstance.game = {
+                roundHash: action.gameStatus.gameHash,
+                profileBetAmount: action.gameStatus.yourBet,
+                startTime: action.gameStatus.timer,
+                timerStarted: action.gameStatus.startTimer,
+                jackpot: action.gameStatus.jackpot,
+                players: action.gameStatus.players
             };
 
             jackpotGameStoreInstance.emitChange();

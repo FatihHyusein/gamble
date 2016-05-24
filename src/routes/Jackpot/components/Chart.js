@@ -132,7 +132,7 @@ class Chart extends BaseComponent {
                         <g>
                             <foreignObject className="foreign-object">
                                 <CommonComponents.SvgIcon
-                                    iconName={JackpotGameStore.getPercentGunIcon({percent:this.props.profilePercent})}/>
+                                    iconName={JackpotGameStore.getPercentGunIcon({percent:this.state.data})}/>
                             </foreignObject>
                             <text fill={this.fillColor} className="percent-text" dy=".35em" text-anchor="middle">
                                 {(this.state.data * 100).toFixed(2)}%
@@ -149,11 +149,6 @@ class Chart extends BaseComponent {
         clearTimeout(this.updateTimeout);
     }
 }
-
-// Chart.defaultProps = {
-//     width: 960,
-//     height: 450
-// };
 
 Chart.propTypes = {
     profilePercent: React.PropTypes.number,
