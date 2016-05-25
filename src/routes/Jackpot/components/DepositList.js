@@ -16,6 +16,8 @@ class DepositList extends BaseComponent {
         this.deposits = this.props.players;
 
         var depositList = this.deposits.map((deposit, idx)=> {
+
+            console.warn(deposit)
             let rowClass = (idx % 2) ? 'even' : 'odd';
 
             let gameStateData;
@@ -29,7 +31,7 @@ class DepositList extends BaseComponent {
                             <CommonComponents.SvgIcon
                                 iconName={JackpotGameStore.getPercentGunIcon({amount:deposit.betAmount,jackpot:this.props.jackpot})}/>
                                  </span>
-                             <CommonComponents.SvgIcon iconName={deposit.profileIcon}/>
+                             <img src={deposit.icon} className="profile-icon"/>
                              {deposit.name}
                         </span>
                     </div>
@@ -40,7 +42,7 @@ class DepositList extends BaseComponent {
                 person = (
                     <div className={`${rowClass} winner`}>
                          <span>
-                              <CommonComponents.SvgIcon iconName={deposit.profileIcon}/>
+                              <img src={deposit.icon} className="profile-icon"/>
                              {deposit.name}
                              <span className="killer-gun">
                             <CommonComponents.SvgIcon
@@ -67,7 +69,7 @@ class DepositList extends BaseComponent {
                 }
                 person = (
                     <div className={rowClass}>
-                        <CommonComponents.SvgIcon iconName={deposit.profileIcon}/>
+                        <img src={deposit.icon} className="profile-icon"/>
                         {deposit.name}
                         {gameStateData}
                     <span className="gun-icon-wrapper">

@@ -141,6 +141,14 @@
         }
     }
 
+    .profile-icon {
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+        @include border-radius(50%);
+        border: 1px solid $white;
+    }
+
     .person-animate-enter {
         opacity: 0.01;
         color: greenyellow;
