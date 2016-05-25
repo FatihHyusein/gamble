@@ -13,11 +13,12 @@ class MuffinApp extends BaseComponent {
     render() {
         return (
             <div>
-                <ToastMessages />
                 <Nav />
-
-                <div>
-                    {this.props.children || <Home />}
+                <div className="page-wrapper">
+                    <ToastMessages />
+                    <div>
+                        {this.props.children || <Home />}
+                    </div>
                 </div>
                 <Footer />
             </div>

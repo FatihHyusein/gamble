@@ -21,8 +21,6 @@ module.exports = {
         GET_WINNER: null,
 
 
-
-
         JACKPOT_PLACE_BET: null,
         JACKPOT_START_TIMER: null,
         JACKPOT_TIMER_ENDED: null,
@@ -31,14 +29,9 @@ module.exports = {
         JACKPOT_ROUND_WINNER: null,
         JACKPOT_NEW_ROUND: null,
         JACKPOT_GAME_STATUS: null,
+        JACKPOT_UPDATE_TIMER: null,
 
-        
-        
-        
-        
-        
-        
-        
+
         RECEIVED_TOAST_MESSAGE: null,
         CLEAR_TOAST_MESSAGES: null,
 

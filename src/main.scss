@@ -34,6 +34,24 @@ body {
     color: $white;
 }
 
+.page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    //margin-top: -$nav-height;
+    margin-bottom: -$footer-height;
+    &:after {
+        content: "";
+        display: block;
+        height: $footer-height;
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        height: $nav-height;
+    }
+}
+
 .bg-red {
     background-color: $red;
 }

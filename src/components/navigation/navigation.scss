@@ -1,5 +1,10 @@
 nav {
+    position: fixed;
     @include flexbox();
+    height: $nav-height;
+    left: 0;
+    right: 0;
+    z-index: 50;
     align-items: center;
     background-color: rgba($gray-blue, 1);
     border-bottom: 5px solid $gray;

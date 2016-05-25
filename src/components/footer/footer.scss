@@ -1,6 +1,8 @@
 #footer {
+    height: $footer-height;
     position: relative;
     //margin-top: 35px;
+    margin-top: 20px;
     padding-top: 10px;
     background: $dark-blue;
     &::before {

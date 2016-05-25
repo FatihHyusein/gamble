@@ -41,10 +41,31 @@ class JackpotGame extends BaseComponent {
     }
 
     timerStopped() {
-        this.setState({gameState: 2})
+        // this.setState({gameState: 2})
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isHistory) {
+            return;
+        }
+
+
+        if (nextProps.game && nextProps.game.startTime > 0) {
+            if (this.state.gameState != 1) {
+                this.setState({gameState: 1})
+            }
+        }
+
+        else if (nextProps.game && nextProps.game.startTime < 1) {
+            if (this.state.gameState != 2) {
+                this.setState({gameState: 2})
+            }
+        }
     }
 
     render() {
+
+
         var betInputContainer = '';
         if (this.props.isHistory !== true) {
             betInputContainer = (
@@ -62,14 +83,16 @@ class JackpotGame extends BaseComponent {
             );
         }
 
-
         return (
             <div id="jackpot-game">
                 <div>
                     <Timer time={this.props.game.startTime}
                            onTimerStopped={this.timerStopped}
-                           timerStarted={this.props.game.timerStarted}/>
-                    <DepositList players={this.props.game.players} gameState={this.state.gameState}/>
+                           timerStarted={this.props.game.timerStarted}
+                           isHistory={this.props.isHistory}/>
+                    <DepositList players={this.props.game.players}
+                                 gameState={this.state.gameState}
+                                 jackpot={this.props.game.jackpot}/>
                 </div>
                 <div>
                     {betInputContainer}

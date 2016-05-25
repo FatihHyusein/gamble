@@ -1,5 +1,13 @@
 import BaseComponent from '../../../base/BaseComponent';
 import d3 from 'd3';
+import JackpotStore from '../../../stores/games/JackpotGameStore';
+import GameActionCreators from '../../../actions/games/GameActionCreators';
+
+function getStateFromStores() {
+    return {
+        remainTime: JackpotStore.getJackpotData().startTime
+    }
+}
 
 export default
 class Timer extends BaseComponent {
@@ -8,34 +16,34 @@ class Timer extends BaseComponent {
         super();
 
         this.startTimer = this.startTimer.bind(this);
-        this.state = {
-            // remainTime: this.props.time
-        };
+        this._onChange = this._onChange.bind(this);
+
+        this.state = getStateFromStores();
     }
 
-
-    componentWillMount() {
-        this.setState({
-            remainTime: this.props.time
-        });
+    _onChange() {
+        this.setState(getStateFromStores());
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.time) {
-            this.setState({
-                remainTime: nextProps.time
-            });
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isHistory) {
+            return;
         }
 
-        if(nextProps.timerStarted === true){
+        if (nextProps.time && nextProps.time != this.state.remainTime) {
+            this.setState(getStateFromStores());
+        }
+
+        if (nextProps.timerStarted === true) {
             this.startTimer();
         }
     }
 
     componentDidMount() {
-        if(this.props.timerStarted){
-            this.startTimer();
+        if (this.props.isHistory) {
+            return;
         }
+        JackpotStore.addTimerListener(this._onChange);
     }
 
     render() {
@@ -43,8 +51,11 @@ class Timer extends BaseComponent {
 
         var timeLineStyle = {
             backgroundColor: this.bgColor,
-            borderWidth: this.state.timeLineWidth + 'px'
+            borderWidth: this.timerLineBorderWidth || 0
         };
+        if (this.props.timerDuration == this.state.remainTime) {
+            timeLineStyle.borderWidth = 0;
+        }
 
         var timerCounterStyle = {
             color: this.bgColor
@@ -77,44 +88,39 @@ class Timer extends BaseComponent {
 
     startTimer() {
         this.timerInterval = setInterval(()=> {
-            if (this.state.remainTime == 1) {
+            if (this.state.remainTime > 0) {
+                GameActionCreators.updateTimer(this.state.remainTime - 1);
+            }
+
+            if (this.state.remainTime == 0) {
                 clearTimeout(this.timerInterval);
                 this.props.onTimerStopped();
             }
 
-            if (this.state.remainTime < 10) {
-
-            }
-            this.setState({
-                remainTime: --this.state.remainTime
-            });
+            this.timerLineBorderWidth = `${Math.round(this.timerLine.offsetWidth - this.timerLine.offsetWidth * this.state.remainTime / this.props.timerDuration)}px`;
         }, 1000);
-
-        d3.select(this.timerLine).transition().duration((this.props.time * 1000) - 1000)
-            .tween('width', ()=> {
-                    var i = d3.interpolate(0, this.timerLine.offsetWidth - 10);
-
-                    return (t)=> {
-                        if (!this.willUnmount) {
-                            this.setState({
-                                timeLineWidth: i(t)
-                            });
-                        }
-                    };
-                }
-            );
     }
 
     componentWillUnmount() {
+        if (this.props.isHistory) {
+            return;
+        }
+        JackpotStore.removeTimerListener(this._onChange);
+
         this.willUnmount = true;
         d3.select(this.timerLine).transition();
         clearTimeout(this.timerInterval);
     }
 }
 
+Timer.defaultProps = {
+    timerDuration: 30
+};
+
 Timer.propTypes = {
     timerStarted: React.PropTypes.bool,
     time: React.PropTypes.number,
-    onTimerStopped: React.PropTypes.func
+    onTimerStopped: React.PropTypes.func,
+    isHistory: React.PropTypes.bool
 };
 

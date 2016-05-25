@@ -1,5 +1,6 @@
 import BaseComponent from '../../../base/BaseComponent';
 import JackpotGameStore from '../../../stores/games/JackpotGameStore';
+import ReactCSSTransitionGroup from  'react-addons-css-transition-group';
 
 export default
 class DepositList extends BaseComponent {
@@ -22,11 +23,11 @@ class DepositList extends BaseComponent {
 
             if (deposit.isKilled) {
                 person = (
-                    <div key={idx} className={`${rowClass} killed`}>
+                    <div className={`${rowClass} killed`}>
                          <span>EVIL MUFFIN
                              <span className="killer-gun">
                             <CommonComponents.SvgIcon
-                                iconName={JackpotGameStore.getPercentGunIcon({amount:deposit.betAmount})}/>
+                                iconName={JackpotGameStore.getPercentGunIcon({amount:deposit.betAmount,jackpot:this.props.jackpot})}/>
                                  </span>
                              <CommonComponents.SvgIcon iconName={deposit.profileIcon}/>
                              {deposit.name}
@@ -37,13 +38,13 @@ class DepositList extends BaseComponent {
 
             else if (deposit.isWinner) {
                 person = (
-                    <div key={idx} className={`${rowClass} winner`}>
+                    <div className={`${rowClass} winner`}>
                          <span>
                               <CommonComponents.SvgIcon iconName={deposit.profileIcon}/>
                              {deposit.name}
                              <span className="killer-gun">
                             <CommonComponents.SvgIcon
-                                iconName={JackpotGameStore.getPercentGunIcon({amount:deposit.betAmount})}/>
+                                iconName={JackpotGameStore.getPercentGunIcon({amount:deposit.betAmount,jackpot:this.props.jackpot})}/>
                                  </span>
                              EVIL MUFFIN
                         </span>
@@ -65,19 +66,28 @@ class DepositList extends BaseComponent {
                     gameStateData = <span className="text"> PLAYS WITH</span>
                 }
                 person = (
-                    <div key={idx} className={rowClass}>
+                    <div className={rowClass}>
                         <CommonComponents.SvgIcon iconName={deposit.profileIcon}/>
                         {deposit.name}
                         {gameStateData}
                     <span className="gun-icon-wrapper">
                         <CommonComponents.SvgIcon
-                            iconName={JackpotGameStore.getPercentGunIcon({amount:deposit.betAmount})}/>
+                            iconName={JackpotGameStore.getPercentGunIcon({amount:deposit.betAmount,jackpot:this.props.jackpot})}/>
                     </span>
                     </div>
                 )
             }
 
-            return person
+            return (
+
+
+                <ReactCSSTransitionGroup transitionName="person-animate" key={idx}
+                                         transitionAppear={true}
+                                         transitionAppearTimeout={500}
+                                         transitionEnterTimeout={500}
+                                         transitionLeaveTimeout={300}>
+                    <div key={idx}>{person}</div>
+                </ReactCSSTransitionGroup>)
         });
 
         return (
@@ -90,5 +100,6 @@ class DepositList extends BaseComponent {
 
 DepositList.propTypes = {
     players: React.PropTypes.array,
-    gameState: React.PropTypes.number
+    gameState: React.PropTypes.number,
+    jackpot: React.PropTypes.number
 };

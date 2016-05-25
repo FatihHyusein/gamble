@@ -2,7 +2,7 @@ import JackpotGame from './JackpotGame';
 import GameActionCreator from '../../../actions/games/GameActionCreators';
 import JackpotStore from '../../../stores/games/JackpotGameStore';
 import BaseComponent from '../../../base/BaseComponent';
-
+import ReactCSSTransitionGroup from  'react-addons-css-transition-group';
 
 function getStateFromStores() {
     return {
@@ -34,11 +34,15 @@ class Jackpot extends Component {
         if (this.state.historyGames && this.state.historyGames.length > 0) {
             history = this.state.historyGames.map((histGame, idx)=> {
                 return <JackpotGame key={idx} game={histGame} isHistory={true}/>;
-            });
+            }).reverse();
 
             historyContainer = (
-                <div>
-                    {history}
+                <div className="jackpot-history-container">
+                    <ReactCSSTransitionGroup transitionName="example"
+                                             transitionEnterTimeout={500}
+                                             transitionLeaveTimeout={300}>
+                        {history}
+                    </ReactCSSTransitionGroup>
                 </div>
             );
         }

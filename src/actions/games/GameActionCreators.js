@@ -55,5 +55,12 @@ export default {
             type: ActionTypes.JACKPOT_GAME_STATUS,
             gameStatus: gameStatus
         });
+    },
+
+    updateTimer: function (time) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.JACKPOT_UPDATE_TIMER,
+            newTime: time
+        });
     }
 };

@@ -116,6 +116,13 @@ class Chart extends BaseComponent {
         var paths = this.createChart();
         var transformData = `translate(${this.props.width / 2},${this.props.height / 2})`;
 
+        var minContainerSize = Math.min(this.props.width, this.props.height);
+        var gunDimensions = {
+            width: minContainerSize / 2,
+            transformData: `translate(${-minContainerSize / 4},${-minContainerSize / 4})`
+        };
+
+
         if (this.updatedProps) {
             this.updatedProps = false;
             this.update();
@@ -130,7 +137,8 @@ class Chart extends BaseComponent {
                             {paths}
                         </g>
                         <g>
-                            <foreignObject className="foreign-object">
+                            <foreignObject className="foreign-object" width={gunDimensions.width}
+                                           transform={gunDimensions.transformData}>
                                 <CommonComponents.SvgIcon
                                     iconName={JackpotGameStore.getPercentGunIcon({percent:this.state.data})}/>
                             </foreignObject>

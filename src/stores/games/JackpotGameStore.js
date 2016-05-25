@@ -21,7 +21,7 @@ class JackpotGameStore extends GameStore {
     getPercentGunIcon(betAmount) {
         let percent;
         if (betAmount && betAmount.amount) {
-            percent = betAmount.amount / this.game.jackpot;
+            percent = betAmount.amount / betAmount.jackpot;
         }
         if (betAmount && betAmount.percent) {
             percent = betAmount.percent;
@@ -66,12 +66,24 @@ class JackpotGameStore extends GameStore {
         this.emit(CHANGE_EVENT);
     }
 
+    emitTimerChange() {
+        this.emit('timerChange');
+    }
+
     addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     }
 
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
+    }
+
+    addTimerListener(callback) {
+        this.on('timerChange', callback);
+    }
+
+    removeTimerListener(callback) {
+        this.removeListener('timerChange', callback);
     }
 }
 
@@ -119,15 +131,25 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             jackpotGameStoreInstance.emitChange();
             break;
         case ActionTypes.JACKPOT_KILL_PLAYER:
-            var killed = jackpotGameStoreInstance.game.players.find(p=> p.id == action.killed.id);
-            killed.isKilled = true;
+            for (let i = 0; i < jackpotGameStoreInstance.game.players.length; i++) {
+                if (jackpotGameStoreInstance.game.players[i].id == action.killed.id) {
+                    jackpotGameStoreInstance.game.players[i].isKilled = true;
+                    jackpotGameStoreInstance.game.players.unshift(...jackpotGameStoreInstance.game.players.splice(i, 1));
+                    break;
+                }
+            }
             jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
 
             jackpotGameStoreInstance.emitChange();
             break;
         case ActionTypes.JACKPOT_ROUND_WINNER:
-            let winnerPlayer = jackpotGameStoreInstance.game.players.find(p=> p.id == action.winner.id);
-            winnerPlayer.isWinner = true;
+            for (let i = 0; i < jackpotGameStoreInstance.game.players.length; i++) {
+                if (jackpotGameStoreInstance.game.players[i].id == action.winner.id) {
+                    jackpotGameStoreInstance.game.players[i].isWinner = true;
+                    jackpotGameStoreInstance.game.players.unshift(...jackpotGameStoreInstance.game.players.splice(i, 1));
+                    break;
+                }
+            }
 
             jackpotGameStoreInstance.game.timerStarted = false;
             jackpotGameStoreInstance.historyGames.push(Object.assign({}, jackpotGameStoreInstance.game));
@@ -158,6 +180,15 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             };
 
             jackpotGameStoreInstance.emitChange();
+            break;
+
+        case ActionTypes.JACKPOT_UPDATE_TIMER:
+
+            jackpotGameStoreInstance.game.startTime = action.newTime;
+            jackpotGameStoreInstance.game = Object.assign({}, jackpotGameStoreInstance.game);
+
+            jackpotGameStoreInstance.emitTimerChange();
+            // jackpotGameStoreInstance.emitChange();
             break;
 
         default:
