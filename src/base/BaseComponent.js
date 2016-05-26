@@ -7,6 +7,7 @@ import UserDataStore from '../stores/UserDataStore';
 import d3 from 'd3';
 
 import ToastMessagesActionCreators from '../actions/ToastMessagesActionCreators';
+import PopupMessagesActionCreators from '../actions/PopupMessagesActionCreators';
 
 
 class BaseComponent extends Component {
@@ -20,51 +21,110 @@ class BaseComponent extends Component {
         return SendViaSocket(data);
     }
 
-    static getAjax(data) {
-        if (!data.getParams) {
-            data.getParams = {};
+    static checkAuth(data) {
+        if (!data.params) {
+            data.params = {};
         }
 
         if (data.auth) {
-            data.getParams.token = UserDataStore.getToken();
+            data.params.token = UserDataStore.getToken();
         }
 
-        return d3.json(`http://87.120.75.34/api/${data.url}?${param(data.getParams)}`, (error, json)=> {
-            if (error) {
-                ToastMessagesActionCreators.setNewToasts([
-                    {
-                        type: "error",
-                        message: "Something went wrong"
-                    }
-                ]);
+        return data;
+    }
 
-                if (data.failFunction) {
-                    data.failFunction(json.data);
-                }
+    static checkForPopupMessage(error, json, data) {
+        if (json.message) {
+            PopupMessagesActionCreators.setNewPopupMessage({
+                popupMessage: json.message
+            })
+        }
+    }
 
-                return console.warn(error);
-            }
-
-            if (json) {
-                ToastMessagesActionCreators.setNewToasts(json.toast);
-            }
-            else {
-                ToastMessagesActionCreators.setNewToasts([{
+    static checkIfFail(error, json, data) {
+        if (error) {
+            ToastMessagesActionCreators.setNewToasts([
+                {
                     type: "error",
-                    message: "Something went wrong"
-                }]);
+                    text: "Something went wrong"
+                }
+            ]);
+
+            if (data.failFunction) {
+                data.failFunction(json.data);
             }
 
-            if (json && json.status) {
-                if (data.successFunction) {
-                    data.successFunction(json.data);
-                }
+            return true;
+        }
+        return false;
+    }
+
+    static createToasts(error, json, data) {
+        if (json) {
+            ToastMessagesActionCreators.setNewToasts(json.toasts);
+        }
+        else {
+            ToastMessagesActionCreators.setNewToasts([{
+                type: "error",
+                text: "Something went wrong"
+            }]);
+            if (data.failFunction) {
+                data.failFunction(json.data);
             }
-            else {
-                if (data.failFunction) {
-                    data.failFunction(json.data);
-                }
+            return true;
+        }
+        return false;
+    }
+
+    static invokeCallback(error, json, data) {
+        if (json && json.status) {
+            if (data.successFunction) {
+                data.successFunction(json.data);
             }
+        }
+        else {
+            if (data.failFunction) {
+                data.failFunction(json.data);
+            }
+        }
+    }
+
+    static postAjax(data) {
+        data = this.checkAuth(data);
+
+        return d3.xhr(`http://87.120.75.34/api/${data.url}`)
+            .header("Content-Type", "application/json")
+            .post(JSON.stringify(data.params), (error, xhr)=> {
+                var json = JSON.parse(xhr.response);
+                this.checkForPopupMessage(error, json, data);
+
+                if (this.checkIfFail(error, json, data)) {
+                    return;
+                }
+
+                if (this.createToasts(error, json, data)) {
+                    return;
+                }
+
+                this.invokeCallback(error, json, data);
+            });
+    }
+
+    static getAjax(data) {
+        data = this.checkAuth(data);
+
+        return d3.json(`http://87.120.75.34/api/${data.url}?${param(data.params)}`, (error, json)=> {
+            this.checkForPopupMessage(error, json, data);
+
+            if (this.checkIfFail(error, json, data)) {
+                return;
+            }
+
+            if (this.createToasts(error, json, data)) {
+                return;
+            }
+
+            this.invokeCallback(error, json, data);
         });
 
         function param(object) {
@@ -80,10 +140,6 @@ class BaseComponent extends Component {
                 return encodeURIComponent(k) + '=' + encodeURIComponent(formatedObject)
             }).join('&');
         }
-    }
-
-    static postAjax(data) {
-        return SendViaSocket(data);
     }
 
     _onChange() {

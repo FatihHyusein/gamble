@@ -39,12 +39,19 @@ toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> 
         case ActionTypes.RECEIVED_TOAST_MESSAGE:
             //MuffinDispatcher.waitFor([ThreadStore.dispatchToken]);
 
-
-            toastMessagesStoreInstance.toastMessages = action.toasts;
-            toastMessagesStoreInstance.clearToastsTimeout = setTimeout(()=> {
+            if (!toastMessagesStoreInstance.toastMessages) {
                 toastMessagesStoreInstance.toastMessages = [];
-                toastMessagesStoreInstance.emitChange();
-            }, 3000);
+            }
+
+            if (!action.toasts) {
+                return;
+            }
+            toastMessagesStoreInstance.toastMessages.unshift(...action.toasts);
+
+            // toastMessagesStoreInstance.clearToastsTimeout = setTimeout(()=> {
+            //     toastMessagesStoreInstance.toastMessages = [];
+            //     toastMessagesStoreInstance.emitChange();
+            // }, 3000);
 
             toastMessagesStoreInstance.emitChange();
             break;
@@ -62,6 +69,8 @@ toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> 
         // do nothing
     }
 });
+
+
 
 
 export default toastMessagesStoreInstance;

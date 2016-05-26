@@ -1,0 +1,14 @@
+.ReactModal__Overlay--after-open{
+    z-index:8888;
+}
+
+
+.item-modal-dialog {
+    .modal-body {
+        background-color: rgba($dark-gray, 1) !important;
+        border: 1px solid $gray !important;
+        border-radius: 10px;
+        text-align: center;
+
+    }
+}

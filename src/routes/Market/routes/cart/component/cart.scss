@@ -1,4 +1,42 @@
 #cart {
-    margin:auto;
-    background-color: $dark-gray;
+    margin: auto;
+    background-color: $dark-blue;
+
+    table {
+        margin: auto;
+        font-size: 140%;
+    }
+
+    thead,
+    th,
+    tfoot {
+        text-align: right;
+        background-color: $gray-blue;
+    }
+    tbody {
+        text-align: left;
+    }
+
+    td, th {
+        padding: 10px;
+        span {
+            font-size: 70%;
+            color: rgba($white, 0.5);
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .cart-item {
+        border-bottom: 1px solid $gray-blue-border;
+
+        .remove-icon {
+            .svg-icon {
+                cursor: pointer;
+                fill: $red;
+            }
+        }
+    }
 }

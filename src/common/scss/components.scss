@@ -13,7 +13,32 @@
     fill: #ffffff !important;
     transition: all 50ms;
     &:hover {
-        fill: yellow !important;
+        //fill: yellow !important;
+    }
+}
+
+.svg-bg-red{
+    .svg-icon,
+    .st1,
+    .st2,
+    .st3 {
+        fill: $red !important;
+    }
+}
+.svg-bg-green{
+    .svg-icon,
+    .st1,
+    .st2,
+    .st3 {
+        fill: $green !important;
+    }
+}
+
+.currency-icon {
+    .st1,
+    .st2,
+    .st3 {
+        fill: $yellow !important;
     }
 }
 
@@ -23,8 +48,8 @@
 }
 
 .svg-icon:hover {
-    fill: red !important;
-    @include transform(scale(1.5));
+    //fill: red !important;
+    //@include transform(scale(1.5));
 }
 
 .svg-icon {

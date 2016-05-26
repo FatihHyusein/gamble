@@ -8,8 +8,9 @@
 
     }
     .items-container {
+
         position: relative;
-        padding: 50px;
+        padding: 50px 0;
         background-color: $black;
         text-align: center;
 
@@ -19,6 +20,17 @@
             height: 40vh;
             z-index: 22;
         }
+
+        .list-items {
+            @include flexbox();
+            @include flex-wrap(wrap);
+            width: 66vw;
+            margin: auto;
+            img {
+                width: 100%;
+            }
+        }
+
     }
 }
 
@@ -60,13 +72,27 @@
         width: 40px;
         height: 40px;
     }
+
+    .cart-link {
+        position: relative;
+        .cart-items-count {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background-color: $orange;
+            color: $black;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+    }
 }
 
 .market-item {
     display: inline-block;
     vertical-align: middle;
     margin: 2px;
-    max-width: 250px;
+    width: 16vw;
     text-align: center;
     cursor: pointer;
     background-color: rgba($dark-blue, 0.7);
@@ -99,6 +125,14 @@
 }
 
 .paging {
+    @include flexbox();
+    @include justify-content(center);
+    ul {
+        @include flexbox();
+    }
+    .active {
+        color: $red;
+    }
 }
 
 .ReactModal__Overlay {

@@ -4,6 +4,7 @@ import Home from './home/Home';
 import Nav from './navigation/Nav';
 import Footer from './footer/Footer';
 import ToastMessages from './toastMessages/ToastMessages';
+import PopupMessages from './popupMessages/PopupMessages';
 import ToastMessagesActionCreators from '../actions/ToastMessagesActionCreators';
 import UserDataActionsCreators from '../actions/UserDataActionsCreators';
 import UserDataStore from '../stores/UserDataStore';
@@ -16,6 +17,7 @@ class MuffinApp extends BaseComponent {
                 <Nav />
                 <div className="page-wrapper">
                     <ToastMessages />
+                    <PopupMessages />
                     <div>
                         {this.props.children || <Home />}
                     </div>
