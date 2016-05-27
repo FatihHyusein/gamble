@@ -15,3 +15,11 @@
         @include transform(translate3d(4px, 0, 0));
     }
 }
+
+@mixin addTransition() {
+    @include transition(all 500ms ease-out 50ms);
+}
+
+@mixin removeTransition(){
+    @include transition(none);
+}

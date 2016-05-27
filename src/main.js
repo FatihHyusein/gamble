@@ -25,7 +25,7 @@ const rootRoute = {
             //require('./routes/FreeMuffins'),
             require('./routes/Jackpot'),
             require('./routes/Market'),
-            //require('./routes/Deposit'),
+            require('./routes/Deposit'),
             require('./routes/Support'),
             require('./routes/Profile')
         ]

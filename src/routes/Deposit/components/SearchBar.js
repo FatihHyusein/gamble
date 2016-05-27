@@ -1,9 +1,9 @@
 import router, {Router, browserHistory, Link} from 'react-router'
-import MarketStore from '../../../stores/MarketStore';
+import DepositStore from '../../../stores/DepositStore';
 
 function getStateFromStores() {
     return {
-        cartItemsCount: MarketStore.getMyCartItemsCount()
+        cartItemsCount: DepositStore.getCartCount()
     }
 }
 
@@ -15,13 +15,19 @@ class SearchBar extends Component {
         this.state = getStateFromStores();
     }
 
+
     search() {
         this.props.onSearch(this.searchInput.value);
     }
 
-
     render() {
-        var cartLink = `/market${(window.location.pathname.indexOf('/cart') > -1) ? '' : '/cart'}`;
+        var cartLink = `/deposit${(window.location.pathname.indexOf('/cart') > -1) ? '' : '/cart'}`;
+        var depositBtn = <button className="bg-green" onClick={this.props.onDeposit.bind(this)}>ADD</button>;
+        if (this.state.cartItemsCount < 1) {
+            cartLink = '/deposit';
+            depositBtn = '';
+        }
+
 
         var cartItemsCounter = '';
         if (this.state.cartItemsCount) {
@@ -34,6 +40,7 @@ class SearchBar extends Component {
             <div className="search-bar">
                 <h1>{this.props.header}</h1>
                 <div>
+                    {depositBtn}
                     <Link to={cartLink} activeClassName="active" className="cart-link">
                         <CommonComponents.SvgIcon iconName="cart"/>
                         {cartItemsCounter}
@@ -52,11 +59,11 @@ class SearchBar extends Component {
     }
 
     componentDidMount() {
-        MarketStore.addCartItemsChangeListener(this._onChange);
+        DepositStore.addCartItemsChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        MarketStore.removeCartItemsChangeListener(this._onChange);
+        DepositStore.removeCartItemsChangeListener(this._onChange);
     }
 
     _onChange() {
@@ -64,10 +71,14 @@ class SearchBar extends Component {
     }
 }
 
+
 SearchBar.propTypes = {
     onSearch: React.PropTypes.func,
+    onDeposit: React.PropTypes.func,
     inputPlaceholder: React.PropTypes.string,
     header: React.PropTypes.string
 };
 
 module.exports = SearchBar;
+
+

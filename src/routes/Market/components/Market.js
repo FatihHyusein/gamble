@@ -4,7 +4,7 @@ import BaseComponent from '../../../base/BaseComponent';
 import SearchBar from './SearchBar';
 import MarketItem from './MarketItem';
 import MarketItemPopup from './MarketItemPopup';
-import Paging from './Paging';
+import Paging from '../../../common/components/Paging';
 
 import MarketActionCreators from '../../../actions/MarketActionCreators';
 import MarketStore from '../../../stores/MarketStore';
@@ -28,6 +28,7 @@ class Market extends BaseComponent {
 
         this.addToCart = this.addToCart.bind(this);
         this.getItems = this.getItems.bind(this);
+        this.search = this.search.bind(this);
 
         this.state = getStateFromStores();
     }
@@ -56,13 +57,23 @@ class Market extends BaseComponent {
         this.setState({modalIsOpen: false});
     }
 
-    getItems(page) {
+    search(searchWord) {
+        this.getItems(1, searchWord)
+    }
+
+    getItems(page, searchWord) {
+        var getParams = {
+            page: page
+        };
+
+        if (searchWord) {
+            getParams.searchWord = searchWord;
+        }
+
         BaseComponent.getAjax({
             url: "market/items",
             auth: false,
-            params: {
-                page: page
-            },
+            params: getParams,
             successFunction: (data)=> {
                 MarketActionCreators.marketStoreUpdateList(data.items, +data.itemsCount.count, page);
             }
@@ -89,11 +100,12 @@ class Market extends BaseComponent {
         return (
             <div id="market">
                 <MarketItemPopup item={this.state.selectedItem} modalIsOpen={this.state.modalIsOpen}
-                                 closeModal={this.closeMarketItem}/>
+                                 closeModal={this.closeMarketItem} addToBasket={this.addToCart}/>
                 <div className="top-container">
                     <SearchBar
                         header="Market Place"
                         inputPlaceholder="search for an item..."
+                        onSearch={this.search}
                     />
                 </div>
                 <div className="items-container">
@@ -103,7 +115,9 @@ class Market extends BaseComponent {
                     </div>
                     <Paging totalItems={this.state.totalMarketItems}
                             currentPage={this.state.currentPage}
-                            getItems={this.getItems}/>
+                            getItems={this.getItems}
+                            itemsPerPage={this.props.itemsPerPage}
+                    />
                 </div>
             </div>
         )
@@ -121,5 +135,9 @@ class Market extends BaseComponent {
         this.setState(getStateFromStores());
     }
 }
+
+Market.defaultProps = {
+    itemsPerPage: 12
+};
 
 module.exports = Market;

@@ -5,6 +5,7 @@ class MarketItemPopup extends Component {
         super();
 
         this.handleModalCloseRequest = this.handleModalCloseRequest.bind(this);
+        this.handleSaveClicked = this.handleSaveClicked.bind(this);
     }
 
     handleModalCloseRequest() {
@@ -15,7 +16,7 @@ class MarketItemPopup extends Component {
     }
 
     handleSaveClicked(e) {
-        alert('Save button was clicked');
+        this.props.addToBasket(this.props.item);
     }
 
 

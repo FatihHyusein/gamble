@@ -109,6 +109,10 @@ Nav.defaultProps = {
             name: 'Market'
         },
         {
+            url: '/deposit',
+            name: 'Deposit'
+        },
+        {
             url: '/support',
             name: 'Support'
         }

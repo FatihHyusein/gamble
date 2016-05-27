@@ -1,0 +1,42 @@
+#deposit {
+    .top-container {
+        position: relative;
+        min-height: 400px;
+        text-align: center;
+        background: url('staticFiles/images/bg.jpg') no-repeat;
+        background-size: cover;
+
+    }
+    .items-container {
+
+        position: relative;
+        padding: 50px 0;
+        background-color: $black;
+        text-align: center;
+
+
+
+        .list-items {
+            @include flexbox();
+            @include flex-wrap(wrap);
+            width: 66vw;
+            margin: auto;
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .market-item {
+        width: 8vw;
+
+        &.selected{
+            background-color: $green;
+        }
+    }
+
+    .search-bar {
+        background: $dark-blue;
+    }
+}
+

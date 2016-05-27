@@ -49,6 +49,14 @@ module.exports = {
 
         MARKET_STORE_REMOVE_ITEM_FROM_CART: null,
         MARKET_STORE_ORDER_FROM_CART: null,
+
+
+        DEPOSIT_UPDATE_LIST: null,
+        DEPOSIT_ADD_ITEM_TO_CART: null,
+        DEPOSIT_REMOVE_ITEM_FROM_CART: null,
+        DEPOSIT_CLEAR_CART: null,
+        
+        DEPOSIT_UPDATE_CART_LIST: null,
     }),
 
     ROUTES: createRouterStrings(['support'])

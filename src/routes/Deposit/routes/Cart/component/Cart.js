@@ -1,14 +1,15 @@
-
 import React, {Component} from 'react'
+import {browserHistory} from 'react-router'
+
 import BaseComponent from '../../../../../base/BaseComponent';
 import CartItem from './CartItem';
-import MarketStore from '../../../../../stores/MarketStore';
-import MarketActionCreators from '../../../../../actions/MarketActionCreators';
+import DepositStore from '../../../../../stores/DepositStore';
+import DepositActionCreators from '../../../../../actions/DepositActionCreators';
 
 function getStateFromStores() {
     return {
-        cartItems: MarketStore.getMyCartItems(),
-        totalCartItems: MarketStore.getMyCartItemsCount()
+        cartItems: DepositStore.getCartItems(),
+        totalCartItems: DepositStore.getCartCount()
     }
 }
 
@@ -16,50 +17,46 @@ class Cart extends BaseComponent {
     constructor() {
         super();
 
-        this.getMyCart = this.getMyCart.bind(this);
         this.removeCartItem = this.removeCartItem.bind(this);
         this.finish = this.finish.bind(this);
 
         this.state = getStateFromStores();
     }
 
-    componentWillMount() {
-        this.getMyCart();
-    }
-
-    getMyCart(page) {
-        BaseComponent.getAjax({
-            url: "cart/getCartItems",
-            auth: true,
-            params: {},
-            successFunction: (data)=> {
-                MarketActionCreators.marketCartUpdate(data.items, +data.itemsCount);
-            }
-        });
-    }
 
     removeCartItem(item) {
-        BaseComponent.postAjax({
-            url: "cart/removeCartItem",
-            auth: true,
-            params: {
-                itemId: item.item_id
-            },
-            successFunction: (data)=> {
-                MarketActionCreators.marketCartUpdate(data.items, +data.itemsCount);
-            }
-        });
+        DepositActionCreators.depositRemoveItemFromCart(item);
     }
 
     finish() {
         BaseComponent.postAjax({
-            url: "cart/finish",
+            url: "deposit",
             auth: true,
-            params: {},
+            params: {
+                items: this.state.cartItems.map(itm=> itm.id)
+            },
             successFunction: (data)=> {
-                MarketActionCreators.marketCartUpdate(data.items, +data.itemsCount);
+                BaseComponent.getAjax({
+                    url: "deposit/userItems",
+                    auth: true,
+                    params: {
+                        page: 1
+                    },
+                    successFunction: (data)=> {
+                        DepositActionCreators.clearCart(data.items, +data.itemsCount.count, page);
+                    }
+                });
+
             }
         });
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextState.totalCartItems < 1) {
+            browserHistory.push('/deposit');
+            return false;
+        }
+        return true;
     }
 
     render() {
@@ -74,7 +71,7 @@ class Cart extends BaseComponent {
 
             <button className="bg-green"
                     onClick={this.finish}>
-                ORDER
+                ADD
             </button>
         </div>);
 
@@ -105,11 +102,11 @@ class Cart extends BaseComponent {
     }
 
     componentDidMount() {
-        MarketStore.addCartItemsChangeListener(this._onChange);
+        DepositStore.addCartItemsChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        MarketStore.removeCartItemsChangeListener(this._onChange);
+        DepositStore.removeCartItemsChangeListener(this._onChange);
     }
 
     _onChange() {
