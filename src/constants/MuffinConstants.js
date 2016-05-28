@@ -41,6 +41,7 @@ module.exports = {
 
         USER_DATA_UPDATE_TOKEN: null,
         USER_DATA_UPDATE_PROFILE: null,
+        USER_DATA_UPDATE_MUFFINS: null,
 
 
         MARKET_STORE_UPDATE_LIST: null,
@@ -55,7 +56,7 @@ module.exports = {
         DEPOSIT_ADD_ITEM_TO_CART: null,
         DEPOSIT_REMOVE_ITEM_FROM_CART: null,
         DEPOSIT_CLEAR_CART: null,
-        
+
         DEPOSIT_UPDATE_CART_LIST: null,
     }),
 

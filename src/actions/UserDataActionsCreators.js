@@ -15,6 +15,13 @@ export default {
             type: ActionTypes.USER_DATA_UPDATE_PROFILE,
             profile: profileData
         });
+    },
+    updateMuffins: function (muffins) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.USER_DATA_UPDATE_MUFFINS,
+            muffins: muffins
+        });
     }
+
 
 };

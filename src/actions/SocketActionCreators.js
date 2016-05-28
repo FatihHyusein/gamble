@@ -213,7 +213,7 @@ class Socket {
                 break;
 
             case "updateProfileData":
-                UserDataActionsCreators.updateProfile(parsedMessage.data);
+                UserDataActionsCreators.updateMuffins(parsedMessage.data.muffins);
                 break;
 
             default:

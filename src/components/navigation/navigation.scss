@@ -13,6 +13,14 @@ nav {
         margin: auto;
         font-size: 300%;
         font-weight: 700;
+
+        &:hover {
+            animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+            @include transform(translate3d(0, 0, 0));
+            @include backface-visibility(hidden);
+            perspective: 1000px;
+        }
+
         & > span, & > img {
             display: inline-block;
             vertical-align: bottom;
@@ -42,24 +50,41 @@ nav {
                 font-weight: 700;
                 font-size: 140%;
                 text-transform: uppercase;
+                @include addTransition();
+
+                &:hover {
+                    transform: rotate(7deg);
+                    color: $green;
+                }
+                &:active{
+                    transform: scale(1.4);
+                    color: $red;
+                }
             }
         }
     }
 
     .active {
-        color: $gray;
         color: $green;
+        .logged-profile-nav-btn {
+            img {
+                border: 3px solid $green !important;
+            }
+        }
     }
 
     .logged-profile-nav-btn {
         @include flexbox();
         @include align-items(center);
+        @include flex-direction(row-reverse);
+        @include addTransition();
         img {
             width: 35px;
             @include border-radius(50%);
+            border: 3px solid $gray-blue-border;
+            margin-left: 10px;
         }
         .user-data-container {
-            margin-left: 10px;
             text-align: center;
         }
 

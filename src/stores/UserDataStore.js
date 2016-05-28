@@ -129,14 +129,20 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
         case ActionTypes.USER_DATA_UPDATE_PROFILE:
             setProp('token', action.profile.token);
             setProp('profileIcon', action.profile.icon);
-            setProp('muffins', action.profile.muffins);
+            setProp('muffins', parseInt(action.profile.muffins));
             setProp('name', action.profile.name);
             setProp('referralCode', action.profile.referral_code);
             setProp('tradeUrl', action.profile.trade_url);
             setProp('parentRefCode', action.profile.parent_ref_code);
             setProp('cheffBadge', action.profile.chefBadge);
-            setProp('nextMuffinChefLevelCost', action.profile.nextMuffinChefLevel.cost);
-            setProp('nextMuffinChefLevelLevel', action.profile.nextMuffinChefLevel.level);
+            setProp('nextMuffinChefLevelCost', parseInt(action.profile.nextMuffinChefLevel.cost));
+            setProp('nextMuffinChefLevelLevel', parseInt(action.profile.nextMuffinChefLevel.level));
+
+            userDataStoreInstance.emitChange();
+            break;
+
+        case ActionTypes.USER_DATA_UPDATE_MUFFINS:
+            setProp('muffins', parseInt(action.muffins));
 
             userDataStoreInstance.emitChange();
             break;

@@ -19,7 +19,8 @@
             }
             &.active {
                 background-color: $black;
-                .svg-icon{
+                color: $green;
+                .svg-icon {
                     fill: $green;
                 }
             }
