@@ -61,7 +61,9 @@ class BaseComponent extends Component {
 
     static createToasts(error, json, data) {
         if (json) {
-            ToastMessagesActionCreators.setNewToasts(json.toasts);
+            if (json.toasts.length > 0) {
+                ToastMessagesActionCreators.setNewToasts(json.toasts);
+            }
         }
         else {
             ToastMessagesActionCreators.setNewToasts([{
