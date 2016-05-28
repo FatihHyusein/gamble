@@ -6,9 +6,15 @@ import {EventEmitter} from 'events';
 var ActionTypes = MuffinConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
-export default class GameStore extends EventEmitter {
+export
+class GameStore extends EventEmitter {
+    getGameHistory() {
+        return this.gamesHistory;
+    }
+
     constructor(props) {
         super(props);
+        this.gamesHistory = [];
     }
 
     emitChange() {
@@ -24,15 +30,24 @@ export default class GameStore extends EventEmitter {
     }
 }
 
-GameStore.dispatchToken = MuffinDispatcher.register(function (action) {
-
+let gs = new GameStore();
+gs.dispatchToken = MuffinDispatcher.register((action)=> {
     switch (action.type) {
         case ActionTypes.GET_WINNER:
             //MuffinDispatcher.waitFor([ThreadStore.dispatchToken]);
             GameStore.emitChange();
             break;
 
+
+        case ActionTypes.JACKPOT_ROUND_WINNER:
+            gs.gamesHistory.push(action.winner);
+
+            gs.emitChange();
+            break;
+
         default:
         // do nothing
     }
 });
+
+export default gs;

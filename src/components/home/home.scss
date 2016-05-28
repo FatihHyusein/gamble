@@ -21,6 +21,9 @@
             @include flexbox();
             @include flex-direction(column);
             width: 30%;
+            max-height: 35vh;
+            @include flex-flow(column-reverse wrap);
+            overflow: auto;
         }
     }
 
@@ -89,3 +92,35 @@
         margin-left: 5px;
     }
 }
+
+.winner-animate-enter {
+    opacity: 0.01;
+    &.winner-animate-enter-active {
+        opacity: 1;
+        transform: rotateY(-90deg);
+        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+    }
+}
+
+.winner-animate-leave {
+    opacity: 1;
+    &.winner-animate-leave-active {
+        opacity: 0.01;
+        transform: rotateY(-90deg);
+        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+    }
+}
+
+.winner-animate-appear {
+    opacity: 0;
+    transform: rotateY(-90deg);
+    transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+    &.winner-animate-appear-active {
+        opacity: 1;
+        transform: none;
+        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+    }
+}
+
+
+

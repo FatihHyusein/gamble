@@ -1,30 +1,12 @@
-import HeaderStore from '../../stores/HeaderStore';
-import HeaderActionCreators from '../../actions/HeaderActionCreators';
+import GameStore from '../../stores/games/GameStore';
+import ReactCSSTransitionGroup from  'react-addons-css-transition-group';
 
 import WinnerInfo from './WinInfo';
 import GameList from'./GameList';
 
 function getStateFromStores() {
     return {
-        innerHeader: HeaderStore.getNewHeader(),
-        winners: [
-            {
-                profileImg: 'staticFiles/images/testProfile.png',
-                sum: '12',
-                game: 'Jackpot'
-
-            },
-            {
-                profileImg: 'staticFiles/images/testProfile.png',
-                sum: '12',
-                game: 'Jackpot'
-            },
-            {
-                profileImg: 'staticFiles/images/testProfile.png',
-                sum: '1233',
-                game: 'Jackpot 2'
-            }
-        ]
+        winners: GameStore.getGameHistory()
     };
 }
 
@@ -33,8 +15,6 @@ class Home extends Component {
         super(props);
 
         this.state = getStateFromStores();
-        this.changeInnerHeader = this.changeInnerHeader.bind(this);
-        this.updateAll = this.updateAll.bind(this);
         this._onChange = this._onChange.bind(this);
     }
 
@@ -42,21 +22,12 @@ class Home extends Component {
         this.setState(getStateFromStores());
     }
 
-    changeInnerHeader() {
-        this.setState(getStateFromStores());
-    }
-
-    updateAll() {
-        HeaderActionCreators.changeHeader();
-        this.setState(getStateFromStores());
-    }
-
     componentDidMount() {
-        //HeaderActionCreators.addChangeListener(this._onChange);
+        GameStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        //HeaderActionCreators.removeChangeListener(this._onChange);
+        GameStore.removeChangeListener(this._onChange);
     }
 
     render() {
@@ -67,7 +38,16 @@ class Home extends Component {
                     <div className="header-container">
                         <h1>the only place where you bet muffins and win cd:go skins</h1>
                     </div>
-                    <div className="wins-container">{winEls}</div>
+                    <div className="wins-container">
+                        <ReactCSSTransitionGroup transitionName="winner-animate"
+                                                 transitionAppear={true}
+                                                 transitionAppearTimeout={500}
+                                                 transitionEnterTimeout={500}
+                                                 transitionLeaveTimeout={300}>
+                            {winEls}
+                        </ReactCSSTransitionGroup>
+
+                    </div>
                 </div>
                 <div>
                     <GameList />

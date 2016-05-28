@@ -17,7 +17,6 @@ class DepositList extends BaseComponent {
 
         var depositList = this.deposits.map((deposit, idx)=> {
 
-            console.warn(deposit)
             let rowClass = (idx % 2) ? 'even' : 'odd';
 
             let gameStateData;

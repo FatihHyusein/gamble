@@ -2,7 +2,7 @@ import MuffinDispatcher from '../../dispather/MuffinDispatcher';
 import MuffinConstants from '../../constants/MuffinConstants';
 import {EventEmitter} from 'events';
 
-import GameStore from './GameStore';
+import {GameStore} from './GameStore';
 
 
 var ActionTypes = MuffinConstants.ActionTypes;

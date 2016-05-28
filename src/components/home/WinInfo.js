@@ -11,11 +11,12 @@ class WinInfo extends Component {
 
         return (
             <div className="win-info-container">
-                <span><img src={win.profileImg}/></span>
-                JUST WON
-                <span className="win-sum"> {win.sum}M </span>
-                IN
-                <span className="win-game">{win.game}</span>
+                <span className="win-game">{win.game || 'Jackpot'}: </span>
+                <span className="win-sum"> {win.jackpot}M - </span>
+                <span><img src={win.icon}/>{win.name}</span>
+                <span>
+                with {win.percent * 100}% chance
+                </span>
             </div>
         )
     }
