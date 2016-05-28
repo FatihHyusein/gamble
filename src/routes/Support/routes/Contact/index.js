@@ -1,6 +1,6 @@
 module.exports = {
-    path: 'nested',
+    path: 'contact',
     getComponent(nextState, cb) {
-        cb(null, require('./component/NestedMarked'))
+        cb(null, require('./component/Contact'))
     }
 };

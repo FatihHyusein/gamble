@@ -17,7 +17,7 @@
     }
 }
 
-.svg-bg-red{
+.svg-bg-red {
     .svg-icon,
     .st1,
     .st2,
@@ -25,7 +25,8 @@
         fill: $red !important;
     }
 }
-.svg-bg-green{
+
+.svg-bg-green {
     .svg-icon,
     .st1,
     .st2,
@@ -80,7 +81,9 @@ button {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="email"],
+textarea {
     font-size: 130%;
     margin: 5px;
     @include border-radius(15px);
@@ -88,6 +91,7 @@ input[type="number"] {
     background-color: $gray;
     color: $black;
     outline: none;
+    padding: 5px;
 }
 
 input[type='number'] {

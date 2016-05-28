@@ -1,8 +1,6 @@
-import Constants from '../../../../constants/MuffinConstants';
-
 module.exports = {
-    path: Constants.ROUTES.support,
+    path: 'terms',
     getComponent(nextState, cb) {
-        cb(null, require('./component/NestedMarked'))
+        cb(null, require('./component/Terms'))
     }
 };

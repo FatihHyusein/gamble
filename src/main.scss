@@ -72,6 +72,7 @@ ul {
 @import "routes/Market/routes/Cart/component/cart";
 @import "routes/Deposit/components/deposit";
 @import "routes/Jackpot/components/jackpot";
+@import "routes/Support/components/support";
 
 body {
     background: $black;
@@ -114,6 +115,19 @@ body {
 
 .tcenter {
     text-align: center;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-block;
+}
+.clearfix {
+    display: block;
 }
 
 .noselect {

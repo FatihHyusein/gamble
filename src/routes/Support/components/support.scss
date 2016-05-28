@@ -1,0 +1,65 @@
+#support {
+    .items-container {
+        .tab-control {
+            @include flexbox();
+            @include justify-content(center);
+            margin-top: 10px;
+            text-align: center;
+            background-color: $dark-blue;
+
+            a {
+                width: 25vw;
+                max-width: 300px;
+                padding: 30px 15px;
+                font-size: 130%;
+                .svg-icon {
+                    width: 15vw;
+                    min-width: 30px;
+                    max-width: 160px;
+
+                }
+                &.active {
+                    background-color: $black;
+                }
+            }
+        }
+    }
+}
+
+#contact {
+    width: 75vw;
+    margin: auto;
+    max-width: 1000px;
+    min-width: 300px;
+    padding: 20px;
+
+    form {
+        @include flexbox();
+        @include flex-direction(column);
+        text-align: left;
+    }
+}
+
+#faq {
+    .question-container {
+        padding: 10px 12vw;
+
+        border-bottom: 1px solid $gray-blue-border;
+
+        .question {
+            cursor: pointer;
+            font-size: 160%;
+        }
+
+        .answer {
+            display: none;
+            margin-top: 10px;
+            font-size: 130%;
+            @include transition(max-height 500ms linear 300ms);
+
+            &.expanded {
+                display: block;
+            }
+        }
+    }
+}
