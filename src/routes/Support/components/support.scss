@@ -38,6 +38,13 @@
         @include flex-direction(column);
         text-align: left;
     }
+
+    .empty-error {
+        float: left;
+        font-size: 120%;
+        @include addTransition();
+        color: $red;
+    }
 }
 
 #faq {

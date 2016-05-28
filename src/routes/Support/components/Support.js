@@ -1,10 +1,12 @@
 import BaseComponent from '../../../base/BaseComponent';
 import {Link} from 'react-router';
+import ContactForm from '../routes/Contact/component/Contact';
 
 class Support extends BaseComponent {
     render() {
-        var tabs = this.props.tabs.map((tab)=> {
-            return ( <Link to={`/support${tab.route}`} activeClassName="active" key={tab.route}>
+        var tabs = this.props.tabs.map((tab, idx)=> {
+            return ( <Link to={`/support${tab.route}`} activeClassName="active" key={tab.route}
+                           className={`${(idx==0 && !this.props.children)?'active':''}`}>
                 <CommonComponents.SvgIcon iconName={tab.icon}/>
                 <div>
                     {tab.name}
@@ -24,7 +26,7 @@ class Support extends BaseComponent {
                         {tabs}
                     </div>
                     <div className="tab-continer">
-                        {this.props.children}
+                        {this.props.children || <ContactForm/>}
                     </div>
                 </div>
             </div>

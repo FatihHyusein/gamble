@@ -95,7 +95,17 @@ class BaseComponent extends Component {
         return d3.xhr(`http://87.120.75.34/api/${data.url}`)
             .header("Content-Type", "application/json")
             .post(JSON.stringify(data.params), (error, xhr)=> {
-                var json = JSON.parse(xhr.response);
+                var json;
+                try {
+                    json = JSON.parse(xhr.response);
+                }
+                catch (e) {
+                    ToastMessagesActionCreators.setNewToasts([{
+                        type: "error",
+                        text: "Something went wrong"
+                    }]);
+                }
+
                 this.checkForPopupMessage(error, json, data);
 
                 if (this.checkIfFail(error, json, data)) {

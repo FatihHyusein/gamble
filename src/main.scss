@@ -105,6 +105,14 @@ body {
     background-color: $green;
 }
 
+.not-visible {
+    visibility: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
 .fleft {
     float: left;
 }
@@ -116,6 +124,7 @@ body {
 .tcenter {
     text-align: center;
 }
+
 .clearfix:after {
     clear: both;
     content: ".";
@@ -123,9 +132,11 @@ body {
     height: 0;
     visibility: hidden;
 }
+
 .clearfix {
     display: inline-block;
 }
+
 .clearfix {
     display: block;
 }
