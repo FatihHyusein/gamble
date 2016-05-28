@@ -13,46 +13,77 @@ class UserDataStore extends EventEmitter {
         this.muffins = 50;
         this.name = "";
         this.profileIcon = "";
+
+        this.referralCode = "";
+        this.tradeUrl = "";
+        this.parentRefCode = "";
+        this.cheffBadge = 0;
+    }
+
+    getUserProp(propName) {
+        if (!this[propName]) {
+            this[propName] = localStorage.getItem(propName);
+
+            switch (this[propName]) {
+                case "undefined":
+                    this[propName] = undefined;
+                    break;
+                case "null":
+                    this[propName] = null;
+                    break;
+                case "0":
+                    this[propName] = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return this[propName];
+    }
+
+    getReferralCode() {
+        return this.getUserProp('referralCode');
+    }
+
+    getTradeUrl() {
+        return this.getUserProp('tradeUrl');
+    }
+
+    getParentRefCode() {
+        return this.getUserProp('parentRefCode');
+    }
+
+    getCheffBadge() {
+        return this.getUserProp('cheffBadge');
     }
 
     getToken() {
-        if (!this.token) {
-            this.token = localStorage.getItem('token');
-        }
-
-        return this.token;
+        return this.getUserProp('token');
     }
 
     getMuffins() {
-        if (!this.muffins) {
-            this.muffins = localStorage.getItem('muffins');
-        }
-
-        return this.muffins;
+        return this.getUserProp('muffins');
     }
 
     getName() {
-        if (!this.name) {
-            this.name = localStorage.getItem('name');
-        }
-
-        return this.name;
+        return this.getUserProp('name');
     }
 
     getProfileIcon() {
-        if (!this.profileIcon) {
-            this.profileIcon = localStorage.getItem('profileIcon');
-        }
-
-        return this.profileIcon;
+        return this.getUserProp('profileIcon');
     }
 
     getUserData() {
         return {
             token: this.getToken(),
+            profileIcon: this.getProfileIcon(),
             muffins: this.getMuffins(),
             name: this.getName(),
-            profileIcon: this.getProfileIcon()
+            referralCode: this.getReferralCode(),
+            tradeUrl: this.getTradeUrl(),
+            parentRefCode: this.getParentRefCode(),
+            cheffBadge: this.getCheffBadge()
         }
     }
 
@@ -73,6 +104,11 @@ class UserDataStore extends EventEmitter {
 let userDataStoreInstance = new UserDataStore();
 
 userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
+    function setProp(propName, obj) {
+        userDataStoreInstance[propName] = obj;
+        localStorage.setItem(propName, userDataStoreInstance[propName]);
+    }
+
     switch (action.type) {
         case ActionTypes.USER_DATA_UPDATE_TOKEN:
             userDataStoreInstance.token = action.token;
@@ -81,18 +117,14 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             break;
 
         case ActionTypes.USER_DATA_UPDATE_PROFILE:
-
-            userDataStoreInstance.token = action.profile.token;
-            localStorage.setItem('token', userDataStoreInstance.token);
-
-            userDataStoreInstance.profileIcon = action.profile.icon;
-            localStorage.setItem('profileIcon', userDataStoreInstance.profileIcon);
-
-            userDataStoreInstance.name = action.profile.name;
-            localStorage.setItem('name', userDataStoreInstance.name);
-
-            userDataStoreInstance.muffins = action.profile.muffins;
-            localStorage.setItem('muffins', userDataStoreInstance.muffins);
+            setProp('token', action.profile.token);
+            setProp('profileIcon', action.profile.icon);
+            setProp('muffins', action.profile.muffins);
+            setProp('name', action.profile.name);
+            setProp('referralCode', action.profile.referral_code);
+            setProp('tradeUrl', action.profile.trade_url);
+            setProp('parentRefCode', action.profile.parent_ref_code);
+            setProp('cheffBadge', action.profile.chefBadge);
 
             userDataStoreInstance.emitChange();
             break;

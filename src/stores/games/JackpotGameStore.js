@@ -94,7 +94,7 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
         case ActionTypes.JACKPOT_PLACE_BET:
             var jackpot = 0;
             if (action.bets.players.length > 1) {
-                jackpot = action.bets.players.reduce((previousValue, currentValue)=> previousValue.betAmount + currentValue.betAmount);
+                jackpot = action.bets.players.reduce((previousValue, currentValue)=> previousValue + currentValue.betAmount, 0);
             }
             else if (action.bets.players.length == 1) {
                 jackpot = action.bets.players[0].betAmount;

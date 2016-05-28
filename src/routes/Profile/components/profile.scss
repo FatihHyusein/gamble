@@ -1,4 +1,49 @@
 #profile-page {
+    .profile-nav {
+        @include flexbox();
+        @include justify-content(center);
+        margin-top: 10px;
+        text-align: center;
+        background-color: $dark-blue;
 
+        a {
+            width: 25vw;
+            max-width: 300px;
+            padding: 30px 15px;
+            font-size: 130%;
+            .svg-icon {
+                width: 15vw;
+                min-width: 30px;
+                max-width: 160px;
+
+            }
+            &.active {
+                background-color: $black;
+            }
+        }
+    }
 }
 
+.profile-overview {
+    .info-container {
+        @include flexbox();
+        @include justify-content(center);
+
+        .profile-img-container {
+            img {
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+        .details-container {
+
+        }
+    }
+
+    .input-data-container {
+        & > div {
+
+
+        }
+    }
+}

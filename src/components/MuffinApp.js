@@ -38,12 +38,9 @@ class MuffinApp extends BaseComponent {
                 url: "user/data",
                 auth: true,
                 successFunction: (data)=> {
-                    UserDataActionsCreators.updateProfile({
-                        token: UserDataStore.getToken(),
-                        icon: data.icon,
-                        muffins: data.muffins,
-                        name: data.name
-                    })
+                    UserDataActionsCreators.updateProfile(
+                        Object.assign({token: UserDataStore.getToken()}, data)
+                    )
                 }
             });
 
