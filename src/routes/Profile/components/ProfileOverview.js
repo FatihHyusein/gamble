@@ -48,7 +48,7 @@ class ProfileOverview extends BaseComponent {
         var parentRefInput = (pr.parentRefCode) ? '' :
             (
                 <div className="trade-url-container">
-                    <div>Enter parent referral code:</div>
+                    <div className="input-label">Enter parent referral code:</div>
                     <div>
                         <input type="text"
                                defaultValue={pr.parentRefCode}
@@ -77,7 +77,7 @@ class ProfileOverview extends BaseComponent {
                             <CommonComponents.SvgIcon iconName="muffin-currency"/> {pr.muffins}
                         </div>
                         <div className="ref-code">
-                            Your referral code: {pr.referralCode}
+                            Your referral code: <span>{pr.referralCode}</span>
                         </div>
                         {parentRefInfo}
                     </div>
@@ -85,7 +85,7 @@ class ProfileOverview extends BaseComponent {
 
                 <div className="input-data-container">
                     <div className="trade-url-container">
-                        <div>Your trade url:</div>
+                        <div className="input-label">Your trade url:</div>
                         <div>
                             <input type="text"
                                    onChange={this.handleTradeUrlChange}

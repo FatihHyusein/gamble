@@ -17,7 +17,7 @@ class Game extends BaseComponent {
         const game = this.props.game;
 
         return (
-            <div onClick={this.openGame} className="game">
+            <div onClick={this.openGame} className={`game ${game.pointer}`}>
                 <div>
                     <CommonComponents.SvgIcon iconName={game.icon}/>
                 </div>

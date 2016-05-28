@@ -74,6 +74,14 @@ class UserDataStore extends EventEmitter {
         return this.getUserProp('profileIcon');
     }
 
+    getNextMuffinChefLevelCost() {
+        return this.getUserProp('nextMuffinChefLevelCost');
+    }
+
+    getNextMuffinChefLevelLevel() {
+        return this.getUserProp('nextMuffinChefLevelLevel');
+    }
+
     getUserData() {
         return {
             token: this.getToken(),
@@ -83,7 +91,9 @@ class UserDataStore extends EventEmitter {
             referralCode: this.getReferralCode(),
             tradeUrl: this.getTradeUrl(),
             parentRefCode: this.getParentRefCode(),
-            cheffBadge: this.getCheffBadge()
+            cheffBadge: this.getCheffBadge(),
+            nextMuffinChefLevelCost: this.getNextMuffinChefLevelCost(),
+            nextMuffinChefLevelLevel: this.getNextMuffinChefLevelLevel()
         }
     }
 
@@ -125,6 +135,8 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             setProp('tradeUrl', action.profile.trade_url);
             setProp('parentRefCode', action.profile.parent_ref_code);
             setProp('cheffBadge', action.profile.chefBadge);
+            setProp('nextMuffinChefLevelCost', action.profile.nextMuffinChefLevel.cost);
+            setProp('nextMuffinChefLevelLevel', action.profile.nextMuffinChefLevel.level);
 
             userDataStoreInstance.emitChange();
             break;

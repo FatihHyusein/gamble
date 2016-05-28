@@ -20,6 +20,9 @@
                 }
                 &.active {
                     background-color: $black;
+                    .svg-icon{
+                        fill: $green;
+                    }
                 }
             }
         }

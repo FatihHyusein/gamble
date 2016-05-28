@@ -24,7 +24,7 @@ class Profile extends BaseComponent {
 
     addReferralCode(refCode) {
         BaseComponent.postAjax({
-            url: "/user/addReferralCode",
+            url: "user/addReferralCode",
             auth: true,
             params: {
                 code: refCode
@@ -40,7 +40,7 @@ class Profile extends BaseComponent {
 
     updateTradeUrl(newTradeUrl) {
         BaseComponent.postAjax({
-            url: "/user/addTradeUrl",
+            url: "user/addTradeUrl",
             auth: true,
             params: {
                 tradeUrl: newTradeUrl

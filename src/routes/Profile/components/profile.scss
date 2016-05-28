@@ -19,31 +19,216 @@
             }
             &.active {
                 background-color: $black;
+                .svg-icon{
+                    fill: $green;
+                }
             }
         }
     }
 }
 
 .profile-overview {
+    font-size: 150%;
     .info-container {
         @include flexbox();
         @include justify-content(center);
-
+        padding: 30px;
         .profile-img-container {
             img {
                 width: 100%;
                 border-radius: 50%;
+                border: 3px solid $gray-blue-border;
             }
         }
         .details-container {
+            @include flexbox();
+            @include flex-direction(column);
+            @include justify-content(space-between);
+            margin-left: 30px;
+            opacity: 0.7;
 
+            .ref-code {
+                span {
+                    color: rgba($red, 0.7);
+                    font-size: 160%;
+                    vertical-align: middle;
+                }
+            }
         }
+    }
+    .input-label {
+        text-align: left;
+        margin: auto;
+        opacity: 0.6;
+        max-width: 800px;
     }
 
     .input-data-container {
+        text-align: center;
+
         & > div {
+            border-top: 2px solid $gray-blue-border;
+            padding: 40px;
+            input {
+                width: 100%;
+                max-width: 800px;
+            }
+        }
+        .trade-url-container {
+            input {
 
-
+            }
         }
     }
 }
+
+.referrals-page {
+    .muffin-levels-container {
+        text-align: center;
+    }
+}
+
+.muffin-lvl {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+    min-width: 150px;
+    max-width: 450px;
+    width: 30vw;
+    min-height: 150px;
+    max-height: 450px;
+    height: 30vw;
+    margin: 1vw;;
+    background-color: $gray-blue;
+    border: 1px solid $gray-blue-border;
+    overflow: hidden;
+    font-size: 130%;
+
+    &.chef-lvl-1 {
+        background-color: $green;
+        border-color: $red;
+        .top-text {
+            border-bottom-color: $red;
+            span {
+                color: rgba($red, 0.6);
+            }
+        }
+
+        .price-container {
+            background-color: $green;
+            border-color: $red;
+        }
+        .slided-text {
+            background-color: rgba($red, 0.3);
+            button {
+                background-color: $red;
+            }
+        }
+    }
+
+    &.chef-lvl-2 {
+        background-color: $orange;
+        border-color: $yellow;
+        .top-text {
+            border-bottom-color: $yellow;
+            span {
+                color: rgba($yellow, 0.6);
+            }
+        }
+
+        .price-container {
+            background-color: $orange;
+            border-color: $yellow;
+        }
+        .slided-text {
+            background-color: rgba($yellow, 0.3);
+            button {
+                background-color: $yellow;
+            }
+        }
+    }
+
+    .img-container {
+        width: 100%;
+        height: 100%;
+        @include transition(all 0.3s ease);
+    }
+    .top-text {
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        padding: 10px;
+        height: 25%;
+        border-bottom: 1px solid $gray-blue-border;
+        span {
+            color: rgba($green, 0.6);
+            margin-left: 5px;
+            font-size: 150%;
+            vertical-align: middle;
+        }
+    }
+
+    .price-container {
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        width: 50%;
+        height: 50%;
+        margin: 12% auto auto auto;
+        background-color: $gray-blue;
+        border: 3px solid $gray-blue-border;
+        padding: 10px;
+        @include border-radius(50%);
+        font-size: 200%;
+        @include transition(all 0.3s ease);
+
+        &.img-cont {
+            padding: 0;
+        }
+        img {
+            width: 100%;
+            @include border-radius(50%)
+        }
+
+    }
+
+    .slided-text {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        height: 75%;
+        @include transition(all 0.6s ease);
+        background-color: rgba($green, 0.3);
+        button {
+            position: absolute;
+            width: 100%;
+            border-radius: 0;
+            font-size: 130%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            margin: 0;
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+
+    &:hover .img-container,
+    .img-container:hover,
+    .slided-text:hover + .img-container {
+        .price-container {
+            transform: scale(1.5);
+        }
+    }
+
+    .img-container:hover + .slided-text,
+    .slided-text:hover {
+        top: 25%;
+    }
+
+}
+

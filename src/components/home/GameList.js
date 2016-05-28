@@ -28,7 +28,8 @@ GameList.defaultProps = {
             url: '/jackpot',
             icon: 'jackpot',
             header: 'JACKPOT',
-            description: 'Bet your muffins against other players. The more you bet the more you get.'
+            description: 'Bet your muffins against other players. The more you bet the more you get.',
+            pointer: 'pointer'
         },
         {
             url: '',
