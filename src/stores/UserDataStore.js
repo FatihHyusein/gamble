@@ -4,6 +4,7 @@ import {EventEmitter} from 'events';
 
 var ActionTypes = MuffinConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
+var REFERRAL_ARRAY_EVENT = 'refarray';
 
 class UserDataStore extends EventEmitter {
     constructor(props) {
@@ -18,6 +19,8 @@ class UserDataStore extends EventEmitter {
         this.tradeUrl = "";
         this.parentRefCode = "";
         this.cheffBadge = 0;
+
+        this.referralsArray = [];
     }
 
     getUserProp(propName) {
@@ -97,6 +100,9 @@ class UserDataStore extends EventEmitter {
         }
     }
 
+    getReferralsArray() {
+        return this.referralsArray;
+    }
 
     emitChange() {
         this.emit(CHANGE_EVENT);
@@ -109,6 +115,20 @@ class UserDataStore extends EventEmitter {
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
+
+    emitReferalsArrayChange() {
+        this.emit(REFERRAL_ARRAY_EVENT);
+    }
+
+    addReferalsArrayChangeListener(callback) {
+        this.on(REFERRAL_ARRAY_EVENT, callback);
+    }
+
+    removeReferalsArrayChangeListener(callback) {
+        this.removeListener(REFERRAL_ARRAY_EVENT, callback);
+    }
+
+
 }
 
 let userDataStoreInstance = new UserDataStore();
@@ -145,6 +165,16 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             setProp('muffins', parseInt(action.muffins));
 
             userDataStoreInstance.emitChange();
+            break;
+
+        case ActionTypes.USER_DATA_UPDATE_REFERRALS:
+            debugger;
+
+            if (action.referrals && action.referrals.length) {
+                userDataStoreInstance.referralsArray = [...action.referrals];
+                userDataStoreInstance.emitReferalsArrayChange();
+            }
+
             break;
 
         default:

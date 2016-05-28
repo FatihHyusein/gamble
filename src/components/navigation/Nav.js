@@ -97,7 +97,7 @@ class Nav extends BaseComponent {
 Nav.defaultProps = {
     link: [
         {
-            url: '/freeMuffins',
+            url: '/profile',
             name: 'Free Muffins'
         },
         {

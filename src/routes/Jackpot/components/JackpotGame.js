@@ -67,6 +67,7 @@ class JackpotGame extends BaseComponent {
 
 
         var betInputContainer = '';
+        var betTimer = '';
         if (this.props.isHistory !== true) {
             betInputContainer = (
                 <div className="place-bet-container">
@@ -81,15 +82,19 @@ class JackpotGame extends BaseComponent {
                     </button>
                 </div>
             );
+
+            betTimer = (
+                <Timer time={this.props.game.startTime}
+                       onTimerStopped={this.timerStopped}
+                       timerStarted={this.props.game.timerStarted}
+                       isHistory={this.props.isHistory}/>
+            )
         }
 
         return (
             <div id="jackpot-game">
                 <div>
-                    <Timer time={this.props.game.startTime}
-                           onTimerStopped={this.timerStopped}
-                           timerStarted={this.props.game.timerStarted}
-                           isHistory={this.props.isHistory}/>
+                    {betTimer}
                     <DepositList players={this.props.game.players}
                                  gameState={this.state.gameState}
                                  jackpot={this.props.game.jackpot}/>

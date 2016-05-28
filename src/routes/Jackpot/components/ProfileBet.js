@@ -53,6 +53,7 @@ class ProfileBet extends BaseComponent {
         }
 
         var creditsContainer = "";
+        var prevGameContainer = "";
         if (this.props.isHistory !== true) {
             creditsContainer = ( <div className="credit">
                         <span className="label">
@@ -62,6 +63,30 @@ class ProfileBet extends BaseComponent {
                             {this.state.credits}
                         </span>
             </div>);
+
+
+            prevGameContainer = (
+                <div className="prev-game-info-container">
+                    <div className="tcenter">
+                        <CommonComponents.SvgIcon iconName={this.props.icon}/>
+                        <span >
+                            <div className="label">
+                                LAST WINNER
+                            </div>
+                            <div>57%/45%</div>
+                        </span>
+                    </div>
+                    <div className="tcenter">
+                        <CommonComponents.SvgIcon iconName={this.props.icon}/>
+                        <span>
+                            <div className="label">
+                                TODAYS LUCKER
+                            </div>
+                            <div>355%/4%</div>
+                        </span>
+                    </div>
+                </div>
+            );
         }
 
         return (
@@ -112,26 +137,7 @@ class ProfileBet extends BaseComponent {
                     </div>
                 </div>
 
-                <div className="prev-game-info-container">
-                    <div className="tcenter">
-                        <CommonComponents.SvgIcon iconName={this.props.icon}/>
-                        <span >
-                            <div className="label">
-                                LAST WINNER
-                            </div>
-                            <div>57%/45%</div>
-                        </span>
-                    </div>
-                    <div className="tcenter">
-                        <CommonComponents.SvgIcon iconName={this.props.icon}/>
-                        <span>
-                            <div className="label">
-                                TODAYS LUCKER
-                            </div>
-                            <div>355%/4%</div>
-                        </span>
-                    </div>
-                </div>
+                {prevGameContainer}
             </div>
         )
     }

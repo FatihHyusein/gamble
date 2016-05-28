@@ -5,7 +5,8 @@ import MuffinCheffLvl from './MuffinCheffLvl';
 
 function getStateFromStores() {
     return {
-        profile: UserDataStore.getUserData()
+        profile: UserDataStore.getUserData(),
+        referrals: UserDataStore.getReferralsArray()
     };
 }
 
@@ -16,6 +17,7 @@ class Referrals extends BaseComponent {
 
         this._onChange = this._onChange.bind(this);
         this.upgradeCheffLvl = this.upgradeCheffLvl.bind(this);
+        this.retrieveReferrals = this.retrieveReferrals.bind(this);
     }
 
     upgradeCheffLvl() {
@@ -31,7 +33,44 @@ class Referrals extends BaseComponent {
         });
     }
 
+    retrieveReferrals(page) {
+        BaseComponent.getAjax({
+            url: "user/referrals",
+            auth: true,
+            params: {},
+            successFunction: (data)=> {
+                UserDataActionsCreators.updateRefferalsArray(
+                    data.referrals
+                );
+            }
+        });
+    }
+
+    componentWillMount() {
+        this.retrieveReferrals();
+    }
+
     render() {
+        var referralRows = this.state.referrals.map((row, idx)=> {
+            return (
+                <tr key={idx}>
+                    <td>
+                        {row.name}
+                    </td>
+                    <td>
+                        {row.date_joined}
+                    </td>
+
+                    <td>
+                        {parseInt(row.wonToday)}
+                    </td>
+                    <td>
+                        {parseInt(row.overall)}
+                    </td>
+                </tr>
+            )
+        });
+
         return (
             <div className="referrals-page">
                 <div className="muffin-levels-container">
@@ -55,7 +94,35 @@ class Referrals extends BaseComponent {
                 </div>
 
                 <div className="referrals-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th rowSpan="2">
+                                REFERRAL
+                            </th>
+                            <th rowSpan="2">JOINED</th>
+                            <th colSpan="2">MONEY EARNED</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                TODAY
+                            </th>
+                            <th>
+                                OVERALL
+                            </th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <td>
 
+                            </td>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                            {referralRows}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         )
@@ -63,10 +130,12 @@ class Referrals extends BaseComponent {
 
     componentDidMount() {
         UserDataStore.addChangeListener(this._onChange);
+        UserDataStore.addReferalsArrayChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
         UserDataStore.removeChangeListener(this._onChange);
+        UserDataStore.removeReferalsArrayChangeListener(this._onChange);
     }
 
     _onChange() {

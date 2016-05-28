@@ -1,5 +1,7 @@
 
 #jackpot-game {
+    max-width: 1200px;
+    margin: auto;
     & > div {
         display: inline-block;
         vertical-align: text-top;
@@ -17,6 +19,10 @@
 }
 
 .jackpot-history-container {
+    #jackpot-game {
+        margin-top: 70px;
+        border-top: 1px solid $gray-blue-border;
+    }
     .history-animate-enter {
         opacity: 0;
         transform: rotateY(-90deg);

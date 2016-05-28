@@ -43,7 +43,7 @@ Footer.defaultProps = {
             name: 'Home'
         },
         {
-            url: '/freeMuffins',
+            url: '/profile',
             name: 'Get free muffins'
         },
         {

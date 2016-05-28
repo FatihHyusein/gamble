@@ -21,6 +21,13 @@ export default {
             type: ActionTypes.USER_DATA_UPDATE_MUFFINS,
             muffins: muffins
         });
+    },
+
+    updateRefferalsArray: function (referrals) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.USER_DATA_UPDATE_REFERRALS,
+            referrals: referrals
+        });
     }
 
 

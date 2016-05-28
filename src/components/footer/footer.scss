@@ -4,8 +4,10 @@
     //margin-top: 35px;
     //margin-top: 20px;
     padding-top: 10px;
+    border-top: 3px solid $gray;
     background: $dark-blue;
     &::before {
+        display: none;
         position: absolute;
         left: 0;
         right: 0;
