@@ -17,22 +17,32 @@
 }
 
 .jackpot-history-container {
-    .example-enter {
-        opacity: 0.01;
+    .history-animate-enter {
+        opacity: 0;
+        transform: rotateY(-90deg);
+        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        &.history-animate-enter-active {
+            opacity: 1;
+            transform: none;
+            transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        }
     }
-
-    .example-enter.example-enter-active {
+    .history-animate-leave {
         opacity: 1;
-        transition: opacity 500ms ease-in;
+        &.history-animate-leave-active {
+            opacity: 0.01;
+            transition: all 300ms ease-in;
+        }
     }
-
-    .example-leave {
-        opacity: 1;
-    }
-
-    .example-leave.example-leave-active {
-        opacity: 0.01;
-        transition: opacity 300ms ease-in;
+    .history-animate-appear {
+        opacity: 0;
+        transform: rotateY(-90deg);
+        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        &.history-animate-appear-active {
+            opacity: 1;
+            transform: none;
+            transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        }
     }
 }
 

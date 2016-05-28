@@ -38,7 +38,7 @@ class Jackpot extends Component {
 
             historyContainer = (
                 <div className="jackpot-history-container">
-                    <ReactCSSTransitionGroup transitionName="example"
+                    <ReactCSSTransitionGroup transitionName="history-animate"
                                              transitionEnterTimeout={500}
                                              transitionLeaveTimeout={300}>
                         {history}
