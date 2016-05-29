@@ -241,7 +241,10 @@ class Socket {
             this.startInitInterval = setTimeout(this.retryFunction.bind(this), this.initInterval);
 
             this.log('Socket Close! Reopen after ' + this.pingInterval + ' ms! Try ' + this.initTry + '!');
-
+            ToastMessagesActionCreators.setNewToasts([{
+                type: "error",
+                text: "Socket Connection is closed. Please try again."
+            }]);
         } else {
             this.sock = null;
             this.opened = null;
