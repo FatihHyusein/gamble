@@ -4,6 +4,7 @@ import NavLink from './NavLink';
 const SvgIcon = CommonComponents.SvgIcon;
 import BaseComponent from '../../base/BaseComponent';
 import UserDataStore from '../../stores/UserDataStore';
+import UserDataActionsCreators from '../../actions/UserDataActionsCreators';
 
 function getStateFromStores() {
     return {
@@ -37,6 +38,17 @@ class Nav extends BaseComponent {
         });
     }
 
+    logout() {
+        BaseComponent.postAjax({
+            url: "user/logout",
+            auth: true,
+            params: {},
+            successFunction: (data)=> {
+                UserDataActionsCreators.logout();
+            }
+        });
+    }
+
     toggleNav() {
         this.setState({
             toggledClass: (this.state.toggledClass === 'not-toggled') ? 'toggled' : 'not-toggled'
@@ -66,6 +78,8 @@ class Nav extends BaseComponent {
             <div className="logged-profile-nav-btn">
                 <div>
                     <img src={this.state.profile.profileIcon}/>
+                    <CommonComponents.SvgIcon onClick={this.logout}
+                                              iconName="logout"/>
                 </div>
                 <div className="user-data-container">
                     <div>
@@ -84,7 +98,7 @@ class Nav extends BaseComponent {
 
         var userLink = token ? profileLink : steamLoginLink;
         userLink = (<div className="user-btn">
-            {profileLink}
+            {userLink}
         </div>);
 
         return (

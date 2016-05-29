@@ -35,7 +35,11 @@ export default {
             type: ActionTypes.USER_DATA_UPDATE_HISTORY,
             historyItems: historyItems
         });
+    },
+
+    logout: function () {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.USER_DATA_LOGOUT
+        });
     }
-
-
 };
