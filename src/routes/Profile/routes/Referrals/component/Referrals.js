@@ -2,6 +2,7 @@ import BaseComponent from '../../../../../base/BaseComponent';
 import UserDataActionsCreators from '../../../../../actions/UserDataActionsCreators';
 import UserDataStore from '../../../../../stores/UserDataStore';
 import MuffinCheffLvl from './MuffinCheffLvl';
+import Paging from '../../../../../common/components/Paging';
 
 function getStateFromStores() {
     return {
@@ -14,6 +15,8 @@ class Referrals extends BaseComponent {
     constructor() {
         super();
         this.state = getStateFromStores();
+        this.state.currentPage = 1;
+        this.state.totalItems = 0;
 
         this._onChange = this._onChange.bind(this);
         this.upgradeCheffLvl = this.upgradeCheffLvl.bind(this);
@@ -34,20 +37,25 @@ class Referrals extends BaseComponent {
     }
 
     retrieveReferrals(page) {
+        var sendParam = {};
+        if (page) {
+            sendParam.page = page;
+        }
+
         BaseComponent.getAjax({
             url: "user/referrals",
             auth: true,
-            params: {},
+            params: sendParam,
             successFunction: (data)=> {
                 UserDataActionsCreators.updateRefferalsArray(
                     data.referrals
                 );
+                this.setState({
+                    currentPage: page,
+                    totalItems: parseInt(data.totalReferrals) || data.referrals.length
+                })
             }
         });
-    }
-
-    componentWillMount() {
-        this.retrieveReferrals();
     }
 
     render() {
@@ -123,6 +131,12 @@ class Referrals extends BaseComponent {
                         {referralRows}
                         </tbody>
                     </table>
+
+                    <Paging totalItems={this.state.totalItems}
+                            currentPage={this.state.currentPage}
+                            getItems={this.retrieveReferrals}
+                            itemsPerPage={this.props.itemsPerPage}
+                    />
                 </div>
             </div>
         )
@@ -155,7 +169,8 @@ Referrals.defaultProps = {
         {description: "SOON!!!"},
         {description: "SOON!!!"},
         {description: "SOON!!!"}
-    ]
+    ],
+    itemsPerPage: 50
 };
 
 module.exports = Referrals;
