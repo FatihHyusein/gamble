@@ -55,10 +55,12 @@ toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> 
                 toastMessagesStoreInstance.toastMessages.pop();
             }
 
-            // toastMessagesStoreInstance.clearToastsTimeout = setTimeout(()=> {
-            //     toastMessagesStoreInstance.toastMessages = [];
-            //     toastMessagesStoreInstance.emitChange();
-            // }, 3000);
+            for (var i = 0; i < action.toasts.length; i++) {
+                toastMessagesStoreInstance.clearToastsTimeout = setTimeout(()=> {
+                    toastMessagesStoreInstance.toastMessages.pop();
+                    toastMessagesStoreInstance.emitChange();
+                }, 3000);
+            }
 
             toastMessagesStoreInstance.emitChange();
             break;

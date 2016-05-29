@@ -98,7 +98,10 @@ class Timer extends BaseComponent {
                 this.props.onTimerStopped();
             }
 
-            this.timerLineBorderWidth = `${Math.round(this.timerLine.offsetWidth - this.timerLine.offsetWidth * this.state.remainTime / this.props.timerDuration)}px`;
+            this.timerLineBorderWidth = Math.floor((this.timerLine.offsetWidth - this.timerLine.offsetWidth * this.state.remainTime / this.props.timerDuration)-1);
+
+            this.timerLineBorderWidth = (this.timerLineBorderWidth < this.timerLine.offsetWidth - 1) ? this.timerLineBorderWidth : this.timerLine.offsetWidth;
+            this.timerLineBorderWidth = `${this.timerLineBorderWidth-1}px`;
         }, 1000);
     }
 

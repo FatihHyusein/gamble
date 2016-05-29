@@ -244,9 +244,45 @@
         .game-info {
             width: 59%;
             & > div {
-                padding: 5px 0;
+                position: relative;
+                margin: 3px 0;
+                padding: 2px 0;
+                background-color: $black;
             }
+            div:nth-child(1) {
+                &:before{
+                    content:'';
+                    position: absolute;
+                    left: -20px;
+                    top:0;
+                    bottom: 0;
+                    right: 100%;
+                    background: linear-gradient(68deg, transparent 0%,transparent 50%,$black 51%,$black 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                }
+
+            }
+            div:nth-child(2) {
+                &:before{
+                    content:'';
+                    position: absolute;
+                    left: -20px;
+                    top:0;
+                    bottom: 0;
+                    right: 100%;
+                    background: linear-gradient(90deg, transparent 0%,transparent 50%,$black 51%,$black 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                }
+            }
+
             div:nth-child(3) {
+                &:before{
+                    content:'';
+                    position: absolute;
+                    left: -20px;
+                    top:0;
+                    bottom: 0;
+                    right: 100%;
+                    background: linear-gradient(108deg, transparent 0%,transparent 50%,$black 51%,$black 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                }
                 @media screen and (max-width: 1000px) {
                     span {
                         display: block;

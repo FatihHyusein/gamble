@@ -29,18 +29,21 @@ class JackpotGame extends BaseComponent {
     }
 
     betAmountChanged() {
-        if (!parseFloat(this._betAmount.value) || parseFloat(this._betAmount.value) < this.props.minBetAmount) {
+        // if (!parseFloat(this._betAmount.value) || parseFloat(this._betAmount.value) < this.props.minBetAmount) {
+        //     this._betAmount.value = this.props.minBetAmount;
+        // }
+        // else if (parseFloat(this._betAmount.value) > UserDataStore.getMuffins()) {
+        //     this._betAmount.value = UserDataStore.getMuffins();
+        // }
+        // else {
+            this._betAmount.value = Math.round(this._betAmount.value);
+        // }
+    }
+
+    componentDidMount() {
+        if (this._betAmount) {
             this._betAmount.value = this.props.minBetAmount;
         }
-        else if (parseFloat(this._betAmount.value) > UserDataStore.getMuffins()) {
-            this._betAmount.value = UserDataStore.getMuffins();
-        }
-        else {
-            this._betAmount.value = Math.round(this._betAmount.value);
-        }
-    }
-    componentDidMount() {
-        this._betAmount.value =  this.props.minBetAmount;
     }
 
     timerStopped() {
