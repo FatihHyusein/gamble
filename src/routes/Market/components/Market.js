@@ -84,13 +84,16 @@ class Market extends BaseComponent {
     render() {
         var marketItems = [];
 
-        if (this.state.marketItems) {
+        if (this.state.marketItems && this.state.marketItems.length > 0) {
             marketItems = this.state.marketItems.map(item =>
                 <MarketItem key={item.id} item={item}
                             openMarketItem={this.openMarketItem}
                             addToCart={this.addToCart}
                 />
             );
+        }
+        else {
+            marketItems = (<h1 className="mauto">Items not found</h1>)
         }
 
 

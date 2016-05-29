@@ -71,7 +71,7 @@ class Cart extends BaseComponent {
 
             <button className="bg-green"
                     onClick={this.finish}>
-                ADD
+                deposit
             </button>
         </div>);
 

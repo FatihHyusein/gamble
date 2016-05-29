@@ -22,11 +22,18 @@ class SearchBar extends Component {
 
     render() {
         var cartLink = `/deposit${(window.location.pathname.indexOf('/cart') > -1) ? '' : '/cart'}`;
-        var depositBtn = <button className="bg-green" onClick={this.props.onDeposit.bind(this)}>ADD</button>;
+        var depositBtn = <button className={`bg-green ${(this.state.cartItemsCount < 1) ? 'not-visible' : ''}`}
+                                 onClick={this.props.onDeposit.bind(this)}>deposit</button>;
         if (this.state.cartItemsCount < 1) {
             cartLink = '/deposit';
-            depositBtn = '';
         }
+
+        var closeBtn = (<Link to="/deposit">
+            <button
+                className={`bg-red ${(window.location.pathname.indexOf('/cart') > -1) ? '' : 'not-visible'}`}>
+                close cart
+            </button>
+        </Link>);
 
 
         var cartItemsCounter = '';
@@ -53,6 +60,7 @@ class SearchBar extends Component {
                             <CommonComponents.SvgIcon iconName="searchico"/>
                         </div>
                     </div>
+                    {closeBtn}
                 </div>
             </div>
         )

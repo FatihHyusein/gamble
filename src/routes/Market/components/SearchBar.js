@@ -23,6 +23,11 @@ class SearchBar extends Component {
     render() {
         var cartLink = `/market${(window.location.pathname.indexOf('/cart') > -1) ? '' : '/cart'}`;
 
+        var closeBtn = (<Link to="/market">
+            <button className={`bg-red ${(window.location.pathname.indexOf('/cart') > -1) ? '' : 'not-visible'}`}>close cart</button>
+        </Link>);
+
+
         var cartItemsCounter = '';
         if (this.state.cartItemsCount) {
             cartItemsCounter = ( <div className="cart-items-count">
@@ -46,6 +51,8 @@ class SearchBar extends Component {
                             <CommonComponents.SvgIcon iconName="searchico"/>
                         </div>
                     </div>
+
+                    {closeBtn}
                 </div>
             </div>
         )

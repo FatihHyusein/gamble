@@ -86,13 +86,16 @@ class Deposit extends BaseComponent {
     render() {
         var depositItems = [];
 
-        if (this.state.depositItems) {
+        if (this.state.depositItems && this.state.depositItems.length > 0) {
             depositItems = this.state.depositItems.map(item =>
                 <DepositItem key={item.id} item={item}
                              addToCart={this.addToCart}
                              removeFromCart={this.removeFromCart}
                 />
             );
+        }
+        else {
+            depositItems = (<h1 className="mauto">Items not found</h1>)
         }
 
 

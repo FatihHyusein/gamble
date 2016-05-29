@@ -22,7 +22,10 @@ class MarketItemPopup extends Component {
 
     render() {
         const item = this.props.item;
-
+        var inspectInGameBtn = (
+            <button className="bg-green" onClick={this.handleModalCloseRequest}>Inspect in game</button>);
+        inspectInGameBtn = '';
+        
         return (
             <Modal
                 className="modal-dialog item-modal-dialog"
@@ -35,8 +38,8 @@ class MarketItemPopup extends Component {
                         <div className="item-description">
                             <img src={item.image}/>
                             <div>{item.description}</div>
-                            <div><CommonComponents.SvgIcon iconName="fb"/>{item.price}</div>
-                            <button className="bg-green" onClick={this.handleModalCloseRequest}>Inspect in game</button>
+                            <div><CommonComponents.SvgIcon iconName="muffin-currency"/>{item.price}</div>
+                            {inspectInGameBtn}
                         </div>
                         <div className="item-buy-container">
                             <div class="question">Are you sure you wabt to add {item.description} to the basket?</div>
