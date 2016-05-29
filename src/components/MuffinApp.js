@@ -8,6 +8,7 @@ import PopupMessages from './popupMessages/PopupMessages';
 import ToastMessagesActionCreators from '../actions/ToastMessagesActionCreators';
 import UserDataActionsCreators from '../actions/UserDataActionsCreators';
 import UserDataStore from '../stores/UserDataStore';
+import Loader from '../common/components/Loader';
 
 
 class MuffinApp extends BaseComponent {
@@ -16,6 +17,7 @@ class MuffinApp extends BaseComponent {
             <div>
                 <Nav />
                 <div className="page-wrapper">
+                    <Loader/>
                     <ToastMessages />
                     <PopupMessages />
                     <div>

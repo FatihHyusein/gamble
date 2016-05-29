@@ -43,6 +43,7 @@ class Cart extends BaseComponent {
                         page: 1
                     },
                     successFunction: (data)=> {
+                        DepositActionCreators.depositUpdateList(data.items, +data.itemsCount.count, page);
                         DepositActionCreators.clearCart(data.items, +data.itemsCount.count, page);
                     }
                 });

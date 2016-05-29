@@ -14,5 +14,11 @@ export default {
         MuffinDispatcher.dispatch({
             type: ActionTypes.CLEAR_TOAST_MESSAGES
         });
+    },
+    updateLoader: function (showLoader) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.UPDATE_LOADER,
+            showLoader: showLoader
+        });
     }
 };

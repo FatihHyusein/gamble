@@ -8,6 +8,9 @@ var CHANGE_EVENT = 'change';
 
 class ToastMessagesStore extends EventEmitter {
 
+    getLoader() {
+        return this.showLoader
+    }
 
     getToastMessages() {
         return this.toastMessages;
@@ -16,6 +19,7 @@ class ToastMessagesStore extends EventEmitter {
     constructor(props) {
         super(props);
 
+        this.showLoader = false;
         this.toastMessages = [];
     }
 
@@ -47,6 +51,9 @@ toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> 
                 return;
             }
             toastMessagesStoreInstance.toastMessages.unshift(...action.toasts);
+            if (toastMessagesStoreInstance.toastMessages.length > 5) {
+                toastMessagesStoreInstance.toastMessages.pop();
+            }
 
             // toastMessagesStoreInstance.clearToastsTimeout = setTimeout(()=> {
             //     toastMessagesStoreInstance.toastMessages = [];
@@ -65,12 +72,16 @@ toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> 
             toastMessagesStoreInstance.emitChange();
             break;
 
+        case ActionTypes.UPDATE_LOADER:
+            toastMessagesStoreInstance.showLoader = action.showLoader;
+
+            toastMessagesStoreInstance.emitChange();
+            break;
+
         default:
         // do nothing
     }
 });
-
-
 
 
 export default toastMessagesStoreInstance;

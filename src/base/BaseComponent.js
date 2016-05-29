@@ -92,11 +92,14 @@ class BaseComponent extends Component {
     }
 
     static postAjax(data) {
+        ToastMessagesActionCreators.updateLoader(true);
         data = this.checkAuth(data);
 
         return d3.xhr(`http://87.120.75.34/api/${data.url}`)
             .header("Content-Type", "application/json")
             .post(JSON.stringify(data.params), (error, xhr)=> {
+                ToastMessagesActionCreators.updateLoader(false);
+                
                 var json;
                 try {
                     json = JSON.parse(xhr.response);
@@ -124,8 +127,11 @@ class BaseComponent extends Component {
 
     static getAjax(data) {
         data = this.checkAuth(data);
+        ToastMessagesActionCreators.updateLoader(true);
 
         return d3.json(`http://87.120.75.34/api/${data.url}?${param(data.params)}`, (error, json)=> {
+            ToastMessagesActionCreators.updateLoader(false);
+
             this.checkForPopupMessage(error, json, data);
 
             if (this.checkIfFail(error, json, data)) {

@@ -34,6 +34,7 @@ module.exports = {
 
         RECEIVED_TOAST_MESSAGE: null,
         CLEAR_TOAST_MESSAGES: null,
+        UPDATE_LOADER: null,
 
         RECEIVED_POPUP_MESSAGE: null,
         CLOSE_POPUP_MESSAGE: null,
