@@ -88,7 +88,7 @@ class Socket {
         if (!this.opened) {
             ToastMessagesActionCreators.setNewToasts([{
                 type: "error",
-                text: "basi gadnoto chuek"
+                text: "Socket is not opened"
             }]);
 
             clearInterval(this.timerSend);

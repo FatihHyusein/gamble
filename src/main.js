@@ -1,6 +1,6 @@
 import React, {Component}from 'react';
 import {render} from 'react-dom'
-import {Router, browserHistory} from 'react-router'
+import {Router, browserHistory, Redirect, Compo} from 'react-router'
 import $ from 'jquery';
 import CommonComponents from './common/components';
 
@@ -22,12 +22,12 @@ const rootRoute = {
         path: '/',
         component: require('./components/MuffinApp'),
         childRoutes: [
-            //require('./routes/FreeMuffins'),
             require('./routes/Jackpot'),
             require('./routes/Market'),
             require('./routes/Deposit'),
             require('./routes/Support'),
-            require('./routes/Profile')
+            require('./routes/Profile'),
+            require('./routes/RedirectRoute')
         ]
     }]
 };

@@ -76,8 +76,8 @@ class Deposit extends BaseComponent {
                 items: this.state.cartItems.map(itm=> itm.id)
             },
             successFunction: (data)=> {
-
-                this.getItems(1, null, true);
+                DepositActionCreators.clearCart(data.items, +data.itemsCount.count, page);
+                DepositActionCreators.depositUpdateList(data.items, +data.itemsCount.count, page);
             }
         });
     }

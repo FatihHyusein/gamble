@@ -202,18 +202,19 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
 
         case ActionTypes.USER_DATA_LOGOUT:
             localStorage.clear();
-            this.token = "";
-            this.muffins = 0;
-            this.name = "";
-            this.profileIcon = "";
+            token = null;
+            userDataStoreInstance.token = "";
+            userDataStoreInstance.muffins = 0;
+            userDataStoreInstance.name = "";
+            userDataStoreInstance.profileIcon = "";
 
-            this.referralCode = "";
-            this.tradeUrl = "";
-            this.parentRefCode = "";
-            this.cheffBadge = 0;
+            userDataStoreInstance.referralCode = "";
+            userDataStoreInstance.tradeUrl = "";
+            userDataStoreInstance.parentRefCode = "";
+            userDataStoreInstance.cheffBadge = 0;
 
-            this.referralsArray = [];
-            this.historyArray = [];
+            userDataStoreInstance.referralsArray = [];
+            userDataStoreInstance.historyArray = [];
 
             userDataStoreInstance.emitChange();
             userDataStoreInstance.emitHistoryArrayChange();

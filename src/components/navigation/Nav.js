@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import NavLink from './NavLink';
 const SvgIcon = CommonComponents.SvgIcon;
 import BaseComponent from '../../base/BaseComponent';
@@ -45,6 +45,7 @@ class Nav extends BaseComponent {
             params: {},
             successFunction: (data)=> {
                 UserDataActionsCreators.logout();
+                browserHistory.push('/');
             }
         });
     }
