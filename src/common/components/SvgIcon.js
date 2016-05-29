@@ -39,8 +39,12 @@ class SvgIcon extends BaseComponent {
             return {__html: html};
         }
 
-        return <div className="svg-icon" {...this.props}
-                    dangerouslySetInnerHTML={createMarkup(this.state.iconData)}></div>;
+        return <div className="svg-icon"
+        >
+            <i {...this.props}
+                dangerouslySetInnerHTML={createMarkup(this.state.iconData)}>
+            </i>
+        </div>;
     }
 }
 

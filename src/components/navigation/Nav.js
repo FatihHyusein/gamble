@@ -63,7 +63,7 @@ class Nav extends BaseComponent {
                         {this.state.profile.name}
                     </div>
                     <div>
-                        <CommonComponents.SvgIcon iconName="muffin-currency"/> {this.state.profile.muffins}
+                        <CommonComponents.SvgIcon className="currency-icon" iconName="muffin-currency"/> {this.state.profile.muffins}
                     </div>
                 </div>
             </div>

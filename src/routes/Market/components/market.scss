@@ -131,7 +131,11 @@
         @include flexbox();
         @include justify-content(space-between);
         padding: 5px 10px;
-
+        &>div {
+            .svg-icon {
+                vertical-align: bottom;
+            }
+        }
     }
     .svg-icon {
         width: 25px;

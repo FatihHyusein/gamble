@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react'
 import BaseComponent from '../../../../../base/BaseComponent';
 import CartItem from './CartItem';
