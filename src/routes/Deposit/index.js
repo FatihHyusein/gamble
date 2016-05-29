@@ -12,6 +12,8 @@ module.exports = {
             }]);
 
             browserHistory.push('/');
+        } else {
+            callback(null, require('./components/Deposit'))
         }
     },
 
