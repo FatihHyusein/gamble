@@ -74,24 +74,28 @@ class Nav extends BaseComponent {
                 <li key={currentLink.url}><NavLink to={currentLink.url}>{currentLink.name}</NavLink></li>
         );
 
-        var profileLink = <NavLink to="/profile">
-            <div className="logged-profile-nav-btn">
-                <div>
-                    <img src={this.state.profile.profileIcon}/>
-                    <CommonComponents.SvgIcon onClick={this.logout}
-                                              iconName="logout"/>
-                </div>
-                <div className="user-data-container">
-                    <div>
-                        {this.state.profile.name}
+        var profileLink = (
+            <div className="user-link-wrapper">
+                <NavLink to="/profile">
+                    <div className="logged-profile-nav-btn">
+                        <div>
+                            <img src={this.state.profile.profileIcon}/>
+                        </div>
+                        <div className="user-data-container">
+                            <div>
+                                {this.state.profile.name}
+                            </div>
+                            <div>
+                                <CommonComponents.SvgIcon className="currency-icon"
+                                                          iconName="muffin-currency"/> {this.state.profile.muffins}
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <CommonComponents.SvgIcon className="currency-icon"
-                                                  iconName="muffin-currency"/> {this.state.profile.muffins}
-                    </div>
-                </div>
+                </NavLink>
+                <CommonComponents.SvgIcon onClick={this.logout} className="pointer"
+                                          iconName="logout"/>
             </div>
-        </NavLink>;
+        );
 
         var steamLoginLink = <img src="staticFiles/icons/signinwithsteam.png" className='login-link'
                                   onClick={this.openSteam}/>;
