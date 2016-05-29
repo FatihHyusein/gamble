@@ -50,7 +50,7 @@ class Jackpot extends Component {
         return (
             <div>
                 <div className="top-container">
-                    <div className="header">JACKPOT</div>
+                    <div className="header"><h1>JACKPOT</h1></div>
                 </div>
 
                 <JackpotGame game={this.state.gameData}/>

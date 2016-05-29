@@ -18,7 +18,7 @@ class Support extends BaseComponent {
             <div id="support">
                 <div className="top-container">
                     <div className="header">
-                        SUPPORT
+                        <h1>SUPPORT</h1>
                     </div>
                 </div>
                 <div className="items-container">

@@ -28,7 +28,7 @@ class DepositItem extends BaseComponent {
 
                 <div className="price-container">
                     <div><CommonComponents.SvgIcon iconName="muffin-currency"/>{item.price}</div>
-                    <span><CommonComponents.SvgIcon iconName="cart"/></span>
+                    <span><CommonComponents.SvgIcon iconName="addmuffins"/></span>
                 </div>
             </div>
         )

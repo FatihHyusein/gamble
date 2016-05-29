@@ -198,7 +198,14 @@ body {
         text-transform: uppercase;
 
         h1 {
+            display: inline-block;
+            margin: auto;
+            vertical-align: middle;
             font-weight: 700;
+            margin-right: 40%;
+            @media screen and (max-width: 650px) {
+                display: block;
+            }
         }
     }
 }
