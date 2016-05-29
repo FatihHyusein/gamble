@@ -58,6 +58,8 @@ module.exports = {
         DEPOSIT_CLEAR_CART: null,
 
         DEPOSIT_UPDATE_CART_LIST: null,
+
+        SVG_ADD_ICON: null
     }),
 
     ROUTES: createRouterStrings(['support'])

@@ -1,8 +1,3 @@
-//var ChatMessageUtils = require('../utils/ChatMessageUtils');
-//var EventEmitter = require('events').EventEmitter;
-//var ThreadStore = require('../stores/ThreadStore');
-//var assign = require('object-assign');
-
 import MuffinDispatcher from '../dispather/MuffinDispatcher';
 import MuffinConstants from '../constants/MuffinConstants';
 import {EventEmitter} from 'events';
@@ -11,12 +6,16 @@ import {EventEmitter} from 'events';
 var ActionTypes = MuffinConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
-export default class HeaderStore extends EventEmitter {
+class SvgIconsStore extends EventEmitter {
+    getIcon(name) {
+
+        return this.iconsDict[name];
+    }
+
     constructor(props) {
         super(props);
 
-        this.dafuq = function () {
-        }
+        this.iconsDict = {};
     }
 
     emitChange() {
@@ -30,22 +29,27 @@ export default class HeaderStore extends EventEmitter {
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
+
 }
-HeaderStore.getNewHeader = function () {
-    return 'HEEE';
-};
 
-HeaderStore.dispatchToken = MuffinDispatcher.register(function (action) {
+let sis = new SvgIconsStore();
 
+sis.dispatchToken = MuffinDispatcher.register((action)=> {
     switch (action.type) {
+        case ActionTypes.SVG_ADD_ICON:
+            if (action.newIcon) {
+                sis.iconsDict[action.newIconName] = action.newIcon;
+            }
 
-        case ActionTypes.CHANGE_HEADER:
-            //MuffinDispatcher.waitFor([ThreadStore.dispatchToken]);
-            HeaderStore.emitChange();
+            sis.iconsDict = Object.assign({}, sis.iconsDict);
+
+            sis.emitChange();
             break;
 
         default:
         // do nothing
     }
-
 });
+
+
+export default sis;
