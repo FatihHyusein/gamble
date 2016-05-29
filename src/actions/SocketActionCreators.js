@@ -1,11 +1,7 @@
-import MuffinDispatcher from '../dispather/MuffinDispatcher';
-import MuffinConstants from '../constants/MuffinConstants';
 import UserDataSore from '../stores/UserDataStore';
 import ToastMessagesActionCreators from './ToastMessagesActionCreators';
 import GameActionCreators from './games/GameActionCreators';
 import UserDataActionsCreators from './UserDataActionsCreators';
-
-var ActionTypes = MuffinConstants.ActionTypes;
 
 class Socket {
     constructor(domain, port, secure, isDebugMode) {
@@ -92,7 +88,7 @@ class Socket {
         if (!this.opened) {
             ToastMessagesActionCreators.setNewToasts([{
                 type: "error",
-                message: "Socket Connection is closed. Please try again."
+                text: "Socket Connection is closed. Please try again."
             }]);
 
             clearInterval(this.timerSend);
@@ -174,11 +170,10 @@ class Socket {
         this.log('Message recieved: ' + msg.data);
         var parsedMessage = JSON.parse(msg.data);
 
-        MuffinDispatcher.dispatch({
-            type: ActionTypes.RECEIVED_TOAST_MESSAGE,
-            toasts: parsedMessage.toasts
-        });
 
+        if (parsedMessage.toasts && parsedMessage.toasts.length > 0) {
+            ToastMessagesActionCreators.setNewToasts(parsedMessage.toasts);
+        }
 
         switch (parsedMessage.type) {
             case "onlinePlayers":
