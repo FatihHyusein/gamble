@@ -7,11 +7,18 @@ html, body {
     font-family: freightBold, sans-serif;
 }
 
+*{
+    outline: none !important;
+}
+
 a:visited,
 a:link {
     text-decoration: inherit;
     color: inherit;
     cursor: auto;
+}
+a{
+    cursor: pointer !important;
 }
 
 ul {

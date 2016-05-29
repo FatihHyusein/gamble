@@ -11,7 +11,8 @@ const lint = require('gulp-eslint'); //Lint JS files, including JSX
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const sftp = require('gulp-sftp');
-
+var cleanCSS = require('gulp-clean-css');
+var uglify = require('gulp-uglify');
 
 const config = {
     port: 3000,
@@ -71,8 +72,20 @@ gulp.task('js', function () {
         .bundle()
         .on('error', console.error.bind(console))
         .pipe(source('bundle.js'))
+
+
+
+
         .pipe(gulp.dest(config.paths.dist))
+
+
         .pipe(connect.reload());
+});
+
+gulp.task('compress',['js'], function() {
+    return gulp.src(config.paths.dist+'/bundle.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('min'));
 });
 
 //concat sass files into one sass file
@@ -103,6 +116,9 @@ gulp.task('sass', ['concatSass'], function () {
 gulp.task('css', ['sass'], function () {
     gulp.src(config.paths.css)
         .pipe(concat('bundle.css'))
+
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+
         .pipe(gulp.dest(config.paths.dist))
         .pipe(connect.reload());
 });
@@ -123,10 +139,10 @@ gulp.task('lint', function () {
 //watch for changes and update the page
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.js, ['js', 'lint']);
+    gulp.watch(config.paths.js, ['compress', 'lint']);
     gulp.watch(config.paths.scss, ['css']);
     // gulp.watch(config.paths.staticFiles, ['staticFiles']);
     // gulp.watch(config.paths.dist + '/**/*', ['upload']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'lint', 'watch']);
+gulp.task('default', ['html', 'compress', 'css', 'lint', 'watch']);
