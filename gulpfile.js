@@ -139,10 +139,10 @@ gulp.task('lint', function () {
 //watch for changes and update the page
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.js, ['compress', 'lint']);
+    gulp.watch(config.paths.js, ['js', 'lint']);
     gulp.watch(config.paths.scss, ['css']);
     // gulp.watch(config.paths.staticFiles, ['staticFiles']);
     // gulp.watch(config.paths.dist + '/**/*', ['upload']);
 });
 
-gulp.task('default', ['html', 'compress', 'css', 'lint', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'lint', 'watch']);

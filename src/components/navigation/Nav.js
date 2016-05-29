@@ -22,7 +22,10 @@ class Nav extends BaseComponent {
 
         this.state = getStateFromStores();
 
+        this.state.toggledClass = 'not-toggled';
+
         this.openSteam = this.openSteam.bind(this);
+        this.toggleNav = this.toggleNav.bind(this);
     }
 
     openSteam() {
@@ -31,6 +34,12 @@ class Nav extends BaseComponent {
             successFunction: (data)=> {
                 window.location = data.url;
             }
+        });
+    }
+
+    toggleNav() {
+        this.setState({
+            toggledClass: (this.state.toggledClass === 'not-toggled') ? 'toggled' : 'not-toggled'
         });
     }
 
@@ -63,7 +72,8 @@ class Nav extends BaseComponent {
                         {this.state.profile.name}
                     </div>
                     <div>
-                        <CommonComponents.SvgIcon className="currency-icon" iconName="muffin-currency"/> {this.state.profile.muffins}
+                        <CommonComponents.SvgIcon className="currency-icon"
+                                                  iconName="muffin-currency"/> {this.state.profile.muffins}
                     </div>
                 </div>
             </div>
@@ -73,10 +83,9 @@ class Nav extends BaseComponent {
                                   onClick={this.openSteam}/>;
 
         var userLink = token ? profileLink : steamLoginLink;
-        userLink = (<div>
+        userLink = (<div className="user-btn">
             {profileLink}
-            {steamLoginLink}
-        </div>)
+        </div>);
 
         return (
             <nav>
@@ -84,10 +93,11 @@ class Nav extends BaseComponent {
                     <CommonComponents.SvgIcon iconName="logo"/>
                 </NavLink>
                 <div className="router-link-container">
-                    <ul>
+                    <ul className={this.state.toggledClass} onClick={this.toggleNav}>
                         {linkEls}
                     </ul>
                     {userLink}
+                    <CommonComponents.SvgIcon className="hamburger-btn" iconName="hamburger" onClick={this.toggleNav}/>
                 </div>
             </nav>
         )

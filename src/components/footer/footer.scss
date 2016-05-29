@@ -6,6 +6,11 @@
     padding-top: 10px;
     border-top: 3px solid $gray;
     background: $dark-blue;
+
+    @media screen and (max-width: 550px) {
+        text-align: center;
+    }
+
     &::before {
         display: none;
         position: absolute;
@@ -33,6 +38,13 @@
 
         .footer-link {
             margin: 10px;
+            @media screen and (max-width: 550px) {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 550px) {
+            width: 100%;
         }
     }
     .social-media-links {
@@ -50,5 +62,8 @@
     .reserved {
         padding: 20px;
         text-align: end;
+        @media screen and (max-width: 550px) {
+            text-align: center;
+        }
     }
 }

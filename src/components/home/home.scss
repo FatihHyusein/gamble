@@ -9,12 +9,19 @@
         background-size: cover;
         border-bottom: 5px solid $gray;
 
+        @media screen and (max-width: 750px) {
+            @include flex-direction(column);
+        }
+
         .header-container {
             width: 50%;
             h1 {
                 font-size: 300%;
                 font-weight: 700;
                 text-transform: uppercase;
+            }
+            @media screen and (max-width: 750px) {
+                width: 100%;
             }
         }
         .wins-container {
@@ -24,6 +31,9 @@
             max-height: 35vh;
             @include flex-flow(column-reverse wrap);
             overflow: auto;
+            @media screen and (max-width: 750px) {
+                width: 100%;
+            }
         }
     }
 
@@ -48,9 +58,13 @@
             }
         }
         .games-container {
+            max-width: 1000px;
+            margin: auto;
             @include flexbox();
-            @include justify-content(center);
+            @include flex-wrap(wrap);
+            @include justify-content(space-around);
             padding: 80px 0;
+            text-align: center;
 
             .game {
                 max-width: 200px;
@@ -63,11 +77,11 @@
                 &.pointer {
                     @include addTransition();
 
-                    &:hover{
+                    &:hover {
                         transform: scale(1.2);
-                        color: $green;
+                        color: $dark-gray;
                         .svg-icon {
-                            fill: $green !important;
+                            fill: $dark-gray !important;
                         }
                     }
                 }
