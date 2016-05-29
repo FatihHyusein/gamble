@@ -49,7 +49,7 @@ class SearchBar extends Component {
                 <div>
                     {depositBtn}
                     <Link to={cartLink} activeClassName="active" className="cart-link">
-                        <CommonComponents.SvgIcon iconName="cart"/>
+                        <CommonComponents.SvgIcon iconName="addmuffins"/>
                         {cartItemsCounter}
                     </Link>
 

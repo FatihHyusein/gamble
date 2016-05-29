@@ -28,6 +28,13 @@ export default {
             type: ActionTypes.USER_DATA_UPDATE_REFERRALS,
             referrals: referrals
         });
+    },
+
+    updateHistoryArray: function (historyItems) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.USER_DATA_UPDATE_HISTORY,
+            historyItems: historyItems
+        });
     }
 
 

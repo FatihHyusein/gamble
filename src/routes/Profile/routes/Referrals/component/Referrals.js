@@ -61,7 +61,7 @@ class Referrals extends BaseComponent {
     render() {
         var referralRows = this.state.referrals.map((row, idx)=> {
             return (
-                <tr key={idx} className={`${idx%2==0?'even':'odd'}`}>
+                <tr key={idx}>
                     <td className="name-col">
                         {row.name}
                     </td>
@@ -102,7 +102,7 @@ class Referrals extends BaseComponent {
                 </div>
 
                 <div className="referrals-container">
-                    <table>
+                    <table className="muffin-table">
                         <thead>
                         <tr>
                             <th rowSpan="2">

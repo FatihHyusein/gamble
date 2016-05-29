@@ -81,7 +81,7 @@ class Nav extends BaseComponent {
         return (
             <nav>
                 <NavLink to="/" onlyActiveOnIndex={true} className='index-link'>
-                    <span>CSG</span><img src="staticFiles/icons/muffin.png"/><span>MUFFIN</span>
+                    <CommonComponents.SvgIcon iconName="logo"/>
                 </NavLink>
                 <div className="router-link-container">
                     <ul>

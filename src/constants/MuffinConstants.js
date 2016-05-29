@@ -43,6 +43,7 @@ module.exports = {
         USER_DATA_UPDATE_PROFILE: null,
         USER_DATA_UPDATE_MUFFINS: null,
         USER_DATA_UPDATE_REFERRALS: null,
+        USER_DATA_UPDATE_HISTORY: null,
 
         MARKET_STORE_UPDATE_LIST: null,
         MARKET_STORE_ADD_ITEM_TO_CART: null,

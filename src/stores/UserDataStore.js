@@ -5,6 +5,7 @@ import {EventEmitter} from 'events';
 var ActionTypes = MuffinConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 var REFERRAL_ARRAY_EVENT = 'refarray';
+var HISTORY_ARRAY_EVENT = 'histarray';
 
 class UserDataStore extends EventEmitter {
     constructor(props) {
@@ -21,6 +22,7 @@ class UserDataStore extends EventEmitter {
         this.cheffBadge = 0;
 
         this.referralsArray = [];
+        this.historyArray = [];
     }
 
     getUserProp(propName) {
@@ -104,6 +106,10 @@ class UserDataStore extends EventEmitter {
         return this.referralsArray;
     }
 
+    getHistoryArray() {
+        return this.historyArray;
+    }
+
     emitChange() {
         this.emit(CHANGE_EVENT);
     }
@@ -128,6 +134,17 @@ class UserDataStore extends EventEmitter {
         this.removeListener(REFERRAL_ARRAY_EVENT, callback);
     }
 
+    emitHistoryArrayChange() {
+        this.emit(HISTORY_ARRAY_EVENT);
+    }
+
+    addHistoryArrayChangeListener(callback) {
+        this.on(HISTORY_ARRAY_EVENT, callback);
+    }
+
+    removeHistoryArrayChangeListener(callback) {
+        this.removeListener(HISTORY_ARRAY_EVENT, callback);
+    }
 
 }
 
@@ -171,6 +188,14 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             if (action.referrals && action.referrals.length >= 0) {
                 userDataStoreInstance.referralsArray = [...action.referrals];
                 userDataStoreInstance.emitReferalsArrayChange();
+            }
+
+            break;
+
+        case ActionTypes.USER_DATA_UPDATE_HISTORY:
+            if (action.historyItems && action.historyItems.length >= 0) {
+                userDataStoreInstance.historyArray = [...action.historyItems];
+                userDataStoreInstance.emitHistoryArrayChange();
             }
 
             break;

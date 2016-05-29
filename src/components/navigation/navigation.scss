@@ -11,25 +11,26 @@ nav {
 
     .index-link {
         margin: auto;
-        font-size: 300%;
-        font-weight: 700;
-
+        @include addTransition();
         &:hover {
-            animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
-            @include transform(translate3d(0, 0, 0));
-            @include backface-visibility(hidden);
-            perspective: 1000px;
+            @include transform(rotate(17deg));
+            .svg-icon {
+                fill: $green;
+            }
         }
 
-        & > span, & > img {
-            display: inline-block;
-            vertical-align: bottom;
+        &:active {
+            @include transform(scale(1.4));
+            .svg-icon {
+                fill: $red;
+            }
         }
-        img {
-            width: 40px;
-            margin-bottom: 15px;
-            margin-left: -15px;;
+        .svg-icon {
+            @include transform(rotate(-7deg));
+            width: 100px;
+            vertical-align: middle;
         }
+
     }
     .login-link {
         cursor: pointer;
@@ -56,7 +57,7 @@ nav {
                     transform: rotate(7deg);
                     color: $green;
                 }
-                &:active{
+                &:active {
                     transform: scale(1.4);
                     color: $red;
                 }
@@ -66,6 +67,9 @@ nav {
 
     .active {
         color: $green;
+        .svg-icon {
+            fill: $green;
+        }
         .logged-profile-nav-btn {
             img {
                 border: 3px solid $green !important;
