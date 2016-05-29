@@ -7,7 +7,8 @@ import ReactCSSTransitionGroup from  'react-addons-css-transition-group';
 function getStateFromStores() {
     return {
         gameData: JackpotStore.getJackpotData(),
-        historyGames: JackpotStore.getHistory()
+        historyGames: JackpotStore.getHistory(),
+        dailyStatus: JackpotStore.getDailyStatus()
     }
 }
 
@@ -16,6 +17,7 @@ class Jackpot extends Component {
         super();
         this.state = getStateFromStores();
         this._onChange = this._onChange.bind(this);
+        this.getTodayStatus = this.getTodayStatus.bind(this);
     }
 
     componentWillMount() {
@@ -25,8 +27,22 @@ class Jackpot extends Component {
             data: {
                 game: "jackpot"
             }
-        })
+        });
+        this.getTodayStatus();
     }
+
+
+    getTodayStatus() {
+        BaseComponent.getAjax({
+            url: "game/todayLucker",
+            auth: false,
+            params: {},
+            successFunction: (data)=> {
+                GameActionCreator.updateDailyLucker(data);
+            }
+        });
+    }
+
 
     render() {
         var history = [];
@@ -53,7 +69,7 @@ class Jackpot extends Component {
                     <div className="header"><h1>JACKPOT</h1></div>
                 </div>
 
-                <JackpotGame game={this.state.gameData}/>
+                <JackpotGame game={this.state.gameData} dailyStatus={this.state.dailyStatus}/>
 
                 {historyContainer}
             </div>

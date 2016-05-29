@@ -62,5 +62,14 @@ export default {
             type: ActionTypes.JACKPOT_UPDATE_TIMER,
             newTime: time
         });
+    },
+
+    updateDailyLucker: function (status) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.JACKPOT_UPDATE_DAILY_STATUS,
+            status: status
+        });
     }
+
+    
 };

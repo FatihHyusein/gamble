@@ -30,6 +30,7 @@ module.exports = {
         JACKPOT_NEW_ROUND: null,
         JACKPOT_GAME_STATUS: null,
         JACKPOT_UPDATE_TIMER: null,
+        JACKPOT_UPDATE_DAILY_STATUS: null,
 
 
         RECEIVED_TOAST_MESSAGE: null,

@@ -29,8 +29,8 @@ class JackpotGame extends BaseComponent {
     }
 
     betAmountChanged() {
-        if (parseFloat(this._betAmount.value) < 0) {
-            this._betAmount.value = 0;
+        if (!parseFloat(this._betAmount.value) || parseFloat(this._betAmount.value) < this.props.minBetAmount) {
+            this._betAmount.value = this.props.minBetAmount;
         }
         else if (parseFloat(this._betAmount.value) > UserDataStore.getMuffins()) {
             this._betAmount.value = UserDataStore.getMuffins();
@@ -38,6 +38,9 @@ class JackpotGame extends BaseComponent {
         else {
             this._betAmount.value = Math.round(this._betAmount.value);
         }
+    }
+    componentDidMount() {
+        this._betAmount.value =  this.props.minBetAmount;
     }
 
     timerStopped() {
@@ -102,7 +105,9 @@ class JackpotGame extends BaseComponent {
                 <div>
                     {betInputContainer}
                     <div>
-                        <ProfileBet game={this.props.game} isHistory={this.props.isHistory}/>
+                        <ProfileBet game={this.props.game}
+                                    isHistory={this.props.isHistory}
+                                    dailyStatus={this.props.dailyStatus}/>
                     </div>
                 </div>
             </div>
@@ -112,7 +117,10 @@ class JackpotGame extends BaseComponent {
 
 JackpotGame.propTypes = {
     game: React.PropTypes.object,
-    isHistory: React.PropTypes.bool
+    isHistory: React.PropTypes.bool,
+    dailyStatus: React.PropTypes.object
 };
 
-JackpotGame.defaultProps = {};
+JackpotGame.defaultProps = {
+    minBetAmount: 10
+};

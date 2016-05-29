@@ -14,6 +14,13 @@ class JackpotGameStore extends GameStore {
         return this.game;
     }
 
+    getDailyStatus() {
+        return {
+            lastWinner: this.lastWinner,
+            todaysLucker: this.todaysLucker
+        }
+    }
+
     getHistory() {
         return this.historyGames;
     }
@@ -60,6 +67,8 @@ class JackpotGameStore extends GameStore {
         };
 
         this.historyGames = [];
+        this.lastWinner = {};
+        this.todaysLucker = {};
     }
 
     emitChange() {
@@ -153,7 +162,7 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
 
             jackpotGameStoreInstance.game.timerStarted = false;
             jackpotGameStoreInstance.historyGames.push(Object.assign({}, jackpotGameStoreInstance.game));
-
+            jackpotGameStoreInstance.lastWinner = Object.assign({}, action.winner);
             jackpotGameStoreInstance.emitChange();
             break;
         case ActionTypes.JACKPOT_NEW_ROUND:
@@ -189,6 +198,13 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
 
             jackpotGameStoreInstance.emitTimerChange();
             // jackpotGameStoreInstance.emitChange();
+            break;
+
+        case ActionTypes.JACKPOT_UPDATE_DAILY_STATUS:
+            jackpotGameStoreInstance.lastWinner = Object.assign({}, action.status.lastRound);
+            jackpotGameStoreInstance.todaysLucker = Object.assign({}, action.status.lucker);
+
+            jackpotGameStoreInstance.emitChange();
             break;
 
         default:

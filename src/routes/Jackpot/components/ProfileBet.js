@@ -68,21 +68,25 @@ class ProfileBet extends BaseComponent {
             prevGameContainer = (
                 <div className="prev-game-info-container">
                     <div className="tcenter">
-                        <CommonComponents.SvgIcon iconName={this.props.icon}/>
+                        <img className="status-img" src={this.props.dailyStatus.lastWinner.icon}/>
                         <span >
                             <div className="label">
                                 LAST WINNER
                             </div>
-                            <div>57%/45%</div>
+                            <div>{this.props.dailyStatus.lastWinner.jackpot}/
+                                {parseFloat(this.props.dailyStatus.lastWinner.percent) * 100}%
+                            </div>
                         </span>
                     </div>
                     <div className="tcenter">
-                        <CommonComponents.SvgIcon iconName={this.props.icon}/>
+                        <img className="status-img" src={this.props.dailyStatus.todaysLucker.icon}/>
                         <span>
                             <div className="label">
                                 TODAYS LUCKER
                             </div>
-                            <div>355%/4%</div>
+                            <div>{this.props.dailyStatus.todaysLucker.jackpot}/
+                                {parseFloat(this.props.dailyStatus.todaysLucker.percent) * 100}%
+                            </div>
                         </span>
                     </div>
                 </div>
@@ -149,5 +153,6 @@ ProfileBet.defaultProps = {
 };
 ProfileBet.propTypes = {
     game: React.PropTypes.object,
-    isHistory: React.PropTypes.bool
+    isHistory: React.PropTypes.bool,
+    dailyStatus: React.PropTypes.object
 };

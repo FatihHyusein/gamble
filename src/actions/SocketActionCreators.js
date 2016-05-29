@@ -86,10 +86,7 @@ class Socket {
     send(message) {
 
         if (!this.opened) {
-            ToastMessagesActionCreators.setNewToasts([{
-                type: "error",
-                text: "Socket is not opened"
-            }]);
+
 
             clearInterval(this.timerSend);
             if (message.ping) {
@@ -98,6 +95,11 @@ class Socket {
 
             if (message.sendOnConnect) {
                 this._pending_messages.push(message);
+            }else{
+                ToastMessagesActionCreators.setNewToasts([{
+                    type: "error",
+                    text: "Socket is not opened"
+                }]);
             }
             return;
         }
