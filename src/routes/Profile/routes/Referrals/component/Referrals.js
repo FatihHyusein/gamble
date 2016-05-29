@@ -53,19 +53,19 @@ class Referrals extends BaseComponent {
     render() {
         var referralRows = this.state.referrals.map((row, idx)=> {
             return (
-                <tr key={idx}>
-                    <td>
+                <tr key={idx} className={`${idx%2==0?'even':'odd'}`}>
+                    <td className="name-col">
                         {row.name}
                     </td>
-                    <td>
+                    <td className="date-col">
                         {row.date_joined}
                     </td>
 
-                    <td>
+                    <td className="today-col">
                         {parseInt(row.wonToday)}
                     </td>
-                    <td>
-                        {parseInt(row.overall)}
+                    <td className="overall-col">
+                        {parseInt(row.overAll)}
                     </td>
                 </tr>
             )
@@ -120,7 +120,7 @@ class Referrals extends BaseComponent {
                         </tr>
                         </tfoot>
                         <tbody>
-                            {referralRows}
+                        {referralRows}
                         </tbody>
                     </table>
                 </div>

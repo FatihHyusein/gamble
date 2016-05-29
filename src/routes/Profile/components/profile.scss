@@ -87,6 +87,59 @@
     .muffin-levels-container {
         text-align: center;
     }
+
+    .referrals-container {
+        margin-top: 70px;
+        table {
+            min-width: 320px;
+            max-width: 1200px;
+            margin: auto;
+            font-size: 150%;
+            text-align: center;
+            border: 1px solid $gray-blue-border;
+
+            thead {
+                th {
+                    text-align: center;
+                    border: 1px solid $gray-blue-border;
+                    padding: 0 7px;
+                }
+            }
+            tbody {
+                border: 1px solid $gray-blue-border;
+                tr {
+                    background-color: rgba($gray-blue, 0.6);
+                    color: rgba($white, 0.6);
+                    td {
+                        padding: 0 7px;
+                        border-right: 1px solid $gray-blue-border;
+                        border-left: 1px solid $gray-blue-border;
+
+                        &.name-col,
+                        &.date-col {
+                            width: 20vw;
+                        }
+
+                        &.today-col,
+                        &.overall-col {
+                            width: 10vw;
+                        }
+                    }
+                    &.even {
+                        background-color: rgba($black, 0.6);
+                    }
+
+                    &:hover {
+                        color: rgba($white, 0.9);
+                        background-color: rgba($gray-blue, 1);
+                        &.even {
+                            background-color: rgba($black, 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .muffin-lvl {

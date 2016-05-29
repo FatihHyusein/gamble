@@ -168,8 +168,6 @@ userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
             break;
 
         case ActionTypes.USER_DATA_UPDATE_REFERRALS:
-            debugger;
-
             if (action.referrals && action.referrals.length) {
                 userDataStoreInstance.referralsArray = [...action.referrals];
                 userDataStoreInstance.emitReferalsArrayChange();
