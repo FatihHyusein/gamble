@@ -6,8 +6,9 @@
         min-height: 47vh;
         text-align: center;
         background: url('staticFiles/images/bg.jpg') no-repeat;
-        background-size: cover;
         border-bottom: 5px solid $gray;
+        background-attachment: fixed;
+        background-position-y: -50px;
 
         @media screen and (max-width: 750px) {
             @include flex-direction(column);

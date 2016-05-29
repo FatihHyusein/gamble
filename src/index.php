@@ -20,7 +20,7 @@ session_start();
     <link rel="stylesheet" href="bundle.css" type="text/css"/>
 </noscript>
 <script>
-    var token = "<?php echo $_SESSION['token'] ? $_SESSION['token'] : '06c7567a20d92c102fc4f98e9a42b429'?>";
+    var token = "<?php echo $_SESSION['token'] ? $_SESSION['token'] : ''?>";
     var failMessage = '<?php echo $_SESSION['error']; $_SESSION['error'] = ''?>';
 
     var loadDeferredStyles = function() {
