@@ -70,7 +70,7 @@ Footer.defaultProps = {
             icon: 'fb'
         },
         {
-            url: 'http://prntscr.com/b9vum8',
+            url: 'https://www.youtube.com/channel/UCz-Y14QAnMTHickMe76N6Gw',
             icon: 'yt'
         }
     ]

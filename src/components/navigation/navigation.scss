@@ -60,12 +60,12 @@ nav {
                 @include flexbox();
                 @include flex-direction(column);
                 @include justify-content(space-around);
-                height: calc(100vh - 100px);
+                height: calc(100vh - 70px);
                 position: absolute;
                 right: 0;
                 left: 150%;
                 padding: 10px;
-                top: 100px;
+                top: $nav-height;
                 background: $gray-blue;
                 a {
                     display: block;
