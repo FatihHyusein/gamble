@@ -79,7 +79,7 @@
                     @include addTransition();
 
                     &:hover {
-                        transform: scale(1.2);
+                        @include transform(scale(1.2));
                         color: $dark-gray;
                         .svg-icon {
                             fill: $dark-gray !important;
@@ -125,8 +125,8 @@
     opacity: 0.01;
     &.winner-animate-enter-active {
         opacity: 1;
-        transform: rotateY(-90deg);
-        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        @include transform(rotateY(-90deg));
+        @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
     }
 }
 
@@ -134,19 +134,19 @@
     opacity: 1;
     &.winner-animate-leave-active {
         opacity: 0.01;
-        transform: rotateY(-90deg);
-        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        @include transform(rotateY(-90deg));
+        @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
     }
 }
 
 .winner-animate-appear {
     opacity: 0;
-    transform: rotateY(-90deg);
-    transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+    @include transform(rotateY(-90deg));
+    @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
     &.winner-animate-appear-active {
         opacity: 1;
-        transform: none;
-        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        @include transform(none);
+        @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
     }
 }
 

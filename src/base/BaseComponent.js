@@ -1,7 +1,6 @@
 import React, {Component}from 'react';
 import {render} from 'react-dom'
 import {Router, browserHistory} from 'react-router'
-import $ from 'jquery';
 import SendViaSocket from '../actions/SocketActionCreators';
 import UserDataStore from '../stores/UserDataStore';
 import d3 from 'd3';

@@ -1,13 +1,12 @@
+import 'babel-polyfill';
 import React, {Component}from 'react';
 import {render} from 'react-dom'
-import {Router, browserHistory, Redirect, Compo} from 'react-router'
-import $ from 'jquery';
+import {Router, browserHistory} from 'react-router'
 import CommonComponents from './common/components';
 
 window.React = React; // export for http://fb.me/react-devtools
 window.Component = Component;
 window.CommonComponents = CommonComponents;
-window.$ = $;
 
 const rootRoute = {
     component: 'div',

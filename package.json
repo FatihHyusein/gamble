@@ -9,7 +9,6 @@
     "flux": "^2.1.1",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^2.0.0",
-    "jquery": "^2.2.3",
     "keymirror": "^0.1.1",
     "react": "^15.0.2",
     "react-addons-css-transition-group": "^15.1.0",

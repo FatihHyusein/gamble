@@ -11,7 +11,7 @@
 .st2,
 .st3 {
     fill: #ffffff !important;
-    transition: all 50ms;
+    @include transition(all 50ms);
     &:hover {
         //fill: yellow !important;
     }
@@ -123,6 +123,15 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
+input[type=number] {
+    appearance: none;
+}
+
+input::-webkit-inner-spin-button {
+    -moz-appearance: none;
+}
+
+
 .muffin-table {
     min-width: 320px;
     max-width: 1200px;
@@ -191,7 +200,7 @@ input::-webkit-inner-spin-button {
         border: 1px solid $dark-gray;
         animation: up 1s;
         animation-iteration-count: infinite;
-        transition: 2s;
+        @include transition(2s);
         border-bottom: none;
         border-right: none;
         animation-timing-function: linear;

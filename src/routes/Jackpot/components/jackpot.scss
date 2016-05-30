@@ -42,28 +42,28 @@
     .history-animate-enter {
         opacity: 0;
         transform: rotateY(-90deg);
-        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
         &.history-animate-enter-active {
             opacity: 1;
-            transform: none;
-            transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+            @include transform(none);
+            @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
         }
     }
     .history-animate-leave {
         opacity: 1;
         &.history-animate-leave-active {
             opacity: 0.01;
-            transition: all 300ms ease-in;
+            @include transition(all 300ms ease-in);
         }
     }
     .history-animate-appear {
         opacity: 0;
-        transform: rotateY(-90deg);
-        transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+        @include transform(rotateY(-90deg));
+        @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
         &.history-animate-appear-active {
             opacity: 1;
-            transform: none;
-            transition: all 0.5s cubic-bezier(.36, -0.64, .34, 1.76);
+            @include transform(none);
+            @include transition(all 0.5s cubic-bezier(.36, -0.64, .34, 1.76));
         }
     }
 }
@@ -194,7 +194,7 @@
 
     .person-animate-enter.person-animate-enter-active {
         opacity: 1;
-        transition: all 500ms ease-in;
+        @include transition(all 500ms ease-in);
     }
 
     .person-animate-leave {
@@ -203,7 +203,7 @@
 
     .person-animate-leave.person-animate-leave-active {
         opacity: 0.01;
-        transition: all 300ms ease-in;
+        @include transition(all 300ms ease-in);
     }
 
     .person-animate-appear {
@@ -212,7 +212,7 @@
 
     .person-animate-appear.person-animate-appear-active {
         opacity: 1;
-        transition: all 0.5s ease-in;
+        @include transition(all 0.5s ease-in);
     }
 }
 
@@ -301,7 +301,7 @@
             img {
                 width: 25px;
                 height: 25px;
-                border-radius: 50%;
+                @include border-radius(50%);
                 border: 2px solid $gray-blue-border;
             }
         }
