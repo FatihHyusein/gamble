@@ -130,8 +130,8 @@ Nav.defaultProps = {
             name: 'Free Muffins'
         },
         {
-            url: '/jackpot',
-            name: 'Jackpot'
+            url: '/ktm',
+            name: 'Kill the muffin'
         },
         {
             url: '/market',

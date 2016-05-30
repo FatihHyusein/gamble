@@ -19,7 +19,7 @@ class ToastMessagesStore extends EventEmitter {
     constructor(props) {
         super(props);
 
-        this.showLoader = false;
+        this.showLoader = 0;
         this.toastMessages = [];
     }
 
@@ -75,7 +75,12 @@ toastMessagesStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> 
             break;
 
         case ActionTypes.UPDATE_LOADER:
-            toastMessagesStoreInstance.showLoader = action.showLoader;
+            if (action.showLoader === true) {
+                toastMessagesStoreInstance.showLoader++;
+            }
+            else{
+                toastMessagesStoreInstance.showLoader--;
+            }
 
             toastMessagesStoreInstance.emitChange();
             break;

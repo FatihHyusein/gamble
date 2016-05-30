@@ -17,12 +17,12 @@ class Loader extends BaseComponent {
 
 
     render() {
-        if (this.state.showLoader === false) {
+        if (!this.state.showLoader) {
             return (<div></div>);
         }
-
+        var longRequestsLoader = (this.state.showLoader > 1) ? 'long' : '';
         return (
-            <div className="loader">
+            <div className={`loader ${longRequestsLoader}`}>
                 <div id="img1" class="img">
                 </div>
                 <div id="img2" class="img"></div>

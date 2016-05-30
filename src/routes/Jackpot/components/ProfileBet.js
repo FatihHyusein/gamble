@@ -116,7 +116,7 @@ class ProfileBet extends BaseComponent {
                     <div className="game-info">
                         <div>
                           <span className="label">
-                                <CommonComponents.SvgIcon iconName="cup-jackpot"/> JACKPOT
+                                <CommonComponents.SvgIcon iconName="cup-jackpot"/> BOUNTY
                             </span>
                             <span>
                                 {this.props.game.jackpot}

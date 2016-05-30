@@ -199,7 +199,15 @@ input::-webkit-inner-spin-button {
         margin-top: -70px;
         left: 50%;
         top: 50%;
+    }
 
+    &.long {
+        div {
+            border-radius: 100%;
+            border: 1px solid $red;
+            border-bottom: none;
+            border-right: none;
+        }
     }
 
     @keyframes up {

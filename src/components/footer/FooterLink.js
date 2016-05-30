@@ -7,10 +7,16 @@ class FooterLink extends Component {
     }
 
     render() {
-        if (this.props.icon) {
+        if (this.props.href) {
             return (
-
-                <Link {...this.props} className="footer-link"><CommonComponents.SvgIcon iconName={this.props.icon}/></Link>
+                <a {...this.props} target="blank" className="footer-link"><CommonComponents.SvgIcon
+                    iconName={this.props.icon}/></a>
+            );
+        }
+        else if (this.props.icon) {
+            return (
+                <Link {...this.props} className="footer-link"><CommonComponents.SvgIcon
+                    iconName={this.props.icon}/></Link>
             );
         }
 

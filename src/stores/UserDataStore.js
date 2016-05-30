@@ -26,24 +26,6 @@ class UserDataStore extends EventEmitter {
     }
 
     getUserProp(propName) {
-        if (!this[propName]) {
-            this[propName] = localStorage.getItem(propName);
-
-            switch (this[propName]) {
-                case "undefined":
-                    this[propName] = undefined;
-                    break;
-                case "null":
-                    this[propName] = null;
-                    break;
-                case "0":
-                    this[propName] = 0;
-                    break;
-                default:
-                    break;
-            }
-        }
-
         return this[propName];
     }
 
@@ -64,7 +46,7 @@ class UserDataStore extends EventEmitter {
     }
 
     getToken() {
-        return this.getUserProp('token');
+        return token;
     }
 
     getMuffins() {
@@ -153,13 +135,11 @@ let userDataStoreInstance = new UserDataStore();
 userDataStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
     function setProp(propName, obj) {
         userDataStoreInstance[propName] = obj;
-        localStorage.setItem(propName, userDataStoreInstance[propName]);
     }
 
     switch (action.type) {
         case ActionTypes.USER_DATA_UPDATE_TOKEN:
             userDataStoreInstance.token = action.token;
-            localStorage.setItem('token', userDataStoreInstance.token);
             userDataStoreInstance.emitChange();
             break;
 

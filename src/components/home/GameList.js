@@ -25,9 +25,9 @@ class GameList extends Component {
 GameList.defaultProps = {
     games: [
         {
-            url: '/jackpot',
-            icon: 'jackpot',
-            header: 'JACKPOT',
+            url: '/ktm',
+            icon: 'headshot',
+            header: 'KILL THE MUFFIN',
             description: 'Bet your muffins against other players. The more you bet the more you get.',
             pointer: 'pointer'
         },

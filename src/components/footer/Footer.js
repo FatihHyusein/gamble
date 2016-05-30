@@ -17,7 +17,7 @@ class Footer extends Component {
 
         var socialLinks = this.props.socialLinks.map(
             (currentLink)=>
-                <FooterLink key={currentLink.url} to={currentLink.url} icon={currentLink.icon}/>
+                <FooterLink key={currentLink.url} href={currentLink.url} icon={currentLink.icon}/>
         );
 
         return (
@@ -62,15 +62,15 @@ Footer.defaultProps = {
     ],
     socialLinks: [
         {
-            url: '/twitter',
+            url: 'https://twitter.com/csgomuffin',
             icon: 'twitter'
         },
         {
-            url: '/fb',
+            url: 'https://www.facebook.com/csgomuffin/',
             icon: 'fb'
         },
         {
-            url: '/yt',
+            url: 'http://prntscr.com/b9vum8',
             icon: 'yt'
         }
     ]

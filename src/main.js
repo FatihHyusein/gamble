@@ -9,13 +9,6 @@ window.Component = Component;
 window.CommonComponents = CommonComponents;
 window.$ = $;
 
-if (typeof token === 'undefined' || token === null) {
-    window.token = localStorage.getItem('token');
-}
-else {
-    localStorage.setItem('token', token);
-}
-
 const rootRoute = {
     component: 'div',
     childRoutes: [{

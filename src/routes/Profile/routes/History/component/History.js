@@ -74,7 +74,7 @@ class History extends BaseComponent {
                         <thead>
                         <tr>
                             <th>
-                                JACKPOT
+                                BOUNTY
                             </th>
                             <th>
                                 BET AMOUNT
