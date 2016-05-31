@@ -35,7 +35,7 @@ class Socket {
             this._pending_messages = [];
         }
         this.sock = sock;
-        this.pingInterval = 5000;
+        this.pingInterval = 15000;
         this.initInterval = 20000;
         this.stopPing = 0;
 

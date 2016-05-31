@@ -12,7 +12,7 @@ class UserDataStore extends EventEmitter {
         super(props);
 
         this.token = "";
-        this.muffins = 50;
+        this.muffins = 0;
         this.name = "";
         this.profileIcon = "";
 

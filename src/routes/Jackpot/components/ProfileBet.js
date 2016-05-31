@@ -74,7 +74,7 @@ class ProfileBet extends BaseComponent {
                                 LAST WINNER
                             </div>
                             <div>{this.props.dailyStatus.lastWinner.jackpot}/
-                                {parseFloat(this.props.dailyStatus.lastWinner.percent) * 100}%
+                                {Math.round(parseFloat(this.props.dailyStatus.lastWinner.percent) * 100)}%
                             </div>
                         </span>
                     </div>
@@ -85,7 +85,7 @@ class ProfileBet extends BaseComponent {
                                 TODAYS LUCKER
                             </div>
                             <div>{this.props.dailyStatus.todaysLucker.jackpot}/
-                                {parseFloat(this.props.dailyStatus.todaysLucker.percent) * 100}%
+                                {Math.round(parseFloat(this.props.dailyStatus.todaysLucker.percent) * 100)}%
                             </div>
                         </span>
                     </div>
