@@ -186,8 +186,42 @@ body {
     @include transition(all 500ms ease-out 50ms);
     min-height: 30vh;
     text-align: center;
-    background: url("staticFiles/images/bg.jpg") no-repeat;
+
     background-size: cover;
+
+    @media only screen and (max-device-width: 480px) {
+        background: url("staticFiles/images/bg480.jpg") no-repeat;
+        background-size: cover;
+    }
+
+    @media only screen and (min-device-width: 480px) {
+        background: url("staticFiles/images/770.jpg") no-repeat;
+        background-size: cover;
+    }
+
+    @media only screen and (min-device-width: 768px) {
+        background: url("staticFiles/images/bg960.jpg") no-repeat;
+        background-size: cover;
+    }
+
+    @media only screen and (min-width: 960px) {
+        background: url("staticFiles/images/bg1450.jpg") no-repeat;
+        background-attachment: fixed;
+    }
+    @media only screen and (min-width: 1440px) {
+        background: url("staticFiles/images/bgMedium.jpg") no-repeat;
+        background-size: 100%;
+        background-attachment: fixed;
+    }
+    @media only screen and (min-width: 1919px) {
+        background: url("staticFiles/images/bgBig.jpg") no-repeat;
+        background-size: 100%;
+        background-position-y: -100%;
+        background-attachment: fixed;
+    }
+
+
+
     &:before {
         content: 'We will be live soon!';
         border: 2px solid $red;

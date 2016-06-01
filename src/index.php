@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-WCJ7WR');</script>
 <!-- End Google Tag Manager -->
 
-<script src="../bundle.js" async></script>
+<script src="../min/bundle.js" async></script>
 <noscript id="deferred-styles">
     <link rel="stylesheet" href="../bundle.css" type="text/css"/>
 </noscript>
