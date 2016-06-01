@@ -5,7 +5,6 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="/public/"/>
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="msapplication-square150x150logo" content="staticFiles/icons/muffin.png"/>
     <meta charset="UTF-8">
@@ -22,9 +21,20 @@ session_start();
 <div id="app"></div>
 
 </body>
-<script src="min/bundle.js" async></script>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WCJ7WR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WCJ7WR');</script>
+<!-- End Google Tag Manager -->
+
+<script src="../bundle.js" async></script>
 <noscript id="deferred-styles">
-    <link rel="stylesheet" href="bundle.css" type="text/css"/>
+    <link rel="stylesheet" href="../bundle.css" type="text/css"/>
 </noscript>
 <script>
     var token = "<?php echo $_SESSION['token'] ? $_SESSION['token'] : ''?>";
