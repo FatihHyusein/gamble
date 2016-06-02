@@ -88,8 +88,12 @@ class Timer extends BaseComponent {
 
 
     startTimer() {
+        if (this.timerInterval) {
+            clearTimeout(this.timerInterval);
+        }
         this.timerInterval = setInterval(()=> {
-            console.warn('TIMEEEEEEER');
+
+            console.warn(this.state.remainTime);
             if (this.state.remainTime > 0) {
                 GameActionCreators.updateTimer(this.state.remainTime - 1);
             }

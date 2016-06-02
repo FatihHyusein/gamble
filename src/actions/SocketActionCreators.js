@@ -2,6 +2,7 @@ import UserDataSore from '../stores/UserDataStore';
 import ToastMessagesActionCreators from './ToastMessagesActionCreators';
 import GameActionCreators from './games/GameActionCreators';
 import UserDataActionsCreators from './UserDataActionsCreators';
+import PopupMessagesActionCreators from './PopupMessagesActionCreators';
 
 class Socket {
     constructor(domain, port, secure, isDebugMode) {
@@ -98,7 +99,7 @@ class Socket {
             } else {
                 ToastMessagesActionCreators.setNewToasts([{
                     type: "error",
-                    text: "Socket is not opened"
+                    text: "The server can not be reached"
                 }]);
             }
             return;
@@ -175,6 +176,11 @@ class Socket {
 
         if (parsedMessage.toasts && parsedMessage.toasts.length > 0) {
             ToastMessagesActionCreators.setNewToasts(parsedMessage.toasts);
+        }
+        if(parsedMessage.message) {
+            PopupMessagesActionCreators.setNewPopupMessage({
+                popupMessage: parsedMessage.message
+            });
         }
 
         switch (parsedMessage.type) {
@@ -262,7 +268,7 @@ export default (function () {
     var socketInstance;
 
     function createInstance() {
-        return new Socket('', 2000, false, false);
+        return new Socket('', 2000, false, true);
     }
 
     return (function () {
