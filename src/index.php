@@ -16,6 +16,7 @@ session_start();
     <title>CSGO Muffin</title>
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="dns-prefetch" href="/api/"/>
+    <base href="/">
 </head>
 <body>
 
