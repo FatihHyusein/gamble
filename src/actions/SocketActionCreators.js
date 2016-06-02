@@ -95,7 +95,7 @@ class Socket {
 
             if (message.sendOnConnect) {
                 this._pending_messages.push(message);
-            }else{
+            } else {
                 ToastMessagesActionCreators.setNewToasts([{
                     type: "error",
                     text: "Socket is not opened"
@@ -262,7 +262,7 @@ export default (function () {
     var socketInstance;
 
     function createInstance() {
-        return new Socket('87.120.75.34', 2000, false, true);
+        return new Socket('', 2000, false, false);
     }
 
     return (function () {

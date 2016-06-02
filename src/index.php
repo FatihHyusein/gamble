@@ -15,7 +15,7 @@ session_start();
     id="view-handler"/>
     <title>CSGO Muffin</title>
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="dns-prefetch" href="http://87.120.75.34/api/"/>
+    <link rel="dns-prefetch" href="/api/"/>
 </head>
 <body>
 <div id="app"></div>

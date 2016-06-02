@@ -16,7 +16,7 @@ var uglify = require('gulp-uglify');
 
 const config = {
     port: 3000,
-    devBaseUrl: 'http://localhost',
+    devBaseUrl: 'http://www.csgomuffin.com/',
     paths: {
         staticFiles: './staticFiles/**/*.*',
         html: './src/*.php',
@@ -34,6 +34,10 @@ const config = {
         mainScss: './src/main.scss'
     }
 };
+
+gulp.task('apply-prod-environment', function () {
+    process.env.NODE_ENV = 'production';
+});
 
 //Start a local development server
 gulp.task('connect', function () {
@@ -74,16 +78,14 @@ gulp.task('js', function () {
         .pipe(source('bundle.js'))
 
 
-
-
         .pipe(gulp.dest(config.paths.dist))
 
 
         .pipe(connect.reload());
 });
 
-gulp.task('compress',['js'], function() {
-    return gulp.src(config.paths.dist+'/bundle.js')
+gulp.task('compress', ['js'], function () {
+    return gulp.src(config.paths.dist + '/bundle.js')
         .pipe(uglify())
         .pipe(gulp.dest('min'));
 });
@@ -145,4 +147,6 @@ gulp.task('watch', function () {
     // gulp.watch(config.paths.dist + '/**/*', ['upload']);
 });
 
-gulp.task('default', ['html', 'compress', 'css', 'lint', 'watch']);
+gulp.task('deploy', ['apply-prod-environment', 'html', 'compress', 'css', 'lint']);
+
+gulp.task('default', ['apply-prod-environment', 'html', 'compress', 'css', 'lint', 'watch']);
