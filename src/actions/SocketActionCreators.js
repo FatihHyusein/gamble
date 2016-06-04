@@ -268,7 +268,7 @@ export default (function () {
     var socketInstance;
 
     function createInstance() {
-        return new Socket('', 2000, false, true);
+        return new Socket('', 2000, false, false);
     }
 
     return (function () {

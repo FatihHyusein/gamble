@@ -59,28 +59,51 @@ class Referrals extends BaseComponent {
     }
 
     render() {
-        var referralRows = this.state.referrals.map((row, idx)=> {
-            return (
-                <tr key={idx}>
-                    <td className="name-col">
-                        {row.name}
-                    </td>
-                    <td className="date-col">
-                        {row.date_joined}
-                    </td>
+        var referralRows;
+        if (this.state.referrals.length > 0) {
+            referralRows = this.state.referrals.map((row, idx)=> {
+                return (
+                    <tr key={idx}>
+                        <td className="name-col">
+                            {row.name}
+                        </td>
+                        <td className="date-col">
+                            {row.date_joined}
+                        </td>
 
-                    <td className="today-col">
-                        {parseInt(row.wonToday)}
-                    </td>
-                    <td className="overall-col">
-                        {parseInt(row.overAll)}
+                        <td className="today-col">
+                            {parseInt(row.wonToday)}
+                        </td>
+                        <td className="overall-col">
+                            {parseInt(row.overAll)}
+                        </td>
+                    </tr>
+                )
+            });
+        }
+        else {
+            referralRows = (
+                <tr>
+                    <td colSpan="4">
+                        You still don't have referrals.
                     </td>
                 </tr>
-            )
-        });
+            );
+        }
+
+        var calc;
+        if (this.props.levels[+this.state.profile.nextMuffinChefLevelLevel] && this.props.levels[+this.state.profile.nextMuffinChefLevelLevel].calc) {
+            calc = (
+                <div className="calculation tcenter">
+                    <h3>Why to upgrade?</h3>
+                    <p>{this.props.levels[+this.state.profile.nextMuffinChefLevelLevel].calc}</p>
+                </div>
+            );
+        }
 
         return (
             <div className="referrals-page">
+                {calc}
                 <div className="muffin-levels-container">
                     <MuffinCheffLvl
                         isMyLvl={true}
@@ -159,16 +182,38 @@ class Referrals extends BaseComponent {
 
 Referrals.defaultProps = {
     currentLevel: {
-        description: "Upgrade to next lvl"
+        description: "Check out the next level next to you!"
     },
     levels: [
         {description: "You have reached the max level for now"},
-        {description: "You earn 2% of your referral's win!"},
-        {description: "SOON!!!"},
-        {description: "SOON!!!"},
-        {description: "SOON!!!"},
-        {description: "SOON!!!"},
-        {description: "SOON!!!"}
+        {
+            description: "You earn 2% of your referral's win and once 10M for every referral entered your code!",
+            calc: 'With 100 referrals playing daily and winning average 1000M: 10*100 = 1000M Once and 100*1000*30*0.02 = 60000M average monthly'
+        },
+        {
+            description: "You earn once 10M for every referral entered your code!, 2% of your referral's win and 1% of your referral's referral win!",
+            calc: 'You have for example 100 referrals, with their referrals count average 100: You earn once 100*10 = 1000M If they play daily and win average 1000M you can earn ' +
+            'average (100*1000*30*0.02) + (100*100*1000*30*0.01) = 60 000M + 3 000 000M = 3 060 000M  average monthly!!!'
+        },
+        {
+            description: "You earn once 10M for every referral, 2% of your referral's win, 1% of your referral's referral win and 0.5% of his referral's win!",
+            calc: 'You have for example 100 referrals, with their referrals count average 100 and their average referrals count 100: You earn once 100*10 = 1000M. ' +
+            ' If they play daily and win average 1000M you can earn ' +
+            'average (100*1000*30*0.02) + (100*100*1000*30*0.01) + (100*100*100*1000*30*0.005) = 60 000M + 3 000 000M + 150 000 000M = 153 060 000M  average monthly!!!'
+        },
+        {
+            description: "New Deals coming soon!!!",
+            calc: "SOON!"
+        },
+
+        {
+            description: "New Deals coming soon!!!",
+            calc: "SOON!"
+        },
+        {
+            description: "New Deals coming soon!!!",
+            calc: "SOON!"
+        },
     ],
     itemsPerPage: 50
 };
