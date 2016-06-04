@@ -36,7 +36,7 @@ class Home extends Component {
             <div id="home">
                 <div className="top-container">
                     <div className="header-container">
-                        <h1>the only place where you bet muffins and win cd:go skins</h1>
+                        <h1>the only place where you bet muffins and win cs:go skins</h1>
                     </div>
                     <div className="wins-container">
                         <ReactCSSTransitionGroup transitionName="winner-animate"
