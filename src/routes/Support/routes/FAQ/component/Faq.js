@@ -57,8 +57,8 @@ class Faq extends BaseComponent {
                             * <b>2% of his win in our games</b>
                         </li>
                     </ul>
-                    * One simple calculation: if you have <b>100</b> referrals you earn <b>100*20=2000 <span>
-                            <CommonComponents.SvgIcon className="currency-icon" iconName="muffin-currency"/></span></b>
+                    * One simple calculation: if you have <b>100</b> referrals you earn <b>100*10=1000 <span>
+                                <CommonComponents.SvgIcon className="currency-icon" iconName="muffin-currency"/></span></b>
                     .
                     If daily a
                     referral wins average <b>1000 <span>
