@@ -26,7 +26,7 @@ GameList.defaultProps = {
     games: [
         {
             url: '/ktm',
-            icon: 'headshot',
+            icon: 'ktm',
             header: 'KILL THE MUFFIN',
             description: 'Bet your muffins against other players. The more you bet the more you get.',
             pointer: 'pointer'

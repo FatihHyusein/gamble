@@ -4,6 +4,7 @@
         @include justify-content(center);
         @include align-items(center);
         min-height: 47vh;
+        margin-bottom: -$nav-height;
         text-align: center;
         border-bottom: 5px solid $gray;
         @media only screen and (min-width: 1919px) {

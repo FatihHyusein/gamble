@@ -183,8 +183,10 @@ body {
 
 .top-container {
     position: relative;
+    top: -$nav-height;
+    padding-top: $nav-height;
     @include transition(all 500ms ease-out 50ms);
-    min-height: 30vh;
+    min-height: calc(30vh + 70px);
     text-align: center;
 
     background-size: cover;
@@ -219,8 +221,6 @@ body {
         background-position-y: -100%;
         background-attachment: fixed;
     }
-
-
 
     &:before {
         //content: 'We will be live soon!';

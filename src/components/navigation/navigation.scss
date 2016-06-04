@@ -9,6 +9,7 @@ nav {
     background-color: rgba($gray-blue, 1);
     border-bottom: 3px solid $gray;
 
+    @include bg-gradient(rgba($gray-blue, 1), 0%, rgba($gray-blue, 1), 0%, rgba($gray-blue, 0.7), 100%);
     @media screen and (max-width: 750px) {
         @include justify-content(space-around);
     }
