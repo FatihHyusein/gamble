@@ -14,6 +14,19 @@
             @include flex-direction(column);
         }
 
+        @media only screen and (min-width: 960px) {
+            background: url("staticFiles/images/bg960.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        @media only screen and (min-width: 1440px) {
+            background: url("staticFiles/images/bg960.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        @media only screen and (min-width: 1919px) {
+            background: url("staticFiles/images/bgBig.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+
         .header-container {
             width: 50%;
             h1 {
