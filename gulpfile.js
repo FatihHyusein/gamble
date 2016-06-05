@@ -147,4 +147,5 @@ gulp.task('watch', function () {
     // gulp.watch(config.paths.dist + '/**/*', ['upload']);
 });
 
+gulp.task('deploy', ['apply-prod-environment', 'html', 'js', 'css', 'lint']);
 gulp.task('default', ['html', 'js', 'css', 'lint', 'watch']);
