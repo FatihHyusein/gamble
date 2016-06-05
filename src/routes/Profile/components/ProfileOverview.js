@@ -98,6 +98,16 @@ class ProfileOverview extends BaseComponent {
                                 Change Trade URL
                             </button>
                         </div>
+                        <div className="tcenter">
+                            To find your steam trade url click here <br/>
+                            <a className="c-green"
+                               target="_blank"
+                               href="https://steamcommunity.com/id/me/tradeoffers/privacy">
+                                https://steamcommunity.com/id/me/tradeoffers/privacy
+                            </a><br/>
+                            Or sign in into your steam/inventory/trade offers/who can send me trade offers. You will
+                            find your trade URL on the bottom of the page.
+                        </div>
                     </div>
                     {parentRefInput}
                 </div>

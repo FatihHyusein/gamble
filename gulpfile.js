@@ -84,7 +84,7 @@ gulp.task('js', function () {
         .pipe(connect.reload());
 });
 
-gulp.task('compress', ['js'], function () {
+gulp.task('compress', function () {
     return gulp.src(config.paths.dist + '/bundle.js')
         .pipe(uglify())
         .pipe(gulp.dest('min'));
@@ -141,12 +141,10 @@ gulp.task('lint', function () {
 //watch for changes and update the page
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.js, ['compress', 'lint']);
+    gulp.watch(config.paths.js, ['js', 'lint']);
     gulp.watch(config.paths.scss, ['css']);
     // gulp.watch(config.paths.staticFiles, ['staticFiles']);
     // gulp.watch(config.paths.dist + '/**/*', ['upload']);
 });
 
-gulp.task('deploy', ['apply-prod-environment', 'html', 'compress', 'css', 'lint']);
-
-gulp.task('default', ['apply-prod-environment', 'html', 'compress', 'css', 'lint', 'watch']);
+gulp.task('default', ['apply-prod-environment', 'html', 'js', 'css', 'lint', 'watch']);
