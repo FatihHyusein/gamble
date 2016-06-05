@@ -189,37 +189,22 @@ body {
     min-height: calc(30vh + 70px);
     text-align: center;
 
+    background-image: url("staticFiles/images/bg900x400.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
 
-    @media only screen and (max-device-width: 480px) {
-        background: url("staticFiles/images/bg480.jpg") no-repeat;
+    @media only screen and (max-width: 450px) {
         background-size: cover;
     }
 
-    @media only screen and (min-device-width: 480px) {
-        background: url("staticFiles/images/770.jpg") no-repeat;
-        background-size: cover;
+    @media only screen and (min-width: 900px) {
+        background-image: url("staticFiles/images/bg1911x460.jpg");
     }
-
-    @media only screen and (min-device-width: 768px) {
-        background: url("staticFiles/images/bg960.jpg") no-repeat;
-        background-size: cover;
+    @media only screen and (min-width: 1911px) {
+        background-image: url("staticFiles/images/bg2500x602.jpg");
     }
-
-    @media only screen and (min-width: 960px) {
-        background: url("staticFiles/images/bg1450.jpg") no-repeat;
-        background-attachment: fixed;
-    }
-    @media only screen and (min-width: 1440px) {
-        background: url("staticFiles/images/bgMedium.jpg") no-repeat;
-        background-size: 100%;
-        background-attachment: fixed;
-    }
-    @media only screen and (min-width: 1919px) {
-        background: url("staticFiles/images/bgBig.jpg") no-repeat;
-        background-size: 100%;
-        background-position-y: -100%;
-        background-attachment: fixed;
+    @media only screen and (min-width: 2500px) {
+        background-image: url("staticFiles/images/bg4k.jpg");
     }
 
     &:before {
