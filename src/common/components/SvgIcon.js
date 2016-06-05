@@ -32,9 +32,11 @@ class SvgIcon extends BaseComponent {
             d3.xml(iconUrl, "image/svg+xml", (error, xml) => {
                 // if (error) throw error;
                 if (xml && xml.documentElement) {
-                    this.setState({iconData: xml.documentElement.outerHTML});
+                    var xmlSerializer = new XMLSerializer();
+                    var svgString = xmlSerializer.serializeToString(xml.documentElement);
 
-                    SvgIconsActionCreators.setNewIcon(iconName, xml.documentElement.outerHTML);
+                    this.setState({iconData: svgString});
+                    SvgIconsActionCreators.setNewIcon(iconName, svgString);
                 }
             });
         }

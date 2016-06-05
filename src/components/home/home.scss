@@ -6,7 +6,7 @@
         min-height: 47vh;
         margin-bottom: -$nav-height;
         text-align: center;
-        border-bottom: 5px solid $gray;
+        border-bottom: 2px solid $black-border;
 
         @media screen and (max-width: 750px) {
             @include flex-direction(column);

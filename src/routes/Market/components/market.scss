@@ -48,7 +48,7 @@
         vertical-align: middle;
         font-weight: 700;
         @media screen and (max-width: 650px) {
-           display: block;
+            display: block;
         }
     }
     h1 {
@@ -135,13 +135,13 @@
     text-align: center;
     cursor: pointer;
     background-color: rgba($dark-blue, 0.7);
-    border: 3px solid rgba($gray, 0.7);
+    border: 3px solid rgba($black-border, 0.7);
 
     .description {
-        padding: 5px;;
-        border-color: 3px solid rgba($gray, 0.7);
+        padding: 5px;
         border-top: 3px solid;
         border-bottom: 3px solid;
+        border-color: rgba($black-border, 0.7);
     }
     .price-container {
         @include flexbox();
@@ -162,7 +162,7 @@
         background-color: rgba($dark-blue, 1);
         border: 3px solid rgba($gray, 1);
         .description {
-            border-color: 3px solid rgba($gray, 1);
+            border-color: rgba($gray, 1);
         }
     }
 }
