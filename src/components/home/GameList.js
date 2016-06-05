@@ -31,18 +31,18 @@ GameList.defaultProps = {
             description: 'Bet your muffins against other players. The more you bet the more you get.',
             pointer: 'pointer'
         },
-        {
-            url: '',
-            icon: 'coinflip',
-            header: 'COIN FLIP',
-            description: 'Play agains other players with a fixed amount of muffins. Chances of winning are 50/50'
-        },
-        {
-            url: '',
-            icon: 'roulette',
-            header: 'COMING SOON',
-            description: ''
-        },
+        // {
+        //     url: '',
+        //     icon: 'coinflip',
+        //     header: 'COIN FLIP',
+        //     description: 'Play agains other players with a fixed amount of muffins. Chances of winning are 50/50'
+        // },
+        // {
+        //     url: '',
+        //     icon: 'roulette',
+        //     header: 'COMING SOON',
+        //     description: ''
+        // },
         {
             url: '',
             icon: 'box',

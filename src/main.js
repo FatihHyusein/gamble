@@ -17,8 +17,10 @@ const rootRoute = {
             require('./routes/Jackpot'),
             require('./routes/Market'),
             require('./routes/Deposit'),
+            require('./routes/Partners'),
             require('./routes/Support'),
             require('./routes/Profile'),
+            require('./routes/MuffinChef'),
             require('./routes/RedirectRoute')
         ]
     }]

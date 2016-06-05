@@ -94,6 +94,8 @@ ul {
 @import "routes/Jackpot/components/jackpot";
 @import "routes/Support/components/support";
 @import "routes/Profile/components/profile";
+@import "routes/Partners/components/partners.scss";
+@import "routes/MuffinChef/components/muffinChef.scss";
 
 body {
     background: $black;
@@ -129,7 +131,8 @@ body {
 .c-green {
     color: $green;
 }
-a.c-green{
+
+a.c-green {
     color: $green;
 }
 

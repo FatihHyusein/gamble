@@ -93,12 +93,11 @@ class Timer extends BaseComponent {
         }
         this.timerInterval = setInterval(()=> {
 
-            console.warn(this.state.remainTime);
             if (this.state.remainTime > 0) {
                 GameActionCreators.updateTimer(this.state.remainTime - 1);
             }
 
-            if (this.state.remainTime == 0) {
+            if (this.state.remainTime <= 0) {
                 clearTimeout(this.timerInterval);
                 this.props.onTimerStopped();
             }

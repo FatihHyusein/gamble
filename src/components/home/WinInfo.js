@@ -15,7 +15,7 @@ class WinInfo extends Component {
                 <span className="win-sum"> {win.jackpot}M - </span>
                 <span><img src={win.icon}/>{win.name}</span>
                 <span>
-                with {win.percent * 100}% chance
+                with {(win.percent * 100).toFixed(2)}% chance
                 </span>
             </div>
         )

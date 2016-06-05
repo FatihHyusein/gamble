@@ -1,0 +1,75 @@
+#partners-page {
+    .twitch {
+        & > h1 {
+            border-bottom: 1px solid $black-border;
+        }
+        .twitch-partners-container {
+            @include flexbox();
+            @include justify-content(center);
+            @include flex-wrap(wrap);
+        }
+    }
+    .other {
+        & > h1 {
+            border-bottom: 1px solid $black-border;
+        }
+        .twitch-partners-container {
+            @include flexbox();
+            @include justify-content(center);
+            @include flex-wrap(wrap);
+            margin-top: 20px;
+        }
+    }
+}
+
+.twitch-streamer {
+    position: relative;
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(space-between);
+
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    text-align: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 2px solid rgba($black-border, 0.7);
+    opacity: 0.8;
+
+    &:hover {
+        opacity: 1;
+    }
+    & > div {
+        padding: 10px 0;
+    }
+
+    .header {
+        @include bg-gradient(rgba($gray-blue, 1), 0%, rgba($gray-blue, 1), 0%, rgba($gray-blue, 0.7), 100%);
+        padding: 5px;
+    }
+
+    .stats {
+        background-color: rgba($gray-blue, 0.4);
+        & > div {
+            display: inline-block;
+            width: 50%;
+        }
+        div:nth-child(1) {
+            font-size: 110%;
+            color: $white;
+        }
+        div:nth-child(2) {
+            color: rgba($white, 0.8);
+        }
+    }
+    .user-info {
+        @include bg-gradient(rgba($gray-blue, 0.7), 0%, rgba($gray-blue, 0.7), 0%, rgba($gray-blue, 1), 100%);
+        div:nth-child(1) {
+            color: $white;
+        }
+        div:nth-child(2) {
+            color: rgba($white, 0.8);
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import GameStore from '../../stores/games/GameStore';
 import ReactCSSTransitionGroup from  'react-addons-css-transition-group';
+import {Link} from 'react-router'
 
 import WinnerInfo from './WinInfo';
 import GameList from'./GameList';
@@ -47,9 +48,44 @@ class Home extends Component {
                             {winEls}
                         </ReactCSSTransitionGroup>
 
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
-                <div>
+                <div className="home-bottom-text-container">
+                    <div className="app-description-container">
+                        <div className="header">
+                            By playing in csgo muffin is the easiest way to win skins.
+                        </div>
+                        <div className="descriptions-container">
+                            <div className="description-inner-container">
+                                <div className="header">
+                                    How does it works?
+                                </div>
+                                <div className="description">Log in & Deposit</div>
+                                <div className="description">Play a game which you prefer</div>
+                                <div className="description">Win & withdraw from market</div>
+                            </div>
+
+                            <div className="description-inner-container">
+                                <div className="header">
+                                    Earn even more by recruiting your friends
+                                </div>
+                                <div className="description">The only thing you have to do is to sit and enjoy your income.</div>
+                                <div className="description"><Link className="pointer" to="/muffinChef">Click here to learn more about our referal system.</Link></div>
+                            </div>
+                        </div>
+                    </div>
                     <GameList />
                 </div>
             </div>

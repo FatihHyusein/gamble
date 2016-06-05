@@ -142,6 +142,14 @@ Nav.defaultProps = {
             name: 'Deposit'
         },
         {
+            url: '/muffinChef',
+            name: 'Muffin Chef'
+        },
+        {
+            url: '/partners',
+            name: 'Partners'
+        },
+        {
             url: '/support',
             name: 'Support'
         }
