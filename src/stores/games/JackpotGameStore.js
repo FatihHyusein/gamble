@@ -162,6 +162,11 @@ jackpotGameStoreInstance.dispatchToken = MuffinDispatcher.register((action)=> {
 
             jackpotGameStoreInstance.game.timerStarted = false;
             jackpotGameStoreInstance.historyGames.push(Object.assign({}, jackpotGameStoreInstance.game));
+
+            if (jackpotGameStoreInstance.historyGames.length > 2) {
+                jackpotGameStoreInstance.historyGames.shift(1);
+            }
+
             jackpotGameStoreInstance.lastWinner = Object.assign({}, action.winner);
             jackpotGameStoreInstance.emitChange();
             break;

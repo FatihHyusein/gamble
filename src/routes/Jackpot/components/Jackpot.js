@@ -49,7 +49,7 @@ class Jackpot extends Component {
         var historyContainer = "";
         if (this.state.historyGames && this.state.historyGames.length > 0) {
             history = this.state.historyGames.map((histGame, idx)=> {
-                return <JackpotGame key={idx} game={histGame} isHistory={true}/>;
+                return <JackpotGame key={histGame.roundHash} game={histGame} isHistory={true}/>;
             }).reverse();
 
             historyContainer = (

@@ -25,7 +25,12 @@ class SvgIcon extends BaseComponent {
     getIcon(iconName) {
         var cachedIcon = SvgIconsStore.getIcon(iconName);
 
-        if (!cachedIcon) {
+        if (cachedIcon) {
+            if (cachedIcon != this.state.iconData) {
+                this.setState({iconData: cachedIcon});
+            }
+        }
+        else {
             var iconUrl = 'staticFiles/icons/' + iconName + '.svg';
             SvgIconsActionCreators.setIconNameForCache(iconName);
 

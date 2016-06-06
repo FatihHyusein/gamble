@@ -6,22 +6,28 @@ var ActionTypes = MuffinConstants.ActionTypes;
 export default {
 
     setNewIcon: function (newIconName, newIcon) {
-        MuffinDispatcher.dispatch({
-            type: ActionTypes.SVG_ADD_ICON,
-            newIconName: newIconName,
-            newIcon: newIcon
-        });
+        setTimeout(()=> {
+            MuffinDispatcher.dispatch({
+                type: ActionTypes.SVG_ADD_ICON,
+                newIconName: newIconName,
+                newIcon: newIcon
+            });
+        }, 1);
     },
-    setIconNameForCache: function (newIconName, newIcon) {
-        MuffinDispatcher.dispatch({
-            type: ActionTypes.SVG_ADD_ICON_NAME_FOR_CACHE,
-            newIconName: newIconName
-        });
+    setIconNameForCache: function (newIconName) {
+        setTimeout(()=> {
+            MuffinDispatcher.dispatch({
+                type: ActionTypes.SVG_ADD_ICON_NAME_FOR_CACHE,
+                newIconName: newIconName
+            });
+        }, 1);
     },
     removeIconNameFromCache: function (newIconName, iconName) {
-        MuffinDispatcher.dispatch({
-            type: ActionTypes.SVG_REMOVE_NAME_FROM_CACHE,
-            notFoundIconName: iconName
-        });
+        setTimeout(()=> {
+            MuffinDispatcher.dispatch({
+                type: ActionTypes.SVG_REMOVE_NAME_FROM_CACHE,
+                notFoundIconName: iconName
+            });
+        }, 1);
     }
 };
