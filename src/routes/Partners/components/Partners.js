@@ -24,34 +24,25 @@ class Partners extends BaseComponent {
     }
 
     getPartnersFromBackend() {
-        let partners = ['joshog', 'phantoml0rd', 'hotted89', 'joshog', 'phantoml0rd', 'hotted89'];
-        for (let partner of partners) {
-            d3.json(`https://api.twitch.tv/kraken/channels/${partner}`, (error, partners)=> {
-                PartnersActionsCreators.updateTwitchStreamers(
-                    partners
+        BaseComponent.getAjax({
+            url: "partners",
+            auth: false,
+            params: {},
+            successFunction: (data)=> {
+                PartnersActionsCreators.updatePartnersList(
+                    data
                 );
-            });
-        }
 
-        // BaseComponent.getAjax({
-        //     url: "partners",
-        //     auth: false,
-        //     params: {},
-        //     successFunction: (data)=> {
-        //         PartnersActionsCreators.updatePartnersList(
-        //             data
-        //         );
-        //
-        //         let partners = data.twitch;
-        //         for (let partner of partners) {
-        //             d3.json(`https://api.twitch.tv/kraken/streams?channel=${partner}`, (error, partners)=> {
-        //                 PartnersActionsCreators.updateTwitchStreamers(
-        //                     partners
-        //                 );
-        //             });
-        //         }
-        //     }
-        // });
+                let partners = data.twitch;
+                for (let partner of partners) {
+                    d3.json(`https://api.twitch.tv/kraken/channels/${partner}`, (error, partners)=> {
+                        PartnersActionsCreators.updateTwitchStreamers(
+                            partners
+                        );
+                    });
+                }
+            }
+        });
 
     }
 
@@ -63,34 +54,27 @@ class Partners extends BaseComponent {
         let partners = this.state.partners;
         let twitchPartners = this.state.twitchPartners;
 
+        let tws;
+        if (twitchPartners && twitchPartners.length > 0) {
+            tws = twitchPartners.map((tw, idx)=> {
+                return (
+                    <TwitchStreamer key={idx} streamerData={tw}/>
+                );
+            });
+        }
 
-        let tws = twitchPartners.map((tw, idx)=> {
-            return (
-                <TwitchStreamer key={idx} streamerData={tw}/>
-            );
-        });
+        var twsHeader = (tws && tws.length > 0) ? <h1 className="tcenter">Twitch Streamers</h1> : '';
 
-        partners.other = [{
-            url: 'youtube.com',
-            logo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/hotted89-profile_image-41e8e977e539fba4-300x300.jpeg',
-            name: 'kollo'
-        },
-            {
-                url: 'youtube.com',
-                logo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/hotted89-profile_image-41e8e977e539fba4-300x300.jpeg',
-                name: 'kollo'
-            },
-            {
-                url: 'http://youtube.com',
-                logo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/hotted89-profile_image-41e8e977e539fba4-300x300.jpeg',
-                name: 'kollo'
-            }];
+        let other;
+        if (partners.others && partners.others.length > 0) {
+            other = partners.others.map((tw, idx)=> {
+                return (
+                    <Other key={idx} streamerData={tw}/>
+                );
+            });
+        }
 
-        let other = partners.other.map((tw, idx)=> {
-            return (
-                <Other key={idx} streamerData={tw}/>
-            );
-        });
+        var othersHeader = (other && other.length > 0) ? <h1 className="tcenter">Other</h1> : '';
 
         return (
             <div id="partners-page">
@@ -99,14 +83,14 @@ class Partners extends BaseComponent {
                 </div>
                 <div>
                     <div className="twitch">
-                        <h1 className="tcenter">Twitch Streamers</h1>
+                        {twsHeader}
                         <div className="twitch-partners-container">
                             {tws}
                         </div>
                     </div>
 
                     <div className="other">
-                        <h1 className="tcenter">Other</h1>
+                        {othersHeader}
                         <div className="twitch-partners-container">
                             {other}
                         </div>
