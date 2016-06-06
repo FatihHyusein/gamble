@@ -16,6 +16,7 @@ class SvgIconsStore extends EventEmitter {
         super(props);
 
         this.iconsDict = {};
+        this.setMaxListeners(0);
     }
 
     emitChange() {
@@ -30,6 +31,7 @@ class SvgIconsStore extends EventEmitter {
         this.removeListener(CHANGE_EVENT, callback);
     }
 
+
 }
 
 let sis = new SvgIconsStore();
@@ -39,6 +41,26 @@ sis.dispatchToken = MuffinDispatcher.register((action)=> {
         case ActionTypes.SVG_ADD_ICON:
             if (action.newIcon) {
                 sis.iconsDict[action.newIconName] = action.newIcon;
+            }
+
+            sis.iconsDict = Object.assign({}, sis.iconsDict);
+
+            sis.emitChange();
+            break;
+
+        case ActionTypes.SVG_ADD_ICON_NAME_FOR_CACHE:
+            if (action.newIconName) {
+                sis.iconsDict[action.newIconName] = {};
+            }
+
+            sis.iconsDict = Object.assign({}, sis.iconsDict);
+
+            sis.emitChange();
+            break;
+
+        case ActionTypes.SVG_REMOVE_NAME_FROM_CACHE:
+            if (action.notFoundIconName) {
+                sis.iconsDict[action.notFoundIconName] = null;
             }
 
             sis.iconsDict = Object.assign({}, sis.iconsDict);

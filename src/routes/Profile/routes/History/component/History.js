@@ -40,7 +40,7 @@ class History extends BaseComponent {
     }
 
     componentWillMount() {
-        this.retrieveHistory(this.props.historyDays.oneDay);
+        this.retrieveHistory(this.props.historyDays.month);
     }
 
     render() {

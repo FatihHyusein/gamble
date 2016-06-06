@@ -64,6 +64,8 @@ module.exports = {
         DEPOSIT_UPDATE_CART_LIST: null,
 
         SVG_ADD_ICON: null,
+        SVG_ADD_ICON_NAME_FOR_CACHE: null,
+        SVG_REMOVE_NAME_FROM_CACHE: null,
 
         UPDATE_PARTNERS_LIST: null,
         UPDATE_TWITCH_STREAMERS: null

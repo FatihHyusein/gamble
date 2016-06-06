@@ -6,8 +6,11 @@ import SvgIconsStore from '../../stores/SvgIconsStore';
 
 
 function getIconFromStore(name) {
+    var iconData = SvgIconsStore.getIcon(name);
+    iconData = (typeof iconData === "string") ? iconData : '';
+
     return {
-        iconData: SvgIconsStore.getIcon(name)
+        iconData: iconData
     };
 }
 class SvgIcon extends BaseComponent {
@@ -16,18 +19,15 @@ class SvgIcon extends BaseComponent {
 
         this.state = getIconFromStore(props.iconName);
         this.getIcon = this.getIcon.bind(this);
+        this._onChange = this._onChange.bind(this);
     }
 
     getIcon(iconName) {
         var cachedIcon = SvgIconsStore.getIcon(iconName);
 
-        if (cachedIcon) {
-            if (cachedIcon != this.state.iconData) {
-                this.setState({iconData: cachedIcon});
-            }
-        }
-        else {
+        if (!cachedIcon) {
             var iconUrl = 'staticFiles/icons/' + iconName + '.svg';
+            SvgIconsActionCreators.setIconNameForCache(iconName);
 
             d3.xml(iconUrl, "image/svg+xml", (error, xml) => {
                 // if (error) throw error;
@@ -38,12 +38,11 @@ class SvgIcon extends BaseComponent {
                     this.setState({iconData: svgString});
                     SvgIconsActionCreators.setNewIcon(iconName, svgString);
                 }
+                else {
+                    SvgIconsActionCreators.removeIconNameFromCache(iconName);
+                }
             });
         }
-    }
-
-    componentDidMount() {
-        this.getIcon(this.props.iconName);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -64,6 +63,20 @@ class SvgIcon extends BaseComponent {
             </i>
         </div>;
     }
+
+    componentDidMount() {
+        this.getIcon(this.props.iconName);
+        SvgIconsStore.addChangeListener(this._onChange);
+    }
+
+    componentWillUnmount() {
+        SvgIconsStore.removeChangeListener(this._onChange);
+    }
+
+    _onChange() {
+        this.setState(getIconFromStore(this.props.iconName));
+    }
+
 }
 
 

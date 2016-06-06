@@ -11,5 +11,17 @@ export default {
             newIconName: newIconName,
             newIcon: newIcon
         });
+    },
+    setIconNameForCache: function (newIconName, newIcon) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.SVG_ADD_ICON_NAME_FOR_CACHE,
+            newIconName: newIconName
+        });
+    },
+    removeIconNameFromCache: function (newIconName, iconName) {
+        MuffinDispatcher.dispatch({
+            type: ActionTypes.SVG_REMOVE_NAME_FROM_CACHE,
+            notFoundIconName: iconName
+        });
     }
 };
