@@ -5,11 +5,19 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="og:title" content="CSGO Muffin" />
+    <meta name="og:type" content="CSGO Skins jackpot referrals" />
+    <meta name="og:url" content="http://www.csgomuffin.com/" />
+    <meta name="og:image" content="http://www.csgomuffin.com/staticFiles/images/CSGO_media.png" />
+    <meta property="og:image" content="http://www.csgomuffin.com/staticFiles/images/CSGO_media.png" />
+    <meta name="og:description" content="The only place where you bet muffins and win CS:GO skins." />
+    <meta name="og:site_name" content="CSGO Muffin" />
+
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="msapplication-square150x150logo" content="staticFiles/icons/muffin.png"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="csgo skins bet game">
+    <meta name="description" content="The only place where you bet muffins and win CS:GO skins.">
     <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
     id="view-handler"/>
@@ -17,6 +25,21 @@ session_start();
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="dns-prefetch" href="/api/"/>
     <base href="/">
+
+    <meta itemprop="name" content="CSGO Muffin">
+    <meta itemprop="description" content="The only place where you bet muffins and win CS:GO skins">
+    <meta itemprop="image" content="http://www.csgomuffin.com/staticFiles/images/CSGO_media.png">
+
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@publisher_handle">
+    <meta name="twitter:title" content="CSGO Muffin">
+    <meta name="twitter:description" content="The only place where you bet muffins and win CS:GO skins.">
+    <meta name="twitter:creator" content="@author_handle">
+    <meta name="twitter:image" content="http://www.csgomuffin.com/staticFiles/images/CSGO_media.png">
+    <meta name="twitter:data1" content="$3">
+    <meta name="twitter:label1" content="Jackpot">
+    <meta name="twitter:data2" content="CS:GO">
+    <meta name="twitter:label2" content="Skins">
 </head>
 <body>
 
