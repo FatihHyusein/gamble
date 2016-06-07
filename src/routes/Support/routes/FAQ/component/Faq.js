@@ -104,7 +104,8 @@ price for the items.`
         },
         {
             question: "How can I withdraw skins?",
-            answer: `You can withdraw skins from "Market" in exchange for your Muffins.`
+            answer: `You can withdraw skins from "Market" in exchange for your Muffins. 
+            New users have to play 5 times on our games, in order to withdraw skins from our market.`
         },
         {
             question: "How does Kill the Muffin (Jackpot) work?",
