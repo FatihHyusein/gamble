@@ -29,7 +29,7 @@ class Footer extends Component {
                     {socialLinks}
                 </div>
                 <div className="reserved">
-                    All rights reserved 2016
+                    Powered by Steam, a registered trademark of Valve Corporation. Original background image Paddymazz. All rights reserved 2016
                 </div>
             </div>
         )
