@@ -72,6 +72,10 @@ Footer.defaultProps = {
         {
             url: 'https://www.youtube.com/channel/UCz-Y14QAnMTHickMe76N6Gw',
             icon: 'yt'
+        },
+        {
+            url: 'http://steamcommunity.com/groups/csmuffin',
+            icon: 'steam-ico'
         }
     ]
 

@@ -130,7 +130,7 @@ Every 100 Muffins will buy you roughly $1 worth of items. See below for more inf
 
 Panel dashboard to find your unique referral code. Share with friends, in forums, or on social media.
 
-When new players use your referral code they'll earn 50 FREE Muffins. And you'll earn 5 FREE
+When new players enter your referral code, they’ll receive 20 muffins for FREE and a bonus of 30 muffins after their first deposit. You will get 10 muffins FREE for inviting them.
 
 Muffins every time someone uses your referral code. If you want to earn more check out the next question!`
         }
