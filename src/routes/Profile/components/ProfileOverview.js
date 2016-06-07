@@ -49,7 +49,8 @@ class ProfileOverview extends BaseComponent {
             (
                 <div className="trade-url-container">
                     <div className="input-label">Enter parent referral code and earn
-                        20<CommonComponents.SvgIcon iconName="muffin-currency"/>. Deposit and win another 30<CommonComponents.SvgIcon iconName="muffin-currency"/>:
+                        20<CommonComponents.SvgIcon iconName="muffin-currency"/>. Deposit and win another
+                        30<CommonComponents.SvgIcon iconName="muffin-currency"/>:
                     </div>
                     <div>
                         <input type="text"
