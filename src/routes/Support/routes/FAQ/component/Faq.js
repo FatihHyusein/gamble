@@ -48,19 +48,10 @@ class Faq extends BaseComponent {
                     For every user with your referral code you earn
                     <ul>
                         <li>
-                            * <b>10 FREE
-                            <span><CommonComponents.SvgIcon className="currency-icon" iconName="muffin-currency"/>
-                        </span>
-                        </b>
-                        </li>
-                        <li>
                             * <b>2% of his win in our games</b>
                         </li>
                     </ul>
-                    * One simple calculation: if you have <b>100</b> referrals you earn <b>100*10=1000 <span>
-                                <CommonComponents.SvgIcon className="currency-icon" iconName="muffin-currency"/></span></b>
-                    .
-                    If daily a
+                    * One simple calculation: If daily a
                     referral wins average <b>1000 <span>
                             <CommonComponents.SvgIcon className="currency-icon" iconName="muffin-currency"/>
                         </span></b>
@@ -131,7 +122,7 @@ Every 100 Muffins will buy you roughly $1 worth of items. See below for more inf
 
 Panel dashboard to find your unique referral code. Share with friends, in forums, or on social media.
 
-When new players enter your referral code, they’ll receive 20 muffins for FREE and a bonus of 30 muffins after their first deposit. You will get 10 muffins FREE for inviting them.
+When new players enter your referral code, they’ll receive 20 muffins for FREE and a bonus of 30 muffins after their first deposit.
 
 Muffins every time someone uses your referral code. If you want to earn more check out the next question!`
         }

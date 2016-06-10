@@ -81,7 +81,7 @@ class Socket {
         this.pingIntervalFunction = function () {
             this.send({"ping": "pong"});
         };
-        this.timerSend = setInterval(this.pingIntervalFunction.bind(this), this.pingInterval);
+        // this.timerSend = setInterval(this.pingIntervalFunction.bind(this), this.pingInterval);
     };
 
     send(message) {
@@ -155,7 +155,7 @@ class Socket {
                 clearInterval(this.timerSend);
             }
 
-            this.timerSend = setInterval(this.pingIntervalFunction.bind(this), this.pingInterval);
+            // this.timerSend = setInterval(this.pingIntervalFunction.bind(this), this.pingInterval);
         }
     };
 

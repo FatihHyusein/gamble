@@ -3,7 +3,7 @@ import DepositList from './DepositList';
 import Timer from './Timer';
 import ProfileBet from './ProfileBet';
 import UserDataStore from '../../../stores/UserDataStore';
-
+import ToastMessagesActionCreators from '../../../actions/ToastMessagesActionCreators';
 
 export default
 class JackpotGame extends BaseComponent {
@@ -20,6 +20,14 @@ class JackpotGame extends BaseComponent {
     }
 
     placeBet() {
+        if (UserDataStore.getMuffins() < this._betAmount.value || this._betAmount.value < this.props.minBetAmount) {
+            ToastMessagesActionCreators.setNewToasts([{
+                type: "warning",
+                text: "You don't have enough muffins."
+            }]);
+            return;
+        }
+
         BaseComponent.sendViaSocket({
             type: 'placeBet',
             data: {
@@ -36,7 +44,7 @@ class JackpotGame extends BaseComponent {
         //     this._betAmount.value = UserDataStore.getMuffins();
         // }
         // else {
-            this._betAmount.value = Math.round(this._betAmount.value);
+        this._betAmount.value = Math.round(this._betAmount.value);
         // }
     }
 

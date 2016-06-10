@@ -187,17 +187,17 @@ Referrals.defaultProps = {
     levels: [
         {description: "You have reached the max level for now"},
         {
-            description: "You earn 2% of your referral's win and once 10M for every referral entered your code!",
-            calc: 'With 100 referrals playing daily and winning average 1000M: 10*100 = 1000M Once and 100*1000*30*0.02 = 60000M average monthly'
+            description: "You earn 2% of your referral's win!",
+            calc: 'With 100 referrals playing daily and winning average 1000M:100*1000*30*0.02 = 60000M average monthly'
         },
         {
-            description: "You earn once 10M for every referral entered your code!, 2% of your referral's win and 1% of your referral's referral win!",
-            calc: 'You have for example 100 referrals, with their referrals count average 100: You earn once 100*10 = 1000M If they play daily and win average 1000M you can earn ' +
+            description: "You earn 2% of your referral's win and 1% of your referral's referral win!",
+            calc: 'You have for example 100 referrals, with their referrals count average 100: If they play daily and win average 1000M you can earn ' +
             'average (100*1000*30*0.02) + (100*100*1000*30*0.01) = 60 000M + 3 000 000M = 3 060 000M  average monthly!!!'
         },
         {
-            description: "You earn once 10M for every referral, 2% of your referral's win, 1% of your referral's referral win and 0.5% of his referral's win!",
-            calc: 'You have for example 100 referrals, with their referrals count average 100 and their average referrals count 100: You earn once 100*10 = 1000M. ' +
+            description: "You earn 2% of your referral's win, 1% of your referral's referral win and 0.5% of his referral's win!",
+            calc: 'You have for example 100 referrals, with their referrals count average 100 and their average referrals count 100: ' +
             ' If they play daily and win average 1000M you can earn ' +
             'average (100*1000*30*0.02) + (100*100*1000*30*0.01) + (100*100*100*1000*30*0.005) = 60 000M + 3 000 000M + 150 000 000M = 153 060 000M  average monthly!!!'
         },
