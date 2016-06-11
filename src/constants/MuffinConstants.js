@@ -68,7 +68,9 @@ module.exports = {
         SVG_REMOVE_NAME_FROM_CACHE: null,
 
         UPDATE_PARTNERS_LIST: null,
-        UPDATE_TWITCH_STREAMERS: null
+        UPDATE_TWITCH_STREAMERS: null,
+
+        CHAT_ADD_MESSAGES: null
     }),
 
     ROUTES: createRouterStrings(['support'])

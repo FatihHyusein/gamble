@@ -3,6 +3,7 @@ import GameActionCreator from '../../../actions/games/GameActionCreators';
 import JackpotStore from '../../../stores/games/JackpotGameStore';
 import BaseComponent from '../../../base/BaseComponent';
 import ReactCSSTransitionGroup from  'react-addons-css-transition-group';
+import Chat from '../../../common/components/chat/Chat';
 
 function getStateFromStores() {
     return {
@@ -72,6 +73,8 @@ class Jackpot extends Component {
                 <JackpotGame game={this.state.gameData} dailyStatus={this.state.dailyStatus}/>
 
                 {historyContainer}
+
+                <Chat />
             </div>
         )
     }

@@ -1,0 +1,81 @@
+#chat {
+    position: absolute;
+    width: 322px;
+    bottom: $footer-height;
+    right: 0;
+    z-index: 5;
+    background-color: $gray-blue;
+    border: 1px solid $gray-blue-border;
+    @include addTransition();
+
+    &.toggled {
+        right: -320px;
+    }
+
+    .toggle-header {
+        position: relative;
+        background-color: $gray;
+        height: 30px;
+
+        &:before {
+            content: 'chat';
+            position: absolute;
+            height: 30px;
+            line-height: 27px;
+            background-color: $red;
+            z-index: 5549;
+            width: 40px;
+            left: -40px;
+        }
+    }
+
+    .messages-container {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .chat-message-row {
+        @include flexbox();
+        @include justify-content(center);
+        margin: 10px;
+        padding: 10px;
+        border-bottom: 1px solid $gray-blue-border;
+
+        &:nth-child(odd) {
+            img {
+                margin-right: 10px;
+            }
+        }
+
+        &:nth-child(even) {
+            @include flex-direction(row-reverse);
+
+            img {
+                margin-left: 10px;
+            }
+            & > div {
+                text-align: right;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            max-width: 50px;
+            max-height: 50px;
+            @include border-radius(50%);
+            border: 1px solid $gray-blue-border;
+        }
+        & > div {
+            & > div:nth-child(1) {
+                border-bottom: 1px solid $gray-blue-border;
+                color: $green;
+            }
+
+            & > div:nth-child(2) {
+                @include flexbox();
+                @include align-items(center);
+            }
+        }
+    }
+}
