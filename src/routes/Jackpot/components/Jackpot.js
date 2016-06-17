@@ -74,7 +74,6 @@ class Jackpot extends Component {
 
                 {historyContainer}
 
-                <Chat />
             </div>
         )
     }

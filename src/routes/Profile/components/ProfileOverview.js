@@ -48,9 +48,8 @@ class ProfileOverview extends BaseComponent {
         var parentRefInput = (pr.parentRefCode) ? '' :
             (
                 <div className="trade-url-container">
-                    <div className="input-label">Enter parent referral code and earn
-                        20<CommonComponents.SvgIcon iconName="muffin-currency"/>. Deposit and win another
-                        30<CommonComponents.SvgIcon iconName="muffin-currency"/>:
+                    <div className="input-label">Enter referral code if you are invited by someone and you will earn 5%
+                        bonus on your first deposit – up to 3 dollars.
                     </div>
                     <div>
                         <input type="text"
@@ -79,8 +78,13 @@ class ProfileOverview extends BaseComponent {
                         <div className="muffins">
                             <CommonComponents.SvgIcon iconName="muffin-currency"/> {pr.muffins}
                         </div>
+
                         <div className="ref-code">
                             Your referral code: <span>{pr.referralCode}</span>
+                            <div>
+                                Don’t forget to share this code with all your friends on Steam, social media and forums! You
+                                will earn 2% from the first deposit of your referrals!
+                            </div>
                         </div>
                         {parentRefInfo}
                     </div>

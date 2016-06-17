@@ -227,18 +227,20 @@ a.c-green {
         background-image: url("staticFiles/images/bg4k.jpg");
     }
 
+    .global-info,
     &:before {
-        //content: 'We will be live soon!';
-        border: 2px solid $red;
-        color: $red;
+        //content: "We are looking for twitch and youtube partners. For more info write in our contact form.";
         position: absolute;
-        font-size: 200%;
+        top: $nav-height;
         left: 10px;
         right: 10px;
+        margin-top: 10px;
         padding: 10px;
-        top: 10px;
+        font-size: 150%;
+        border: 2px solid #5d6a72;
+        color: red;
         border-radius: 10px;
-
+        background-color: rgba(53, 63, 71, 0.7);
     }
 
     .header {

@@ -103,12 +103,12 @@ class MuffinChef extends BaseComponent {
                         game, Muffin Chef is the place.
                     </p>
                     <p>
-                        Team up with the muffins for a possibility of a good investment. You will see combining the
-                        pleasure of gaming with our website will lead you to stable income. One time a muffin chef,
-                        always a muffin chef. This is the only place where you can help the fellow CS:GO get amazing
-                        skins, while earning good amounts of money for yourself. Even if you are playing the game for
-                        just a few weeks or months, you already have a few friends that are ready to try their luck at
-                        CSGOMuffin.
+                        Team up with the muffins for a possibility to make the best investment. You will see combining
+                        the pleasure of gaming with our website will lead you to stable income. Once a muffin chef,
+                        always a muffin chef. This is the only place where you can help the fellow CS:GO players get
+                        amazing skins, while earning good amounts of money for yourself. Even if you are playing the
+                        game for just a few weeks or months, you already have a few friends that are ready to try their
+                        luck at CSGOMuffin.
                     </p>
                     <p>
                         After becoming a Muffin Chef you can get the possibility to create a multilevel network of
@@ -117,11 +117,12 @@ class MuffinChef extends BaseComponent {
                         these people can be under you and earn you muffins.
                     </p>
                     <p>
-                        Let’s make one simple calculation! You refer 10 of your friend to our website. If the average
-                        daily earning of a referral are 500 muffins, you will get 10*500*30*0.02 = 3000 muffins which is
-                        the equivalent of 30 bucks. That is only your first level of referrals. If you upgrade your
-                        Muffin Chef level, you can earn from their referrals and the referrals of their referrals. It
-                        sounds amazing? It definitely is.
+                        Let’s make one simple calculation! You refer 10 of your friends to our website. If the average
+                        daily earning of a referral is 500 muffins, you will get 10*500*30*0.02 = 3000 muffins at the
+                        end of the month, which is the equivalent of 30 bucks. That is only your first level of
+                        referrals. If you upgrade your Muffin Chef level, you can earn from their referrals and the
+                        referrals of their referrals. It sounds amazing? It definitely is. Don’t forget you will get 2%
+                        of the first deposit of every one that enters your ref. code.
                     </p>
                     <table className="muffin-table">
                         <thead>
@@ -178,8 +179,7 @@ class MuffinChef extends BaseComponent {
                     <div>
                         <div>
                             1. Talk with all your Steam friends about our amazing website. Present them all the great
-                            games
-                            and possibilities.
+                            games and possibilities.
                         </div>
                         <div>
                             2. Publish an update in Facebook and Twitter to let your friends know about CSGOMuffin.com,
@@ -187,8 +187,7 @@ class MuffinChef extends BaseComponent {
                         </div>
                         <div>
                             3. Join Facebook and Steam CS:GO groups where you can talk to a lot of like minded people.
-                            Let
-                            them know about our project. You will never regret this!
+                            Let them know about our project. You will never regret this!
                         </div>
                     </div>
                     {upgradeLoggedUser}

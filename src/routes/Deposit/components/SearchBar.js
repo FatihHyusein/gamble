@@ -1,5 +1,6 @@
 import router, {Router, browserHistory, Link} from 'react-router'
 import DepositStore from '../../../stores/DepositStore';
+import BaseComponent from '../../../base/BaseComponent';
 
 function getStateFromStores() {
     return {
@@ -7,7 +8,7 @@ function getStateFromStores() {
     }
 }
 
-class SearchBar extends Component {
+class SearchBar extends BaseComponent {
     constructor() {
         super();
         this._onChange = this._onChange.bind(this);
@@ -67,6 +68,7 @@ class SearchBar extends Component {
     }
 
     componentDidMount() {
+        super.componentDidMount();
         DepositStore.addCartItemsChangeListener(this._onChange);
     }
 

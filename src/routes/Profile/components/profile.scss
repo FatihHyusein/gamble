@@ -54,6 +54,10 @@
                     font-size: 160%;
                     vertical-align: middle;
                 }
+                div {
+                    max-width: 500px;
+                    color: $red;
+                }
             }
         }
     }

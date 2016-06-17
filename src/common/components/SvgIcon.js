@@ -57,6 +57,14 @@ class SvgIcon extends BaseComponent {
     }
 
     render() {
+        if(!this.state.iconData){
+            return (
+                <i {...this.props}>
+
+                </i>
+            )
+        }
+
         function createMarkup(html) {
             return {__html: html};
         }

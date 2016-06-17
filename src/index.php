@@ -72,7 +72,7 @@ session_start();
 </body>
 
 
-<script src="bundle.js" async></script>
+<script src="min/bundle.js" async></script>
 
 <noscript id="deferred-styles">
     <link rel="stylesheet" href="../bundle.css" type="text/css"/>

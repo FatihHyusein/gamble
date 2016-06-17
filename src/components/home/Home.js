@@ -49,40 +49,36 @@ class Home extends Component {
                         </ReactCSSTransitionGroup>
 
 
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
                 <div className="home-bottom-text-container">
                     <div className="app-description-container">
                         <div className="header">
-                            By playing in csgo muffin is the easiest way to win skins.
+                            Playing in CSGO Muffin is one of the best ways to have fun and win skins at the same time!
                         </div>
                         <div className="descriptions-container">
                             <div className="description-inner-container">
                                 <div className="header">
-                                    How does it works?
+                                    How does it work?
                                 </div>
-                                <div className="description">Log in & Deposit</div>
-                                <div className="description">Play a game which you prefer</div>
-                                <div className="description">Win & withdraw from market</div>
+                                <div className="description">Log in with your Steam account, deposit some skins and play
+                                    on one of our amazing games!
+                                </div>
+                                <div className="description">After you win enough muffins, head to the market and get
+                                    the skin you always wanted to have!
+                                </div>
                             </div>
 
                             <div className="description-inner-container">
                                 <div className="header">
-                                    Earn even more by recruiting your friends
+                                    You can earn even more by helping your friends find out about the site!
                                 </div>
-                                <div className="description">The only thing you have to do is to sit and enjoy your income.</div>
-                                <div className="description"><Link className="pointer" to="/muffinChef">Click here to learn more about our referal system.</Link></div>
+                                <div className="description">Just promote your referral code here and there and muffins
+                                    will start to come in. All you have to do after that is relax and enjoy your new
+                                    skins. Don’t miss that opportunity!
+                                </div>
+                                <div className="description"><Link className="pointer" to="/muffinChef">Click here to
+                                    learn more about our referal system.</Link></div>
                             </div>
                         </div>
                     </div>

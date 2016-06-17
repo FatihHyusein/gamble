@@ -162,6 +162,20 @@ class BaseComponent extends Component {
     _onChange() {
         this.setState(getStateFromStores());
     }
+
+    componentDidMount() {
+        var oldAnchor = document.getElementsByClassName('global-info');
+        var message = document.createElement('a');
+        message.setAttribute('href', 'https://gleam.io/rkaLi/awp-manowar-giveaway-by-csgomuffincom');
+        message.setAttribute('target', 'blank');
+        message.setAttribute('class', 'global-info');
+        message.innerText = `We are hosting an AWP Man-o'-war giveaway, join now`;
+        var topContainer = document.getElementsByClassName('top-container');
+        if (oldAnchor && oldAnchor.length > 0) {
+            topContainer[0].removeChild(oldAnchor[0]);
+        }
+        topContainer[0].appendChild(message);
+    }
 }
 
 export default BaseComponent;
