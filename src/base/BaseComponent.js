@@ -171,10 +171,13 @@ class BaseComponent extends Component {
         message.setAttribute('class', 'global-info');
         message.innerText = `We are hosting an AWP Man-o'-war giveaway, join now`;
         var topContainer = document.getElementsByClassName('top-container');
-        if (oldAnchor && oldAnchor.length > 0) {
-            topContainer[0].removeChild(oldAnchor[0]);
+
+        if(topContainer && topContainer[0]) {
+            if (oldAnchor && oldAnchor.length > 0) {
+                topContainer[0].removeChild(oldAnchor[0]);
+            }
+            topContainer[0].appendChild(message);
         }
-        topContainer[0].appendChild(message);
     }
 }
 
