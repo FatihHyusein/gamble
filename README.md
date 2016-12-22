@@ -5,13 +5,12 @@
 Frontend of an online gambling with csgo skins. The frontend communication is only with one api and steam login.
 
 # App Features
-- API
-    * Steam Login
-    * Profile
-    * Gamble page
-    * My items (inventory)
-    * Shop
-    * Polycies/QA/Contact form
+- Steam Login
+- Profile
+- Gamble page
+- My items (inventory)
+- Shop
+- Polycies/QA/Contact form
    
 # Used Technologies
   * React
