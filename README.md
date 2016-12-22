@@ -16,12 +16,13 @@ Frontend of an online gambling with csgo skins. The frontend communication is on
   * React
   * flux
   * D3.js
+  * Web sockets
   * Sass
   * Svgs
   * Gulp
   * Browserify
   * Babel
-  
+    
 #Build info
 * Client
     - After release build, in dest folder should be created folder with the name of the subproject which contains:
