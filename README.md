@@ -1,4 +1,7 @@
 # csgomuffin.com
+
+`Steam banned gabmling with their skins and the website is not online since then.`
+
 Frontend of an online gambling with csgo skins. The frontend communication is only with one api and steam login.
 
 # App Features
